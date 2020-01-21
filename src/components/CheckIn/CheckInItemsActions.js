@@ -46,43 +46,47 @@ const CheckInItemsActions = ({ showEditPieceModal, deletePiece, receivingHistory
       open={open}
       onToggle={toggleActionMenu}
       hasPadding
-    >
-      <IconButton
-        data-role="toggle"
-        icon="ellipsis"
-      />
-      <DropdownMenu
-        data-role="menu"
-        onToggle={toggleActionMenu}
-      >
-        <MenuSection id="check-in-items-actions">
-          <Button
-            buttonStyle="dropdownItem"
-            data-test-button-delete-piece
-            onClick={() => {
-              toggleActionMenu();
-              deletePiece(piece);
-            }}
-          >
-            <Icon size="small" icon="trash">
-              <FormattedMessage id="ui-orders.button.delete" />
-            </Icon>
-          </Button>
-          <Button
-            buttonStyle="dropdownItem"
-            data-test-button-edit-piece
-            onClick={() => {
-              toggleActionMenu();
-              showEditPieceModal(piece);
-            }}
-          >
-            <Icon size="small" icon="edit">
-              <FormattedMessage id="ui-orders.button.edit" />
-            </Icon>
-          </Button>
-        </MenuSection>
-      </DropdownMenu>
-    </Dropdown>
+      renderTrigger={({ getTriggerProps }) => (
+        <IconButton
+          {...getTriggerProps()}
+          data-role="toggle"
+          icon="ellipsis"
+        />
+      )}
+      renderMenu={() => (
+        <DropdownMenu
+          data-role="menu"
+          onToggle={toggleActionMenu}
+        >
+          <MenuSection id="check-in-items-actions">
+            <Button
+              buttonStyle="dropdownItem"
+              data-test-button-delete-piece
+              onClick={() => {
+                toggleActionMenu();
+                deletePiece(piece);
+              }}
+            >
+              <Icon size="small" icon="trash">
+                <FormattedMessage id="ui-orders.button.delete" />
+              </Icon>
+            </Button>
+            <Button
+              buttonStyle="dropdownItem"
+              data-test-button-edit-piece
+              onClick={() => {
+                toggleActionMenu();
+                showEditPieceModal(piece);
+              }}
+            >
+              <Icon size="small" icon="edit">
+                <FormattedMessage id="ui-orders.button.edit" />
+              </Icon>
+            </Button>
+          </MenuSection>
+        </DropdownMenu>
+      )}
+    />
   );
 };
 
