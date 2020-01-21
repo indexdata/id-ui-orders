@@ -22,23 +22,24 @@ const OrderLineDetails = ({
   onClose,
   parentMutator,
   parentResources,
-  resources,
   showToast,
   ...restProps
 }) => {
   const lineId = match.params.id;
-  const line = get(resources, ['orderLine', 'records', 0], {});
-  const order = get(resources, ['order', 'records', 0], {});
+  const [line, setLine] = useState({});
+  const [order, setOrder] = useState({});
 
   const fetchLineDetails = useCallback(
     () => {
-      mutator.orderLine.reset();
-      mutator.order.reset();
+      setLine({});
+      setOrder({});
       mutator.orderLine.GET()
-        .then(({ purchaseOrderId }) => {
-          mutator.orderId.replace(purchaseOrderId);
-          mutator.order.GET();
-        });
+        .then(lineResponse => {
+          setLine(lineResponse);
+
+          return mutator.order.GET({ path: `${ORDERS_API}/${lineResponse.purchaseOrderId}` });
+        })
+        .then(setOrder);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [lineId],
@@ -54,7 +55,7 @@ const OrderLineDetails = ({
       });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [lineId],
+    [lineId, order],
   );
 
   const deleteLine = useCallback(
@@ -91,10 +92,7 @@ const OrderLineDetails = ({
   const receivingURL = `/orders/view/${order.id}/po-line/view/${lineId}/receiving`;
   const checkinURL = `/orders/view/${order.id}/po-line/view/${lineId}/check-in/items`;
 
-  const isLoading = !(
-    get(resources, ['orderLine', 'hasLoaded']) &&
-    get(resources, ['order', 'hasLoaded'])
-  );
+  const isLoading = !(order.id && line.id);
 
   if (isLoading) {
     return <LoadingPane onClose={onClose} />;
@@ -138,11 +136,9 @@ OrderLineDetails.manifest = Object.freeze({
   },
   order: {
     ...baseManifest,
-    path: `${ORDERS_API}/%{orderId}`,
     accumulate: true,
     fetch: false,
   },
-  orderId: {},
 });
 
 OrderLineDetails.propTypes = {

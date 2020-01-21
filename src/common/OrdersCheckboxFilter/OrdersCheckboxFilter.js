@@ -26,7 +26,7 @@ const OrdersCheckboxFilter = ({
       closedByDefault={closedByDefault}
       displayClearButton={activeFilters.length > 0}
       header={FilterAccordionHeader}
-      id={id}
+      id={id || name}
       label={<FormattedMessage id={labelId} />}
       onClearFilter={createClearFilterHandler(onChange, name)}
     >

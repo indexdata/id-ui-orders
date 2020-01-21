@@ -27,9 +27,8 @@ const UpdateOrderErrorModal = ({ orderNumber, cancel, errors = [], title }) => {
       data-test-update-order-error-modal
     >
       {errors.map(({ code, poLineNumber }, i) => (
-        <p>
+        <p key={`${i}_${poLineNumber}`}>
           <FormattedMessage
-            key={`${i}_${poLineNumber}`}
             id={`ui-orders.errors.${code}`}
             values={{ poLineNumber }}
           />
