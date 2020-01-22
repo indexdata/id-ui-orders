@@ -1,5 +1,10 @@
 # Change history for ui-orders
 
+## (IN PROGRESS)
+
+### Stories
+* [UIOR-492](https://issues.folio.org/browse/UIOR-492) Update for new interface versions of circulation and inventory
+
 ## [1.9.0](https://github.com/folio-org/ui-orders/tree/v1.9.0) (in progress)
 [Full Changelog](https://github.com/folio-org/ui-orders/compare/v1.8.2...v1.9.0)
 
