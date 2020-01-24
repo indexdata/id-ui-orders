@@ -60,6 +60,7 @@ describe('Open order action', function () {
     describe('click action', () => {
       beforeEach(async () => {
         await orderDetailsPage.openOrderButton.click();
+        await openOrderConfirmationModal.whenLoaded();
       });
 
       it('should open Open Order Confirmation Modal', () => {
@@ -70,6 +71,7 @@ describe('Open order action', function () {
     describe('click close action on modal', () => {
       beforeEach(async () => {
         await orderDetailsPage.openOrderButton.click();
+        await openOrderConfirmationModal.whenLoaded();
         await openOrderConfirmationModal.cancelAction();
       });
 
@@ -83,28 +85,13 @@ describe('Open order action', function () {
 
       beforeEach(async () => {
         await orderDetailsPage.openOrderButton.click();
+        await openOrderConfirmationModal.whenLoaded();
         await openOrderConfirmationModal.submitAction();
       });
 
       it('should close Open Order Confirmation Modal and open Error modal', () => {
         expect(openOrderErrorModal.isPresent).to.be.true;
         expect(openOrderConfirmationModal.isPresent).to.be.false;
-      });
-    });
-  });
-
-  Object.values(WORKFLOW_STATUS).forEach(status => {
-    describe(`button for ${status} order without POLs`, () => {
-      beforeEach(function () {
-        const newOrder = this.server.create('order', {
-          workflowStatus: status,
-        });
-
-        this.visit(`/orders/view/${newOrder.id}`);
-      });
-
-      it('should not be visible', () => {
-        expect(orderDetailsPage.openOrderButton.isPresent).not.to.be.true;
       });
     });
   });

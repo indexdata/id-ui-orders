@@ -1,4 +1,5 @@
-import { Factory, faker } from '@bigtest/mirage';
+import { Factory } from 'miragejs';
+import faker from 'faker';
 
 export default Factory.extend({
   id: () => faker.random.uuid(),
@@ -8,4 +9,6 @@ export default Factory.extend({
     updatedDate: faker.date.past(),
   }),
   notes: (id) => [`Order ${id}`],
+  orderType: () => 'One-Time',
+  workflowStatus: () => 'Pending',
 });

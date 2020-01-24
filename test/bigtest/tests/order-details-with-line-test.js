@@ -46,13 +46,14 @@ describe('Order details with Line', function () {
 
     invoice = this.server.create('invoice');
 
-    this.server.create('orderInvoiceRelationships', {
+    this.server.create('orderInvoiceRelationship', {
       purchaseOrderId: order.id,
       invoiceId: invoice.id,
     });
 
     this.visit(`/orders/view/${order.id}`);
     await orderDetailsPage.whenLoaded();
+    await orderDetailsPage.whenInvoicesLoaded();
   });
 
   it('displays the order details pane', () => {
@@ -79,6 +80,7 @@ describe('Order details with Line', function () {
 
   describe('clicking on invoice number', () => {
     beforeEach(async function () {
+      await orderDetailsPage.whenInvoicesLoaded();
       await orderDetailsPage.relatedInvoicesAccordion.invoices(0).link();
     });
 
