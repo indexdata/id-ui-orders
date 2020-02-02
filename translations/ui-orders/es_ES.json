@@ -274,7 +274,6 @@
     "poLine.acquisitionMethod": "Método de adquisición",
     "poLine.cancellationRestriction": "Restricción de cancelación",
     "poLine.cancellationRestrictionNote": "Descripción de la cancelación",
-    "poLine.checkinItems": "Items de devolución",
     "poLine.createdOn": "Creado el",
     "poLine.donor": "Donor",
     "poLine.orderFormat": "Formato del pedido",
@@ -569,7 +568,6 @@
     "order.vendorCode": "Código de proveedor",
     "order.orderType": "Tipo de pedido",
     "order.createdDate": "Fecha de creación",
-    "lineListing.title": "Título",
     "lineListing.productId": "ID del producto",
     "lineListing.vendorRefNumber": "Número de referencia del proveedor",
     "lineListing.fundCode": "Código de fondo",
@@ -588,7 +586,6 @@
     "navigation.orderLines": "Líneas de pedido",
     "orderLineList.poLineNumber": "número POL",
     "orderLineList.updatedDate": "Fecha de actualización",
-    "orderLineList.title": "Título",
     "orderLineList.productIds": "ID del producto",
     "orderLineList.vendorRefNumber": "Número de referencia del vendedor",
     "orderLineList.funCodes": "Código del fondo",
@@ -816,7 +813,9 @@
     "cost.quantity": "Quantity",
     "itemDetails.packageName": "Package name",
     "poLine.package": "Package",
-    "poLine.checkinItems.isPackage": "Manually add pieces for receiving",
-    "poLine.checkinItems.isPackage.info": "Pieces will need to be created manually for each unit of quantity.",
-    "search.titleOrPackage": "Title or package name"
+    "search.titleOrPackage": "Title or package name",
+    "lineListing.titleOrPackage": "Title or package name",
+    "poLine.receiveItems": "Manually add pieces for receiving",
+    "poLine.receiveItems.info": "Pieces will need to be created manually for each unit of quantity.",
+    "orderLineList.titleOrPackage": "Title or package name"
 }

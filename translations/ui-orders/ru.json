@@ -274,7 +274,6 @@
     "poLine.acquisitionMethod": "Acquisition method",
     "poLine.cancellationRestriction": "Cancellation restriction",
     "poLine.cancellationRestrictionNote": "Cancellation description",
-    "poLine.checkinItems": "Checkin items",
     "poLine.createdOn": "Created on",
     "poLine.donor": "Donor",
     "poLine.orderFormat": "Order format",
@@ -569,7 +568,6 @@
     "order.vendorCode": "Vendor code",
     "order.orderType": "Order type",
     "order.createdDate": "Created date",
-    "lineListing.title": "Название",
     "lineListing.productId": "Product ID",
     "lineListing.vendorRefNumber": "Vendor ref number",
     "lineListing.fundCode": "Fund code",
@@ -588,7 +586,6 @@
     "navigation.orderLines": "Строки заказа",
     "orderLineList.poLineNumber": "POL number",
     "orderLineList.updatedDate": "Updated date",
-    "orderLineList.title": "Title",
     "orderLineList.productIds": "Product ID",
     "orderLineList.vendorRefNumber": "Vendor reference number",
     "orderLineList.funCodes": "Fund code",
@@ -816,7 +813,9 @@
     "cost.quantity": "Quantity",
     "itemDetails.packageName": "Package name",
     "poLine.package": "Package",
-    "poLine.checkinItems.isPackage": "Manually add pieces for receiving",
-    "poLine.checkinItems.isPackage.info": "Pieces will need to be created manually for each unit of quantity.",
-    "search.titleOrPackage": "Title or package name"
+    "search.titleOrPackage": "Title or package name",
+    "lineListing.titleOrPackage": "Title or package name",
+    "poLine.receiveItems": "Manually add pieces for receiving",
+    "poLine.receiveItems.info": "Pieces will need to be created manually for each unit of quantity.",
+    "orderLineList.titleOrPackage": "Title or package name"
 }

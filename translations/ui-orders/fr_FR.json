@@ -274,7 +274,6 @@
     "poLine.acquisitionMethod": "Méthode d'acquisition",
     "poLine.cancellationRestriction": "Restriction d'annulation",
     "poLine.cancellationRestrictionNote": "Description de l'annulation",
-    "poLine.checkinItems": "Checkin items",
     "poLine.createdOn": "Créé le",
     "poLine.donor": "Donateur",
     "poLine.orderFormat": "Format de la commande",
@@ -569,7 +568,6 @@
     "order.vendorCode": "Code fournisseur",
     "order.orderType": "Type de commande",
     "order.createdDate": "Date de création",
-    "lineListing.title": "Titre",
     "lineListing.productId": "Identifiant Produit",
     "lineListing.vendorRefNumber": "N° du fournisseur",
     "lineListing.fundCode": "Code budgétaire",
@@ -588,7 +586,6 @@
     "navigation.orderLines": "Lignes de commande",
     "orderLineList.poLineNumber": "Numéro POL",
     "orderLineList.updatedDate": "Date de mise à jour",
-    "orderLineList.title": "Titre",
     "orderLineList.productIds": "Identifiant Produit",
     "orderLineList.vendorRefNumber": "Numéro de référence du fournisseur",
     "orderLineList.funCodes": "Code budgétaire",
@@ -816,7 +813,9 @@
     "cost.quantity": "Quantité",
     "itemDetails.packageName": "Nom du bouquet",
     "poLine.package": "Bouquet",
-    "poLine.checkinItems.isPackage": "Ajouter manuellement des pièces pour la réception",
-    "poLine.checkinItems.isPackage.info": "Les pièces devront être créées manuellement pour chaque unité et quantité.",
-    "search.titleOrPackage": "Title or package name"
+    "search.titleOrPackage": "Titre ou nom du bouquet",
+    "lineListing.titleOrPackage": "Titre ou nom du bouquet",
+    "poLine.receiveItems": "Ajouter manuellement des pièces pour la réception",
+    "poLine.receiveItems.info": "Pieces will need to be created manually for each unit of quantity.",
+    "orderLineList.titleOrPackage": "Title or package name"
 }

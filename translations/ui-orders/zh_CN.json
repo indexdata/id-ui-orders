@@ -274,7 +274,6 @@
     "poLine.acquisitionMethod": "采购方式",
     "poLine.cancellationRestriction": "取消限制",
     "poLine.cancellationRestrictionNote": "取消说明",
-    "poLine.checkinItems": "登到单件",
     "poLine.createdOn": "创建日",
     "poLine.donor": "捐赠者",
     "poLine.orderFormat": "订单格式",
@@ -569,7 +568,6 @@
     "order.vendorCode": "供应商代码",
     "order.orderType": "订单类型",
     "order.createdDate": "创建日期",
-    "lineListing.title": "题名",
     "lineListing.productId": "产品ID",
     "lineListing.vendorRefNumber": "供应商参考号",
     "lineListing.fundCode": "经费代码",
@@ -588,7 +586,6 @@
     "navigation.orderLines": "订单行",
     "orderLineList.poLineNumber": "订单行号",
     "orderLineList.updatedDate": "更新日期",
-    "orderLineList.title": "题名",
     "orderLineList.productIds": "产品ID",
     "orderLineList.vendorRefNumber": "供应商参考号",
     "orderLineList.funCodes": "经费代码",
@@ -816,7 +813,9 @@
     "cost.quantity": "Quantity",
     "itemDetails.packageName": "Package name",
     "poLine.package": "Package",
-    "poLine.checkinItems.isPackage": "Manually add pieces for receiving",
-    "poLine.checkinItems.isPackage.info": "Pieces will need to be created manually for each unit of quantity.",
-    "search.titleOrPackage": "Title or package name"
+    "search.titleOrPackage": "Title or package name",
+    "lineListing.titleOrPackage": "Title or package name",
+    "poLine.receiveItems": "Manually add pieces for receiving",
+    "poLine.receiveItems.info": "Pieces will need to be created manually for each unit of quantity.",
+    "orderLineList.titleOrPackage": "Title or package name"
 }
