@@ -274,7 +274,6 @@
     "poLine.acquisitionMethod": "طريقة التزويد",
     "poLine.cancellationRestriction": "قيد الإلغاء",
     "poLine.cancellationRestrictionNote": "وصف الإلغاء",
-    "poLine.checkinItems": "رد المواد",
     "poLine.createdOn": "تم إنشاؤه في",
     "poLine.donor": "الجهة المانحة",
     "poLine.orderFormat": "تنسيق الأمر",
@@ -569,7 +568,6 @@
     "order.vendorCode": "رمز المورّد",
     "order.orderType": "نوع الطلبية",
     "order.createdDate": "تاريخ الإنشاء",
-    "lineListing.title": "العنوان",
     "lineListing.productId": "معرّف المنتج",
     "lineListing.vendorRefNumber": "رقم المورّد المرجعي",
     "lineListing.fundCode": "رمز التمويل",
@@ -588,7 +586,6 @@
     "navigation.orderLines": "سطور الطلبية",
     "orderLineList.poLineNumber": "رقم سطر أمر الشراء",
     "orderLineList.updatedDate": "تاريخ التحديث",
-    "orderLineList.title": "العنوان",
     "orderLineList.productIds": "معرّف المنتج",
     "orderLineList.vendorRefNumber": "رقم المورّد المرجعي",
     "orderLineList.funCodes": "رمز التمويل",
@@ -816,7 +813,9 @@
     "cost.quantity": "الكمية",
     "itemDetails.packageName": "اسم الحزمة",
     "poLine.package": "حزمة",
-    "poLine.checkinItems.isPackage": "إضاف قطع للاستلام يدويًا",
-    "poLine.checkinItems.isPackage.info": "يجب إنشاء القطع يدويًا لكل وحدة كمية.",
-    "search.titleOrPackage": "Title or package name"
+    "search.titleOrPackage": "العنوان أو اسم الحزمة",
+    "lineListing.titleOrPackage": "العنوان أو اسم الحزمة",
+    "poLine.receiveItems": "إضاف قطع للاستلام يدويًا",
+    "poLine.receiveItems.info": "يجب إنشاء القطع يدويًا لكل وحدة كمية.",
+    "orderLineList.titleOrPackage": "العنوان أو اسم الحزمة"
 }
