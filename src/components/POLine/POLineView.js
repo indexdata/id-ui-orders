@@ -62,7 +62,6 @@ class POLineView extends Component {
     order: PropTypes.object,
     line: PropTypes.object,
     materialTypes: PropTypes.arrayOf(PropTypes.object),
-    vendors: PropTypes.arrayOf(PropTypes.object),
     onClose: PropTypes.func,
     editable: PropTypes.bool,
     goToOrderDetails: PropTypes.func,
@@ -74,7 +73,6 @@ class POLineView extends Component {
   static defaultProps = {
     locations: [],
     materialTypes: [],
-    vendors: [],
     editable: true,
   }
 
@@ -199,7 +197,6 @@ class POLineView extends Component {
       line,
       materialTypes,
       locations,
-      vendors,
       deleteLine,
       tagsToggle,
     } = this.props;
@@ -334,7 +331,6 @@ class POLineView extends Component {
               <PhysicalView
                 materialTypes={materialTypes}
                 physical={get(line, 'physical', {})}
-                vendors={vendors}
               />
             </Accordion>
           )}
@@ -347,7 +343,6 @@ class POLineView extends Component {
                 line={line}
                 materialTypes={materialTypes}
                 order={order}
-                vendors={vendors}
               />
             </Accordion>
           )}
@@ -359,7 +354,6 @@ class POLineView extends Component {
               <OtherView
                 materialTypes={materialTypes}
                 physical={get(line, 'physical', {})}
-                vendors={vendors}
               />
             </Accordion>
           )}
