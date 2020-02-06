@@ -765,7 +765,7 @@
     "poLine.administrativeData": "Données administratives",
     "poLine.costDetails": "Détails des coûts",
     "poLine.details": "Détails",
-    "poLine.eResourceDetails": "POL e-resource details",
+    "poLine.eResourceDetails": "Ligne de commande-Détails de la ressource électronique",
     "poLine.itemDetails": "Détails de l'article",
     "poLine.fundDistribution": "Répartition budgétaire",
     "poLine.location": "Emplacement",
@@ -816,6 +816,8 @@
     "search.titleOrPackage": "Titre ou nom du bouquet",
     "lineListing.titleOrPackage": "Titre ou nom du bouquet",
     "poLine.receiveItems": "Ajouter manuellement des pièces pour la réception",
-    "poLine.receiveItems.info": "Pieces will need to be created manually for each unit of quantity.",
-    "orderLineList.titleOrPackage": "Titre ou nom du bouquet"
+    "poLine.receiveItems.info": "Les pièces devront être créées manuellement pour chaque unité de quantité.",
+    "orderLineList.titleOrPackage": "Titre ou nom du bouquet",
+    "closeOrder.error": "La commande n'a pas pu être clôturée",
+    "closeOrder.success": "La commande a été clôturée"
 }

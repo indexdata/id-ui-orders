@@ -817,5 +817,7 @@
     "lineListing.titleOrPackage": "العنوان أو اسم الحزمة",
     "poLine.receiveItems": "إضاف قطع للاستلام يدويًا",
     "poLine.receiveItems.info": "يجب إنشاء القطع يدويًا لكل وحدة كمية.",
-    "orderLineList.titleOrPackage": "العنوان أو اسم الحزمة"
+    "orderLineList.titleOrPackage": "العنوان أو اسم الحزمة",
+    "closeOrder.error": "فشل إغلاق الطلبية",
+    "closeOrder.success": "تم إغلاق الطلبية"
 }
