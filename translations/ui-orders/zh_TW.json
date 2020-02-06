@@ -817,5 +817,7 @@
     "lineListing.titleOrPackage": "Title or package name",
     "poLine.receiveItems": "Manually add pieces for receiving",
     "poLine.receiveItems.info": "Pieces will need to be created manually for each unit of quantity.",
-    "orderLineList.titleOrPackage": "Title or package name"
+    "orderLineList.titleOrPackage": "Title or package name",
+    "closeOrder.error": "Order failed to close",
+    "closeOrder.success": "Order was closed"
 }
