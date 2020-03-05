@@ -46,7 +46,7 @@ import { WORKFLOW_STATUS } from '../../common/constants';
 import LineListing from './LineListing';
 import { PODetailsView } from './PODetails';
 import { SummaryView } from './Summary';
-import { RenewalsView } from './renewals';
+import { OngoingOrderInfoView } from './OngoingOgderInfo';
 import LinesLimit from './LinesLimit';
 import POInvoicesContainer from './POInvoices';
 import { UpdateOrderErrorModal } from './UpdateOrderErrorModal';
@@ -468,10 +468,10 @@ class PO extends Component {
           </Accordion>
           {isOngoing(orderType) && (
             <Accordion
-              id="renewals"
-              label={<FormattedMessage id="ui-orders.paneBlock.renewals" />}
+              id="ongoing"
+              label={<FormattedMessage id="ui-orders.paneBlock.ongoingInfo" />}
             >
-              <RenewalsView order={order} />
+              <OngoingOrderInfoView order={order} />
             </Accordion>
           )}
           <Accordion

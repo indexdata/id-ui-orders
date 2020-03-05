@@ -11,7 +11,9 @@ import { CalloutContext } from '@folio/stripes/core';
 
 import { getUserNameById } from '../../common/utils';
 import { updateOrderResource } from '../Utils/orderResource';
-import { showUpdateOrderError } from '../Utils/order';
+import {
+  showUpdateOrderError,
+} from '../Utils/order';
 import POForm from '../PurchaseOrder/POForm';
 import { UpdateOrderErrorModal } from '../PurchaseOrder/UpdateOrderErrorModal';
 
