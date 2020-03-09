@@ -437,7 +437,6 @@
     "order.paneTitle.edit": "编辑 - {orderNumber}",
     "orderSummary.closingReason": "关闭原因",
     "orderSummary.closingNote": "关闭附注",
-    "paneBlock.renewals": "续借信息",
     "renewals.manualRenewal": "人工续借",
     "renewals.renewalDate": "续借日期",
     "renewals.renewalInterval": "续借间隔",
@@ -663,7 +662,6 @@
     "settings.orderTemplates.confirmDelete.message": "确定要删除本模板？",
     "settings.orderTemplates.remove.success": "模板已删除",
     "settings.orderTemplates.remove.error": "模板未删除",
-    "settings.orderTemplates.accordion.poRenewals": "订单续订信息",
     "settings.orderTemplates.accordion.polOtherResources": "其他资源详情",
     "order.poNumber": "订单号",
     "order.lastUpdated": "上次更新",
@@ -827,5 +825,11 @@
     "order.clone.message": "确定要克隆此订单及其所有订单行吗？",
     "order.clone.success": "订单已成功克隆",
     "order.reopen.success": "<b>采购订单- {orderNumber} </b>已成功<b>重新打开</b>",
-    "paneBlock.cloneBtn": "克隆"
+    "paneBlock.cloneBtn": "克隆",
+    "order.save.success": "The <b>Purchase order - {orderNumber}</b> has been successfully <b>saved</b>",
+    "paneBlock.ongoingInfo": "Ongoing order information",
+    "renewals.subscription": "Subscription",
+    "renewals.reviewDate": "Review date",
+    "renewals.notes": "Notes",
+    "settings.orderTemplates.accordion.poOngoing": "Ongoing PO information"
 }
