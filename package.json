@@ -15,7 +15,7 @@
     ],
     "displayName": "ui-orders.meta.title",
     "route": "/orders",
-    "home": "/orders/lines?sort=-poLineNumber",
+    "home": "/orders/lines",
     "okapiInterfaces": {
       "acquisitions-units": "1.1",
       "configuration.prefixes": "1.0",
