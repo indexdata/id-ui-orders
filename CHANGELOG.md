@@ -2,7 +2,13 @@
 
 ## (IN PROGRESS)
 
+## [2.0.0](https://github.com/folio-org/ui-orders/tree/v2.0.0) (2020-03-13)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v1.8.3...v2.0.0)
+
+* bump the @folio/stripes peer to v3.0.0
+
 ### Stories
+* [UIREC-60](https://issues.folio.org/browse/UIREC-60) Improve Location filter on the Titles list to use location look-up
 * [UIOR-439](https://issues.folio.org/browse/UIOR-439) Migrate orders settings from mod-configuration
 * [UIOR-521](https://issues.folio.org/browse/UIOR-521) New icon for "Close order"
 * [UIOR-507](https://issues.folio.org/browse/UIOR-507) TECH-DEBT refactor PO Lines list to not use SearchAndSort
