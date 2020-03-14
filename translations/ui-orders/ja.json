@@ -697,7 +697,7 @@
     "checkIn.expectedReceiptDate": "Expected receipt date",
     "checkIn.pieceFormat.electronic": "Electronic",
     "checkIn.pieceFormat.physical": "Physical",
-    "search.productIdISBN": "ISBN",
+    "search.productIdISBN": "Product ID ISBN",
     "errors.invalidISBN": "Invalid ISBN; adjust or remove",
     "itemDetails.qualifier": "Qualifier",
     "itemDetails.contributors": "Contributors",
@@ -831,5 +831,6 @@
     "renewals.subscription": "Subscription",
     "renewals.reviewDate": "Review date",
     "renewals.notes": "Notes",
-    "settings.orderTemplates.accordion.poOngoing": "Ongoing PO information"
+    "settings.orderTemplates.accordion.poOngoing": "Ongoing PO information",
+    "settings.closingReasons.source": "Source"
 }
