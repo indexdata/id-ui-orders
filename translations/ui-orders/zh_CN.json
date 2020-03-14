@@ -831,5 +831,6 @@
     "renewals.subscription": "Subscription",
     "renewals.reviewDate": "Review date",
     "renewals.notes": "Notes",
-    "settings.orderTemplates.accordion.poOngoing": "Ongoing PO information"
+    "settings.orderTemplates.accordion.poOngoing": "Ongoing PO information",
+    "settings.closingReasons.source": "Source"
 }

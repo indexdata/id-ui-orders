@@ -831,5 +831,6 @@
     "renewals.subscription": "اشتراك",
     "renewals.reviewDate": "تاريخ التقييم",
     "renewals.notes": "ملاحظات",
-    "settings.orderTemplates.accordion.poOngoing": "بيانات أمر الشراء الجاري"
+    "settings.orderTemplates.accordion.poOngoing": "بيانات أمر الشراء الجاري",
+    "settings.closingReasons.source": "مصدر"
 }
