@@ -21,11 +21,11 @@ describe('Create PO Line simple test', function () {
       vendor: vendor.id,
     });
 
-    this.visit(`/orders/view/${order.id}/?layer=create-po-line`);
+    this.visit(`/orders/view/${order.id}/po-line/create`);
     await lineEditPage.whenLoaded();
   });
 
   it('Has to render expected title', function () {
-    expect(lineEditPage.title).to.be.equal('Add PO Line');
+    expect(lineEditPage.title).to.be.equal('Add PO line');
   });
 });

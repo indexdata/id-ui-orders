@@ -14,7 +14,7 @@ import {
   Button,
   Col,
   ExpandAllButton,
-  Icon,
+  LoadingPane,
   IconButton,
   Pane,
   PaneMenu,
@@ -57,6 +57,7 @@ import validate from './validate';
 
 class POLineForm extends Component {
   static propTypes = {
+    formValues: PropTypes.object,
     initialValues: PropTypes.object,
     handleSubmit: PropTypes.func.isRequired,
     stripes: stripesShape.isRequired,
@@ -177,7 +178,6 @@ class POLineForm extends Component {
             buttonStyle="primary mega"
             disabled={submitting}
             onClick={handleSubmit(values => onSubmit({ ...values, saveAndOpen: true }))}
-            marginBottom0
           >
             <FormattedMessage id="ui-orders.buttons.line.saveAndOpen" />
           </Button>
@@ -233,23 +233,7 @@ class POLineForm extends Component {
       this.getPaneFooter('clickable-createnewPoLine', <FormattedMessage id="ui-orders.buttons.line.save" />);
 
     if (!initialValues) {
-      return (
-
-        <Pane
-          id="pane-podetails"
-          defaultWidth="fill"
-          paneTitle={<FormattedMessage id="ui-orders.line.paneTitle.details" />}
-          firstMenu={firstMenu}
-          footer={paneFooter}
-        >
-          <div style={{ paddingTop: '1rem' }}>
-            <Icon
-              icon="spinner-ellipsis"
-              width="100px"
-            />
-          </div>
-        </Pane>
-      );
+      return <LoadingPane defaultWidth="fill" onClose={onCancel} />;
     }
 
     const formValues = getFormValues('POLineForm')(store.getState());
@@ -282,7 +266,7 @@ class POLineForm extends Component {
         onClose={onCancel}
         firstMenu={firstMenu}
       >
-        <form id="form-po-line">
+        <form id="form-po-line" style={{ height: '100vh' }}>
           <Row>
             <Col xs={12}>
               <Row center="xs">
