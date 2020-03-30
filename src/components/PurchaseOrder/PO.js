@@ -206,6 +206,10 @@ class PO extends Component {
 
     try {
       await updateOrderResource(order, mutator.order, openOrderProps);
+      this.context.sendCallout({
+        message: <SafeHTMLMessage id="ui-orders.order.open.success" values={{ orderNumber: order.poNumber }} />,
+        type: 'success',
+      });
     } catch (e) {
       await showUpdateOrderError(e, this.context, this.orderErrorModalShow);
     } finally {
@@ -248,10 +252,7 @@ class PO extends Component {
         search: location.search,
       });
     } catch (e) {
-      this.context.sendCallout({
-        message: <SafeHTMLMessage id="ui-orders.order.clone.error" />,
-        type: 'error',
-      });
+      await showUpdateOrderError(e, this.context, this.orderErrorModalShow, 'clone.error');
     }
   };
 
@@ -269,10 +270,7 @@ class PO extends Component {
       });
       this.transitionToParams({ _path: `/orders/view/${newOrder.id}/po-line/create` });
     } catch (e) {
-      this.context.sendCallout({
-        message: <FormattedMessage id="ui-orders.errors.noCreatedOrder" />,
-        type: 'error',
-      });
+      await showUpdateOrderError(e, this.context, this.orderErrorModalShow, 'noCreatedOrder');
     }
   };
 
@@ -383,7 +381,7 @@ class PO extends Component {
 
     this.hasError = hasError;
 
-    if (!order || hasError) {
+    if (!order || order.id !== match.params.id || hasError) {
       return (
         <LoadingPane defaultWidth="fill" onClose={this.gotToOrdersList} />
       );
