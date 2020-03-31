@@ -820,7 +820,6 @@
     "closeOrder.success": "L'ordine è stato chiuso",
     "paneBlock.reopenBtn": "Reopen",
     "order.clone.confirmLabel": "Clone",
-    "order.clone.error": "The purchase order was not cloned",
     "order.clone.heading": "Clone order?",
     "order.clone.message": "Are you sure you want to clone this purchase order and all of its purchase order lines?",
     "order.clone.success": "The purchase order was successfully cloned",
@@ -832,5 +831,9 @@
     "renewals.reviewDate": "Review date",
     "renewals.notes": "Notes",
     "settings.orderTemplates.accordion.poOngoing": "Ongoing PO information",
-    "settings.closingReasons.source": "Source"
+    "settings.closingReasons.source": "Source",
+    "errors.clone.error": "The purchase order was not cloned",
+    "errors.InstanceIdNotAllowedForPackagePoLine": "Instance id not allowed for package poline",
+    "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
+    "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order"
 }

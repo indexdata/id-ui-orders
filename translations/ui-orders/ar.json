@@ -820,7 +820,6 @@
     "closeOrder.success": "تم إغلاق الطلبية",
     "paneBlock.reopenBtn": "إعادة فتح",
     "order.clone.confirmLabel": "نسخ",
-    "order.clone.error": "لم يتم نسخ أمر الشراء",
     "order.clone.heading": "نسخ الطلبية؟",
     "order.clone.message": "هل أنت متأكد من أنك تريد نسخ أمر الشراء هذا وجميع سطور الشراء الخاصة به؟",
     "order.clone.success": "تم نسخ أمر الشراء بنجاح",
@@ -832,5 +831,9 @@
     "renewals.reviewDate": "تاريخ التقييم",
     "renewals.notes": "ملاحظات",
     "settings.orderTemplates.accordion.poOngoing": "بيانات أمر الشراء الجاري",
-    "settings.closingReasons.source": "مصدر"
+    "settings.closingReasons.source": "مصدر",
+    "errors.clone.error": "The purchase order was not cloned",
+    "errors.InstanceIdNotAllowedForPackagePoLine": "Instance id not allowed for package poline",
+    "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
+    "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order"
 }

@@ -820,7 +820,6 @@
     "closeOrder.success": "订单已关闭",
     "paneBlock.reopenBtn": "重新打开",
     "order.clone.confirmLabel": "克隆",
-    "order.clone.error": "订单未克隆",
     "order.clone.heading": "克隆订单？",
     "order.clone.message": "确定要克隆此订单及其所有订单行吗？",
     "order.clone.success": "订单已成功克隆",
@@ -832,5 +831,9 @@
     "renewals.reviewDate": "Review date",
     "renewals.notes": "Notes",
     "settings.orderTemplates.accordion.poOngoing": "Ongoing PO information",
-    "settings.closingReasons.source": "Source"
+    "settings.closingReasons.source": "Source",
+    "errors.clone.error": "The purchase order was not cloned",
+    "errors.InstanceIdNotAllowedForPackagePoLine": "Instance id not allowed for package poline",
+    "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
+    "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order"
 }

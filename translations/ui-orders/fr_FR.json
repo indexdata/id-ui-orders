@@ -820,7 +820,6 @@
     "closeOrder.success": "La commande a été clôturée",
     "paneBlock.reopenBtn": "Rouvrir",
     "order.clone.confirmLabel": "Copier/dupliquer",
-    "order.clone.error": "Le bon de commande n'a pas été dupliqué",
     "order.clone.heading": "Dupliquer la commande?",
     "order.clone.message": "Voulez-vous vraiment dupliquer ce bon de commande et toutes ses lignes de commande?",
     "order.clone.success": "Le bon de commande a été dupliqué avec succès",
@@ -832,5 +831,9 @@
     "renewals.reviewDate": "Date de révision",
     "renewals.notes": "Commentaires",
     "settings.orderTemplates.accordion.poOngoing": "Informations sur la commande en cours",
-    "settings.closingReasons.source": "Source"
+    "settings.closingReasons.source": "Source",
+    "errors.clone.error": "The purchase order was not cloned",
+    "errors.InstanceIdNotAllowedForPackagePoLine": "Instance id not allowed for package poline",
+    "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
+    "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order"
 }
