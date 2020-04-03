@@ -832,7 +832,7 @@
     "renewals.notes": "Notas",
     "settings.orderTemplates.accordion.poOngoing": "Informações de pedidos em andamento",
     "settings.closingReasons.source": "Fonte",
-    "errors.clone.error": "The purchase order was not cloned",
+    "errors.clone.error": "O pedido não foi clonado",
     "errors.InstanceIdNotAllowedForPackagePoLine": "Instance id not allowed for package poline",
     "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
     "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order"
