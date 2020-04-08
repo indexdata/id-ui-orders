@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -125,18 +125,14 @@ const OrdersListContainer = ({ history, mutator, location }) => {
     return loadRecordsPromise.finally(() => setIsLoading(false));
   };
 
-  const onNeedMoreData = useCallback(
-    () => {
-      const newOffset = ordersOffset + RESULT_COUNT_INCREMENT;
+  const onNeedMoreData = () => {
+    const newOffset = ordersOffset + RESULT_COUNT_INCREMENT;
 
-      loadOrders(newOffset)
-        .then(() => {
-          setOrdersOffset(newOffset);
-        });
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [ordersOffset],
-  );
+    loadOrders(newOffset)
+      .then(() => {
+        setOrdersOffset(newOffset);
+      });
+  };
 
   const refreshList = () => {
     setOrders([]);
