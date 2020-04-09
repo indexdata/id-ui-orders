@@ -833,7 +833,7 @@
     "settings.orderTemplates.accordion.poOngoing": "Informações de pedidos em andamento",
     "settings.closingReasons.source": "Fonte",
     "errors.clone.error": "O pedido não foi clonado",
-    "errors.InstanceIdNotAllowedForPackagePoLine": "Instance id not allowed for package poline",
-    "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
-    "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order"
+    "errors.InstanceIdNotAllowedForPackagePoLine": "ID da instância não permitido para o pacote poline",
+    "errors.missingOngoing": "O campo em andamento deve estar presente para o pedido em andamento",
+    "errors.ongoingNotAllowed": "O campo em andamento deve estar ausente no pedido único"
 }
