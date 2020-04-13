@@ -835,5 +835,6 @@
     "errors.clone.error": "Le bon de commande n'a pas été dupliqué",
     "errors.InstanceIdNotAllowedForPackagePoLine": "Instance id not allowed for package poline",
     "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
-    "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order"
+    "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order",
+    "errors.closeOrder": "Order failed to close"
 }

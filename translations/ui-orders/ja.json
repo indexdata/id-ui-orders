@@ -1,5 +1,5 @@
 {
-    "meta.title": "Orders",
+    "meta.title": "発注",
     "search": "Search",
     "resultCount": "{count, number} {count, plural, one {Record found} other {Records found}}",
     "data.countries.AFG": "Afghanistan",
@@ -835,5 +835,6 @@
     "errors.clone.error": "The purchase order was not cloned",
     "errors.InstanceIdNotAllowedForPackagePoLine": "Instance id not allowed for package poline",
     "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
-    "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order"
+    "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order",
+    "errors.closeOrder": "Order failed to close"
 }
