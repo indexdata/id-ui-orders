@@ -837,5 +837,7 @@
     "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
     "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order",
     "errors.closeOrder": "Не удалось закрыть заказ",
-    "line.closedOrderMessage": "Purchase order is closed - {reason}"
+    "line.closedOrderMessage": "Purchase order is closed - {reason}",
+    "itemDetails.titleLookUp": "Title look-up",
+    "itemDetails.titleLookUpNoPlugin": "[no instance-selection plugin]"
 }
