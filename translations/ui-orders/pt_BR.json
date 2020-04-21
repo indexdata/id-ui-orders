@@ -838,6 +838,6 @@
     "errors.ongoingNotAllowed": "O campo em andamento deve estar ausente no pedido único",
     "errors.closeOrder": "Falha ao fechar o pedido",
     "line.closedOrderMessage": "Pedido de compra fechado - {reason}",
-    "itemDetails.titleLookUp": "Title look-up",
-    "itemDetails.titleLookUpNoPlugin": "[no instance-selection plugin]"
+    "itemDetails.titleLookUp": "Pesquisa de título",
+    "itemDetails.titleLookUpNoPlugin": "[nenhum plugin de seleção de instância]"
 }
