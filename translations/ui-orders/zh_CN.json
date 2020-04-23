@@ -839,5 +839,6 @@
     "errors.closeOrder": "订单无法关闭",
     "line.closedOrderMessage": "Purchase order is closed - {reason}",
     "itemDetails.titleLookUp": "Title look-up",
-    "itemDetails.titleLookUpNoPlugin": "[no instance-selection plugin]"
+    "itemDetails.titleLookUpNoPlugin": "[no instance-selection plugin]",
+    "orderSummary.totalEncumbered": "Total encumbered"
 }
