@@ -840,5 +840,11 @@
     "line.closedOrderMessage": "采购订单已关闭- {reason}",
     "itemDetails.titleLookUp": "Title look-up",
     "itemDetails.titleLookUpNoPlugin": "[no instance-selection plugin]",
-    "orderSummary.totalEncumbered": "预支总额"
+    "orderSummary.totalEncumbered": "预支总额",
+    "unopenOrderModal.title": "Unopen - purchase order - {orderNumber}",
+    "unopenOrderModal.confirmLabel": "Submit",
+    "unopenOrderModal.message": "Are you sure you want to unopen the order?",
+    "order.unopen.success": "The <b>Purchase order - {orderNumber}</b> has been successfully <b>unopened</b>",
+    "paneBlock.unopenBtn": "Unopen",
+    "permission.order.unopen": "Orders: Unopen purchase orders"
 }

@@ -840,5 +840,11 @@
     "line.closedOrderMessage": "Pedido de compra fechado - {reason}",
     "itemDetails.titleLookUp": "Pesquisa de título",
     "itemDetails.titleLookUpNoPlugin": "[nenhum plugin de seleção de instância]",
-    "orderSummary.totalEncumbered": "Total onerado"
+    "orderSummary.totalEncumbered": "Total onerado",
+    "unopenOrderModal.title": "Fechar - pedido de compra - {orderNumber}",
+    "unopenOrderModal.confirmLabel": "Enviar",
+    "unopenOrderModal.message": "Tem certeza de que deseja fechar o pedido?",
+    "order.unopen.success": "O <b>Pedido de compra - {orderNumber}</b> foi <b>fechado com sucesso</b>",
+    "paneBlock.unopenBtn": "Fechar",
+    "permission.order.unopen": "Pedidos: Pedidos de compra fechados"
 }
