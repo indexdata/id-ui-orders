@@ -653,7 +653,7 @@
     "settings.orderTemplates.accordion.polLocation": "館藏地",
     "settings.orderTemplates.editor.titleCreate": "新订单模板",
     "settings.orderTemplates.editor.template.name": "範本名稱",
-    "settings.orderTemplates.editor.template.code": "代码",
+    "settings.orderTemplates.editor.template.code": "代碼",
     "settings.orderTemplates.editor.template.description": "描述",
     "line.accordion.poLine": "采购订单行",
     "settings.orderTemplates.editor.save": "儲存",
@@ -840,5 +840,11 @@
     "line.closedOrderMessage": "採購訂單已關閉 - {reason}",
     "itemDetails.titleLookUp": "查詢題名",
     "itemDetails.titleLookUpNoPlugin": "[no instance-selection plugin]",
-    "orderSummary.totalEncumbered": "Total encumbered"
+    "orderSummary.totalEncumbered": "Total encumbered",
+    "unopenOrderModal.title": "Unopen - purchase order - {orderNumber}",
+    "unopenOrderModal.confirmLabel": "Submit",
+    "unopenOrderModal.message": "Are you sure you want to unopen the order?",
+    "order.unopen.success": "The <b>Purchase order - {orderNumber}</b> has been successfully <b>unopened</b>",
+    "paneBlock.unopenBtn": "Unopen",
+    "permission.order.unopen": "Orders: Unopen purchase orders"
 }

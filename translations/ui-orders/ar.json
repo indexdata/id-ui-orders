@@ -840,5 +840,11 @@
     "line.closedOrderMessage": "تم غلق أمر الشراء - {reason}",
     "itemDetails.titleLookUp": "بحث العنوان",
     "itemDetails.titleLookUpNoPlugin": "[لا يوجد برنامج مساعد لتحديد الأوعية]",
-    "orderSummary.totalEncumbered": "إجمالي التكاليف"
+    "orderSummary.totalEncumbered": "إجمالي التكاليف",
+    "unopenOrderModal.title": "إلغاء فتح - أمر الشراء - {orderNumber}",
+    "unopenOrderModal.confirmLabel": "تقديم",
+    "unopenOrderModal.message": "هل أنت متأكد من أنك تريد إلغاء فتح هذه الطلبية؟",
+    "order.unopen.success": "تم <b>إلغاء فتح</b> <b>أمر الشراء - {orderNumber}</b> بنجاح",
+    "paneBlock.unopenBtn": "إلغاء فتح",
+    "permission.order.unopen": "الطلبيات: إلغاء فتح أمر الشراء"
 }

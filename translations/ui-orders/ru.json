@@ -840,5 +840,11 @@
     "line.closedOrderMessage": "Purchase order is closed - {reason}",
     "itemDetails.titleLookUp": "Поиск по названию",
     "itemDetails.titleLookUpNoPlugin": "[no instance-selection plugin]",
-    "orderSummary.totalEncumbered": "Всего заполнено"
+    "orderSummary.totalEncumbered": "Всего заполнено",
+    "unopenOrderModal.title": "Unopen - purchase order - {orderNumber}",
+    "unopenOrderModal.confirmLabel": "Отправить",
+    "unopenOrderModal.message": "Are you sure you want to unopen the order?",
+    "order.unopen.success": "The <b>Purchase order - {orderNumber}</b> has been successfully <b>unopened</b>",
+    "paneBlock.unopenBtn": "Unopen",
+    "permission.order.unopen": "Orders: Unopen purchase orders"
 }
