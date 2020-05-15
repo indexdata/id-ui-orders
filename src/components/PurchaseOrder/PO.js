@@ -64,6 +64,7 @@ const PO = ({
   match,
   mutator,
   resources,
+  refreshList,
 }) => {
   const sendCallout = useShowCallout();
 
@@ -102,6 +103,7 @@ const PO = ({
   const [isCloseOrderModalOpened, toggleCloseOrderModal] = useModalToggle();
   const [showConfirmDelete, toggleDeleteOrderConfirm] = useModalToggle();
   const [isOpenOrderModalOpened, toggleOpenOrderModal] = useModalToggle();
+  const [isUnopenOrderModalOpened, toggleUnopenOrderModal] = useModalToggle();
   const reasonsForClosure = get(resources, 'closingReasons.records');
   const orderNumber = get(order, 'poNumber', '');
   const poLines = get(order, 'compositePoLines', []);
@@ -132,6 +134,7 @@ const PO = ({
             pathname: `/orders/view/${newOrder.id}`,
             search: location.search,
           });
+          refreshList();
         })
         .catch(e => {
           showUpdateOrderError(e, context, orderErrorModalShow, 'clone.error');
@@ -139,7 +142,7 @@ const PO = ({
         });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [context, history, location.search, order, orderErrorModalShow, sendCallout, toggleCloneConfirmation],
+    [context, history, location.search, order, orderErrorModalShow, sendCallout, toggleCloneConfirmation, refreshList],
   );
 
   const deletePO = useCallback(
@@ -166,7 +169,7 @@ const PO = ({
         });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [history, location.search, order, orderNumber, sendCallout, toggleDeleteOrderConfirm],
+    [history, location.search, order, orderNumber, sendCallout, toggleDeleteOrderConfirm, refreshList],
   );
 
   const closeOrder = useCallback(
@@ -185,6 +188,7 @@ const PO = ({
         .then(
           () => {
             sendCallout({ message: <SafeHTMLMessage id="ui-orders.closeOrder.success" /> });
+            refreshList();
 
             return fetchOrder();
           },
@@ -195,7 +199,7 @@ const PO = ({
         .finally(setIsLoading);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [context, fetchOrder, order, orderErrorModalShow, sendCallout, toggleCloseOrderModal],
+    [context, fetchOrder, order, orderErrorModalShow, sendCallout, toggleCloseOrderModal, refreshList],
   );
 
   const approveOrder = useCallback(
@@ -207,6 +211,7 @@ const PO = ({
             sendCallout({
               message: <SafeHTMLMessage id="ui-orders.order.approved.success" values={{ orderNumber }} />,
             });
+            refreshList();
 
             return fetchOrder();
           },
@@ -217,7 +222,7 @@ const PO = ({
         .finally(setIsLoading);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [context, fetchOrder, order, orderErrorModalShow, orderNumber, sendCallout],
+    [context, fetchOrder, order, orderErrorModalShow, orderNumber, sendCallout, refreshList],
   );
 
   const openOrder = useCallback(
@@ -235,6 +240,7 @@ const PO = ({
               message: <SafeHTMLMessage id="ui-orders.order.open.success" values={{ orderNumber }} />,
               type: 'success',
             });
+            refreshList();
 
             return fetchOrder();
           },
@@ -245,7 +251,7 @@ const PO = ({
         .finally(setIsLoading);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [context, fetchOrder, order, orderErrorModalShow, sendCallout, toggleOpenOrderModal],
+    [context, fetchOrder, order, orderErrorModalShow, sendCallout, toggleOpenOrderModal, refreshList],
   );
 
   const reopenOrder = useCallback(
@@ -261,6 +267,7 @@ const PO = ({
               message: <SafeHTMLMessage id="ui-orders.order.reopen.success" values={{ orderNumber }} />,
               type: 'success',
             });
+            refreshList();
 
             return fetchOrder();
           },
@@ -271,7 +278,36 @@ const PO = ({
         .finally(setIsLoading);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [context, fetchOrder, order, orderErrorModalShow, sendCallout],
+    [context, fetchOrder, order, orderErrorModalShow, sendCallout, refreshList],
+  );
+
+  const unopenOrder = useCallback(
+    () => {
+      const orderProps = {
+        workflowStatus: WORKFLOW_STATUS.pending,
+      };
+
+      toggleUnopenOrderModal();
+      setIsLoading(true);
+      updateOrderResource(order, mutator.orderDetails, orderProps)
+        .then(
+          () => {
+            sendCallout({
+              message: <SafeHTMLMessage id="ui-orders.order.unopen.success" values={{ orderNumber }} />,
+              type: 'success',
+            });
+            refreshList();
+
+            return fetchOrder();
+          },
+          e => {
+            showUpdateOrderError(e, context, orderErrorModalShow);
+          },
+        )
+        .finally(setIsLoading);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [context, fetchOrder, order, orderErrorModalShow, sendCallout, toggleUnopenOrderModal, refreshList],
   );
 
   const createNewOrder = useCallback(
@@ -374,6 +410,7 @@ const PO = ({
         clickOpen: toggleOpenOrderModal,
         clickReceive: goToReceiving,
         clickReopen: reopenOrder,
+        clickUnopen: toggleUnopenOrderModal,
         order,
       })}
       data-test-order-details
@@ -479,6 +516,17 @@ const PO = ({
           open
         />
       )}
+      {isUnopenOrderModalOpened && (
+        <ConfirmationModal
+          id="order-unopen-confirmation"
+          confirmLabel={<FormattedMessage id="ui-orders.unopenOrderModal.confirmLabel" />}
+          heading={<FormattedMessage id="ui-orders.unopenOrderModal.title" values={{ orderNumber }} />}
+          message={<FormattedMessage id="ui-orders.unopenOrderModal.message" />}
+          onCancel={toggleUnopenOrderModal}
+          onConfirm={unopenOrder}
+          open
+        />
+      )}
     </Pane>
   );
 
@@ -515,6 +563,7 @@ PO.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
   mutator: PropTypes.object.isRequired,
   resources: PropTypes.object.isRequired,
+  refreshList: PropTypes.func.isRequired,
 };
 
 export default stripesConnect(PO);
