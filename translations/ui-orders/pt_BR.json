@@ -846,5 +846,8 @@
     "unopenOrderModal.message": "Tem certeza de que deseja fechar o pedido?",
     "order.unopen.success": "O <b>Pedido de compra - {orderNumber}</b> foi <b>fechado com sucesso</b>",
     "paneBlock.unopenBtn": "Fechar",
-    "permission.order.unopen": "Pedidos: Pedidos de compra fechados"
+    "permission.order.unopen": "Pedidos: Pedidos de compra fechados",
+    "itemDetails.linkPackage": "Link package",
+    "itemDetails.linkPackageLookUp": "Lookup package POL",
+    "find-po-line-plugin-unavailable": "Find PO line plugin is not available"
 }

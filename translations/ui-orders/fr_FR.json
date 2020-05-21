@@ -842,9 +842,12 @@
     "itemDetails.titleLookUpNoPlugin": "[no instance-selection plugin]",
     "orderSummary.totalEncumbered": "Total encumbered",
     "unopenOrderModal.title": "Unopen - purchase order - {orderNumber}",
-    "unopenOrderModal.confirmLabel": "Submit",
+    "unopenOrderModal.confirmLabel": "Envoyer",
     "unopenOrderModal.message": "Are you sure you want to unopen the order?",
     "order.unopen.success": "The <b>Purchase order - {orderNumber}</b> has been successfully <b>unopened</b>",
     "paneBlock.unopenBtn": "Unopen",
-    "permission.order.unopen": "Orders: Unopen purchase orders"
+    "permission.order.unopen": "Orders: Unopen purchase orders",
+    "itemDetails.linkPackage": "Link package",
+    "itemDetails.linkPackageLookUp": "Lookup package POL",
+    "find-po-line-plugin-unavailable": "Find PO line plugin is not available"
 }
