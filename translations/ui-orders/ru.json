@@ -849,5 +849,5 @@
     "permission.order.unopen": "Заказы: отменить открытие заказов на покупку",
     "itemDetails.linkPackage": "Link package",
     "itemDetails.linkPackageLookUp": "Lookup package POL",
-    "find-po-line-plugin-unavailable": "Find PO line plugin is not available"
+    "find-po-line-plugin-unavailable": "Поиск плагина строки заказа не доступен"
 }
