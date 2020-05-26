@@ -847,7 +847,7 @@
     "order.unopen.success": "Открытие <b>Заказа на покупку - {Номер_заказа}<b>было успешно </b>отменено</b>",
     "paneBlock.unopenBtn": "Отменить открытие",
     "permission.order.unopen": "Заказы: отменить открытие заказов на покупку",
-    "itemDetails.linkPackage": "Link package",
+    "itemDetails.linkPackage": "Пакет ссылок",
     "itemDetails.linkPackageLookUp": "Lookup package POL",
     "find-po-line-plugin-unavailable": "Поиск плагина строки заказа не доступен"
 }
