@@ -849,5 +849,12 @@
     "permission.order.unopen": "Orders: Unopen purchase orders",
     "itemDetails.linkPackage": "Linked package",
     "itemDetails.linkPackageLookUp": "Lookup package POL",
-    "find-po-line-plugin-unavailable": "Find PO line plugin is not available"
+    "find-po-line-plugin-unavailable": "Find PO line plugin is not available",
+    "deletePiece.btn.cancel": "Cancelar",
+    "deletePiece.btn.deletePiece": "Borrar",
+    "deletePiece.title": "Parte(s) a ser eliminadas",
+    "deletePiece.warning": "The selected piece(s) and its' linked item record(s) in inventory will be PERMANENTLY DELETED. You can NOT delete items that have open requests.",
+    "deletePiece.delete.success": "Selected pieces were deleted",
+    "deletePiece.delete.fail": "Las piezas no fueron eliminadas.",
+    "deletePiece.delete.thereAreRequestsOnItem": "Las piezas seleccionadas no fueron eliminadas. Hay solicitudes de artículos."
 }
