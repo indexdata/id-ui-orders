@@ -850,11 +850,11 @@
     "itemDetails.linkPackage": "ربط الحزمة",
     "itemDetails.linkPackageLookUp": "بحث سطر أمر شراء الحزمة",
     "find-po-line-plugin-unavailable": "برنامج باحث خط أمر الشراء المساعد غير متاح",
-    "deletePiece.btn.cancel": "Cancel",
-    "deletePiece.btn.deletePiece": "Delete",
-    "deletePiece.title": "Piece(s) to be deleted",
-    "deletePiece.warning": "The selected piece(s) and its' linked item record(s) in inventory will be PERMANENTLY DELETED. You can NOT delete items that have open requests.",
-    "deletePiece.delete.success": "Selected pieces were deleted",
-    "deletePiece.delete.fail": "Selected pieces were not deleted",
-    "deletePiece.delete.thereAreRequestsOnItem": "Selected pieces were not deleted. There are requests on item"
+    "deletePiece.btn.cancel": "إلغاء",
+    "deletePiece.btn.deletePiece": "حذف",
+    "deletePiece.title": "قطعة للحذف",
+    "deletePiece.warning": "سيتم حذف القطع المحددة وتسجيلات المواد المرتبطة بها نهائياً. لا يمكنك حذف المواد ذات الطلبات المفتوحة.",
+    "deletePiece.delete.success": "تم حذف القطع المحددة",
+    "deletePiece.delete.fail": "لم يتم حذف القطع المحددة",
+    "deletePiece.delete.thereAreRequestsOnItem": "لم يتم حذف القطع المحددة. توجد طلبات على المادة"
 }
