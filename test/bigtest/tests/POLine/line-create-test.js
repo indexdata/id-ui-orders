@@ -7,7 +7,7 @@ import { expect } from 'chai';
 
 import setupApplication from '../../helpers/setup-application';
 import LineEditPage from '../../interactors/line-edit-page';
-import OrderDetailsPage from '../../interactors/order-details-page';
+import LineDetailsPage from '../../interactors/line-details-page';
 
 describe('Create PO Line simple test', function () {
   setupApplication();
@@ -15,7 +15,7 @@ describe('Create PO Line simple test', function () {
   let order = null;
   let vendor = null;
   const lineEditPage = new LineEditPage();
-  const orderDetailsPage = new OrderDetailsPage();
+  const lineDetailsPage = new LineDetailsPage();
 
   beforeEach(async function () {
     vendor = this.server.create('vendor');
@@ -49,11 +49,17 @@ describe('Create PO Line simple test', function () {
         await lineEditPage.quantityPhysical.fill(2);
         await lineEditPage.physicalCreateInventory.select('None');
         await lineEditPage.saveButton.click();
-        await orderDetailsPage.whenLoaded();
+
+        const purchaseOrder = this.server.schema.orders.first();
+        const newLine = this.server.schema.lines.first();
+
+        purchaseOrder.update({ compositePoLines: [newLine.attrs] });
+
+        await lineDetailsPage.whenLoaded();
       });
 
       it('goes to details page', function () {
-        expect(orderDetailsPage.isPresent).to.be.true;
+        expect(lineDetailsPage.isPresent).to.be.true;
       });
     });
   });
