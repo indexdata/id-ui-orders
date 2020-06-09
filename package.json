@@ -6,7 +6,7 @@
   "repository": "",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=8.9.4"
+    "node": ">=10"
   },
   "stripes": {
     "actsAs": [
@@ -251,7 +251,7 @@
     "build": "stripes build --output ./output",
     "test": "yarn run test:unit && yarn run test:e2e",
     "test:unit": "jest --ci --coverage",
-    "test:e2e": "stripes test karma --bundle --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
+    "test:e2e": "stripes test karma --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
     "lint": "eslint ."
   },
   "devDependencies": {
@@ -319,8 +319,5 @@
     "@folio/plugin-find-organization": "*",
     "@folio/plugin-find-po-line": "*",
     "@folio/plugin-find-user": "*"
-  },
-  "resolutions": {
-    "keyboardjs": "~2.5.1"
   }
 }
