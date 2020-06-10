@@ -67,6 +67,7 @@ class OrderTemplatesEditor extends Component {
     submitting: PropTypes.bool.isRequired,
     identifierTypes: PropTypes.arrayOf(PropTypes.object),
     contributorNameTypes: PropTypes.arrayOf(PropTypes.object),
+    locationIds: PropTypes.arrayOf(PropTypes.string),
     locations: PropTypes.arrayOf(PropTypes.object),
     createInventorySetting: PropTypes.object,
     prefixesSetting: PropTypes.arrayOf(PropTypes.object),
@@ -121,6 +122,12 @@ class OrderTemplatesEditor extends Component {
     this.setState({ sections });
   };
 
+  changeLocation = (location, fieldName) => {
+    const { dispatch, change } = this.props;
+
+    dispatch(change(fieldName, location.id));
+  };
+
   getLastMenu() {
     const { pristine, submitting } = this.props;
 
@@ -152,6 +159,7 @@ class OrderTemplatesEditor extends Component {
       prefixesSetting,
       suffixesSetting,
       addresses,
+      locationIds,
       locations,
       materialTypes,
       handleSubmit,
@@ -325,7 +333,12 @@ class OrderTemplatesEditor extends Component {
                     label={ORDER_TEMPLATES_ACCORDION_TITLES[ORDER_TEMPLATES_ACCORDION.POL_LOCATION]}
                     id={ORDER_TEMPLATES_ACCORDION.POL_LOCATION}
                   >
-                    <POLineLocationsForm locations={locations} />
+                    <POLineLocationsForm
+                      changeLocation={this.changeLocation}
+                      dispatch={dispatch}
+                      locationIds={locationIds}
+                      locations={locations}
+                    />
                   </Accordion>
 
                   {
