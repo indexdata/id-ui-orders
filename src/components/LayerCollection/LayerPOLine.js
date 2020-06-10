@@ -144,7 +144,7 @@ function LayerPOLine({
               type: 'success',
             });
           })
-          .catch(() => {
+          .catch(errorResponse => {
             sendCallout({
               message: (
                 <SafeHTMLMessage
@@ -154,6 +154,7 @@ function LayerPOLine({
               ),
               type: 'error',
             });
+            throw errorResponse;
           })
         : Promise.resolve();
     },
@@ -223,15 +224,16 @@ function LayerPOLine({
     });
   }, [history, id, lineId, search]);
 
-  const updatePOLine = useCallback(({ saveAndOpen, ...data }) => {
-    setSavingValues(data);
+  const updatePOLine = useCallback(hydratedLine => {
+    setSavingValues(hydratedLine);
+    const { saveAndOpen, ...data } = hydratedLine;
+
     setIsLoading(true);
     const line = cloneDeep(data);
 
     delete line.metadata;
 
-    return memoizedMutator.poLines
-      .PUT(line)
+    return memoizedMutator.poLines.PUT(line)
       .then(() => openOrder(saveAndOpen))
       .then(() => {
         sendCallout({
@@ -250,6 +252,10 @@ function LayerPOLine({
         handleErrorResponse(e, line);
       });
   }, [handleErrorResponse, memoizedMutator.poLines, onCancel, openOrder, sendCallout]);
+
+  const saveAfterDelete = useCallback(() => {
+    updatePOLine(savingValues);
+  }, [savingValues, updatePOLine]);
 
   const getCreatePOLIneInitialValues = () => {
     const orderId = order?.id;
@@ -304,8 +310,37 @@ function LayerPOLine({
 
   useEffect(
     () => {
-      if (vendorId) memoizedMutator.orderVendor.GET({ path: `${VENDORS_API}/${vendorId}` }).then(setVendor);
+      if (vendorId) {
+        memoizedMutator.orderVendor.GET({ path: `${VENDORS_API}/${vendorId}` })
+          .then(
+            setVendor,
+            errorResponse => {
+              let response;
+
+              try {
+                response = JSON.parse(errorResponse?.message);
+              } catch (parsingException) {
+                response = errorResponse;
+              }
+
+              sendCallout({
+                message: <FormattedMessage id="ui-orders.error.fetching.vendor" />,
+                type: 'error',
+              });
+
+              const message = response?.errors?.[0]?.message;
+
+              if (message) {
+                sendCallout({
+                  message: <FormattedMessage id={`ui-orders.${message}`} defaultMessage={message} />,
+                  type: 'error',
+                });
+              }
+            },
+          );
+      }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [memoizedMutator.orderVendor, vendorId],
   );
 
@@ -364,6 +399,7 @@ function LayerPOLine({
       {isDeletePiecesOpened && (
         <ModalDeletePieces
           onCancel={toggleDeletePieces}
+          onSubmit={saveAfterDelete}
           poLines={order?.compositePoLines}
         />
       )}
