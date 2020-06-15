@@ -745,7 +745,7 @@
     "settings.instanceType.select": "Default instance type",
     "settings.loanType": "Loan type",
     "settings.loanType.select": "Default loan type",
-    "receiving.itemStatus.In process": "In process",
+    "receiving.itemStatus.In process": "В обработке",
     "receiving.itemStatus.On order": "On order",
     "receiving.itemStatus.Available": "Доступный",
     "receiving.itemStatus.In transit": "In transit",
@@ -809,7 +809,7 @@
     "errors.fundCannotBePaid": "One or more fund distributions on this order can not be encumbered, because there is not enough money in the budget",
     "receiving.itemStatus.Order closed": "Order closed",
     "cost.quantity": "Quantity",
-    "itemDetails.packageName": "Package name",
+    "itemDetails.packageName": "Название пакета",
     "poLine.package": "Пакет",
     "search.titleOrPackage": "Title or package name",
     "lineListing.titleOrPackage": "Title or package name",
@@ -853,8 +853,10 @@
     "deletePiece.btn.cancel": "Отменить",
     "deletePiece.btn.deletePiece": "Удалить",
     "deletePiece.title": "Части, подлежащие удалению",
-    "deletePiece.warning": "The selected piece(s) and its' linked item record(s) in inventory will be PERMANENTLY DELETED. You can NOT delete items that have open requests.",
+    "deletePiece.warning": "Выбранные части и связанные с ними записи в фонде будут ОКОНЧАТЕЛЬНО УДАЛЕНЫ. Вы НЕ можете удалить экземпляры, для которых есть открытые заказы.",
     "deletePiece.delete.success": "Выбранные части были удалены",
     "deletePiece.delete.fail": "Выбранные части не были удалены",
-    "deletePiece.delete.thereAreRequestsOnItem": "Выбранные части не были удалены. Есть заказы с экземпляром."
+    "deletePiece.delete.thereAreRequestsOnItem": "Выбранные части не были удалены. Есть заказы с экземпляром.",
+    "User does not have permissions - operation is restricted": "User does not have permissions - operation is restricted",
+    "error.fetching.vendor": "Error on fetching PO Vendor"
 }
