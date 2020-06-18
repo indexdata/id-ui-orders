@@ -858,5 +858,7 @@
     "deletePiece.delete.fail": "Les pièces sélectionnées n'ont pas été supprimées",
     "deletePiece.delete.thereAreRequestsOnItem": "Selected pieces were not deleted. There are requests on item",
     "User does not have permissions - operation is restricted": "User does not have permissions - operation is restricted",
-    "error.fetching.vendor": "Error on fetching PO Vendor"
+    "error.fetching.vendor": "Error on fetching PO Vendor",
+    "line.accordion.relatedAgreementLines": "Related agreement lines",
+    "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data"
 }
