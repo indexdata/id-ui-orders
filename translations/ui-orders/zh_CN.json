@@ -858,5 +858,7 @@
     "deletePiece.delete.fail": "所选件未删除。",
     "deletePiece.delete.thereAreRequestsOnItem": "所选件未删除。单件有请求。",
     "User does not have permissions - operation is restricted": "用户没有权限-操作受到限制",
-    "error.fetching.vendor": "提取订单供应商时出错"
+    "error.fetching.vendor": "提取订单供应商时出错",
+    "line.accordion.relatedAgreementLines": "Related agreement lines",
+    "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data"
 }

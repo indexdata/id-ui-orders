@@ -858,5 +858,7 @@
     "deletePiece.delete.fail": "Выбранные части не были удалены",
     "deletePiece.delete.thereAreRequestsOnItem": "Выбранные части не были удалены. Есть заказы с экземпляром.",
     "User does not have permissions - operation is restricted": "User does not have permissions - operation is restricted",
-    "error.fetching.vendor": "Error on fetching PO Vendor"
+    "error.fetching.vendor": "Error on fetching PO Vendor",
+    "line.accordion.relatedAgreementLines": "Related agreement lines",
+    "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data"
 }
