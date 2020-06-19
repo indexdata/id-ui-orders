@@ -6,6 +6,7 @@ import {
 } from '@bigtest/interactor';
 
 import Button from './button';
+import { TIMEOUT } from './const';
 
 @interactor class LineDetailsPageActions {
   static defaultScope = '#data-test-line-details-actions';
@@ -21,6 +22,14 @@ import Button from './button';
 
   invoices = collection('[class*=mclRow---]', {
     link: clickable('[data-test-link-to-invoice]'),
+  });
+}
+
+@interactor class RelatedAgreementLinesAccordion {
+  static defaultScope = '#relatedAgreementLines';
+
+  agreementLines = collection('[class*=mclRow---]', {
+    link: clickable('[data-test-link-to-agreement]'),
   });
 }
 
@@ -44,13 +53,19 @@ export default interactor(class LineDetailsPage {
   notesAccordion = new NotesAccordion();
   lineInvoicesIsPresent = isPresent('#lineInvoices');
   closingReasonMessage = isPresent('[data-test-message-banner]');
+  relatedAgreementLinesAccordion = new RelatedAgreementLinesAccordion();
+  agreementLinesArePresent = isPresent('#po-line-agreement-lines');
 
   actions = new LineDetailsPageActions();
   whenLoaded() {
-    return this.timeout(20000).when(() => this.isLoaded);
+    return this.timeout(TIMEOUT).when(() => this.isLoaded);
   }
 
   whenInvoicesLoaded() {
-    return this.timeout(20000).when(() => this.lineInvoicesIsPresent);
+    return this.timeout(TIMEOUT).when(() => this.lineInvoicesIsPresent);
+  }
+
+  whenAgreementLinesLoaded() {
+    return this.timeout(TIMEOUT).when(() => this.agreementLinesArePresent);
   }
 });
