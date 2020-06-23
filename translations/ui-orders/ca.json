@@ -860,5 +860,14 @@
     "User does not have permissions - operation is restricted": "User does not have permissions - operation is restricted",
     "error.fetching.vendor": "Error on fetching PO Vendor",
     "line.accordion.relatedAgreementLines": "Related agreement lines",
-    "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data"
+    "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data",
+    "relatedAgreementLines.name": "Name",
+    "relatedAgreementLines.startDate": "Start",
+    "relatedAgreementLines.endDate": "End",
+    "relatedAgreementLines.status": "Status",
+    "relatedAgreementLines.status.active": "Active",
+    "relatedAgreementLines.status.closed": "Closed",
+    "relatedAgreementLines.status.draft": "Draft",
+    "relatedAgreementLines.status.in_negotiation": "In negotiation",
+    "relatedAgreementLines.status.requested": "Requested"
 }

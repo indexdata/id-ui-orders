@@ -859,6 +859,15 @@
     "deletePiece.delete.thereAreRequestsOnItem": "Las piezas seleccionadas no fueron eliminadas. Hay solicitudes de artículos.",
     "User does not have permissions - operation is restricted": "User does not have permissions - operation is restricted",
     "error.fetching.vendor": "Error on fetching PO Vendor",
-    "line.accordion.relatedAgreementLines": "Related agreement lines",
-    "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data"
+    "line.accordion.relatedAgreementLines": "Líneas de acuerdo relacionadas",
+    "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data",
+    "relatedAgreementLines.name": "Nombre",
+    "relatedAgreementLines.startDate": "Empezar",
+    "relatedAgreementLines.endDate": "Fin",
+    "relatedAgreementLines.status": "Estado",
+    "relatedAgreementLines.status.active": "Activos",
+    "relatedAgreementLines.status.closed": "Cerrado",
+    "relatedAgreementLines.status.draft": "Borrador",
+    "relatedAgreementLines.status.in_negotiation": "In negotiation",
+    "relatedAgreementLines.status.requested": "Requested"
 }
