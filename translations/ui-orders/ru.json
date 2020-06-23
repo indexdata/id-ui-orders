@@ -860,5 +860,14 @@
     "User does not have permissions - operation is restricted": "User does not have permissions - operation is restricted",
     "error.fetching.vendor": "Error on fetching PO Vendor",
     "line.accordion.relatedAgreementLines": "Related agreement lines",
-    "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data"
+    "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data",
+    "relatedAgreementLines.name": "Название",
+    "relatedAgreementLines.startDate": "Начало",
+    "relatedAgreementLines.endDate": "Конец",
+    "relatedAgreementLines.status": "Статус",
+    "relatedAgreementLines.status.active": "Активный",
+    "relatedAgreementLines.status.closed": "Закрыт",
+    "relatedAgreementLines.status.draft": "Черновик",
+    "relatedAgreementLines.status.in_negotiation": "В разработке",
+    "relatedAgreementLines.status.requested": "Запрошенный"
 }

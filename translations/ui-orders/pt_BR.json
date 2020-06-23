@@ -860,5 +860,14 @@
     "User does not have permissions - operation is restricted": "O usuário não tem permissões - a operação é restrita",
     "error.fetching.vendor": "Erro ao buscar fornecedor de pedidos",
     "line.accordion.relatedAgreementLines": "Linhas de contrato relacionadas",
-    "relatedAgreementLines.actions.load.error": "Falha ao carregar os dados das linhas do contrato"
+    "relatedAgreementLines.actions.load.error": "Falha ao carregar os dados das linhas do contrato",
+    "relatedAgreementLines.name": "Nome",
+    "relatedAgreementLines.startDate": "Início",
+    "relatedAgreementLines.endDate": "Fim",
+    "relatedAgreementLines.status": "Status",
+    "relatedAgreementLines.status.active": "Ativo",
+    "relatedAgreementLines.status.closed": "Fechado",
+    "relatedAgreementLines.status.draft": "Esboço",
+    "relatedAgreementLines.status.in_negotiation": "Em negociação",
+    "relatedAgreementLines.status.requested": "Requisitado"
 }
