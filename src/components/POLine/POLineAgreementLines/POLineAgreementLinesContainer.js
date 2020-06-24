@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 
 import { stripesConnect } from '@folio/stripes/core';
 import {
-  Loading,
-} from '@folio/stripes/components';
-import {
   baseManifest,
   useShowCallout,
 } from '@folio/stripes-acq-components';
@@ -62,7 +59,7 @@ const POLineAgreementLinesContainer = ({ lineId, label, mutator }) => {
     [page, fetchAgeementLines],
   );
 
-  if (!(agreementLines || totalCount)) return <Loading />;
+  if (!agreementLines || totalCount === 0) return null;
 
   return (
     <POLineAgreementLines
