@@ -869,5 +869,6 @@
     "relatedAgreementLines.status.closed": "مغلق",
     "relatedAgreementLines.status.draft": "مسودة",
     "relatedAgreementLines.status.in_negotiation": "قيد التفاوض",
-    "relatedAgreementLines.status.requested": "مطلوب"
+    "relatedAgreementLines.status.requested": "مطلوب",
+    "errors.polLimitExceeded": "تمت تهيئة نظام فوليو الخاص بك للحد من سطور أوامر الشراء في كل طلبية"
 }

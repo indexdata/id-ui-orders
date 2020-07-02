@@ -869,5 +869,6 @@
     "relatedAgreementLines.status.closed": "Cerrado",
     "relatedAgreementLines.status.draft": "Borrador",
     "relatedAgreementLines.status.in_negotiation": "In negotiation",
-    "relatedAgreementLines.status.requested": "Requested"
+    "relatedAgreementLines.status.requested": "Requested",
+    "errors.polLimitExceeded": "Your FOLIO system is configured to limit the number of PO Lines on each order"
 }
