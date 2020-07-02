@@ -869,5 +869,6 @@
     "relatedAgreementLines.status.closed": "Fechado",
     "relatedAgreementLines.status.draft": "Esboço",
     "relatedAgreementLines.status.in_negotiation": "Em negociação",
-    "relatedAgreementLines.status.requested": "Requisitado"
+    "relatedAgreementLines.status.requested": "Requisitado",
+    "errors.polLimitExceeded": "O seu sistema FOLIO está configurado para limitar o número de linhas de pedido em cada pedido"
 }
