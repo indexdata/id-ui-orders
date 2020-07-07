@@ -383,7 +383,7 @@ class POLineView extends Component {
             lineId={get(line, 'id')}
           />
           <POLineAgreementLinesContainer
-            label={<FormattedMessage id="ui-orders.line.accordion.relatedAgreementLines" />}
+            label={<FormattedMessage id="ui-orders.line.accordion.linkedAgreementLines" />}
             lineId={line.id}
           />
         </AccordionSet>
