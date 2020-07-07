@@ -10,6 +10,7 @@
 * [UIOR-417](https://issues.folio.org/browse/UIOR-417) Retain filters when switching from PO to POL and back
 
 ### Bug fixes
+* [UIOR-577](https://issues.folio.org/browse/UIOR-577) Update agreement line accordion label
 * [UIOR-578](https://issues.folio.org/browse/UIOR-578) Claim filters not working
 * [UIOR-572](https://issues.folio.org/browse/UIOR-572) Fund codes doesn't display in Order lines list
 * [UIOR-524](https://issues.folio.org/browse/UIOR-524) Accessibility Error: Form elements must have labels
