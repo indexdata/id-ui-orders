@@ -859,7 +859,6 @@
     "deletePiece.delete.thereAreRequestsOnItem": "لم يتم حذف القطع المحددة. توجد طلبات على المادة",
     "User does not have permissions - operation is restricted": "لا يملك المستخدم الصلاحيات - العملية مقيدة",
     "error.fetching.vendor": "خطأ في الحصول على مورد أمر الشراء",
-    "line.accordion.relatedAgreementLines": "بنود اتفاقية ذات صلة",
     "relatedAgreementLines.actions.load.error": "فشل تحميل بيانات بنود الاتفاقية",
     "relatedAgreementLines.name": "الاسم",
     "relatedAgreementLines.startDate": "بدء",
@@ -870,5 +869,6 @@
     "relatedAgreementLines.status.draft": "مسودة",
     "relatedAgreementLines.status.in_negotiation": "قيد التفاوض",
     "relatedAgreementLines.status.requested": "مطلوب",
-    "errors.polLimitExceeded": "تمت تهيئة نظام فوليو الخاص بك للحد من سطور أوامر الشراء في كل طلبية"
+    "errors.polLimitExceeded": "تمت تهيئة نظام فوليو الخاص بك للحد من سطور أوامر الشراء في كل طلبية",
+    "line.accordion.linkedAgreementLines": "بنود الاتفاقية المرتبطة"
 }

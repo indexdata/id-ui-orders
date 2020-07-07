@@ -859,7 +859,6 @@
     "deletePiece.delete.thereAreRequestsOnItem": "Selected pieces were not deleted. There are requests on item",
     "User does not have permissions - operation is restricted": "User does not have permissions - operation is restricted",
     "error.fetching.vendor": "Error on fetching PO Vendor",
-    "line.accordion.relatedAgreementLines": "Lignes d'accord connexes",
     "relatedAgreementLines.actions.load.error": "Echec lors du chargement des données des lignes d'accord",
     "relatedAgreementLines.name": "Nom",
     "relatedAgreementLines.startDate": "Actif à partir du",
@@ -870,5 +869,6 @@
     "relatedAgreementLines.status.draft": "Brouillon",
     "relatedAgreementLines.status.in_negotiation": "En négociation",
     "relatedAgreementLines.status.requested": "Demandé",
-    "errors.polLimitExceeded": "Your FOLIO system is configured to limit the number of PO Lines on each order"
+    "errors.polLimitExceeded": "Your FOLIO system is configured to limit the number of PO Lines on each order",
+    "line.accordion.linkedAgreementLines": "Linked agreement lines"
 }

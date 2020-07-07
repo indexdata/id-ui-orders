@@ -859,7 +859,6 @@
     "deletePiece.delete.thereAreRequestsOnItem": "所选件未删除。单件有请求。",
     "User does not have permissions - operation is restricted": "用户没有权限-操作受到限制",
     "error.fetching.vendor": "提取订单供应商时出错",
-    "line.accordion.relatedAgreementLines": "Related agreement lines",
     "relatedAgreementLines.actions.load.error": "Failed to load agreement lines data",
     "relatedAgreementLines.name": "Name",
     "relatedAgreementLines.startDate": "Active from",
@@ -870,5 +869,6 @@
     "relatedAgreementLines.status.draft": "Draft",
     "relatedAgreementLines.status.in_negotiation": "In negotiation",
     "relatedAgreementLines.status.requested": "Requested",
-    "errors.polLimitExceeded": "Your FOLIO system is configured to limit the number of PO Lines on each order"
+    "errors.polLimitExceeded": "Your FOLIO system is configured to limit the number of PO Lines on each order",
+    "line.accordion.linkedAgreementLines": "Linked agreement lines"
 }
