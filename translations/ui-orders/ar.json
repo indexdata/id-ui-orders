@@ -870,5 +870,7 @@
     "relatedAgreementLines.status.in_negotiation": "قيد التفاوض",
     "relatedAgreementLines.status.requested": "مطلوب",
     "errors.polLimitExceeded": "تمت تهيئة نظام فوليو الخاص بك للحد من سطور أوامر الشراء في كل طلبية",
-    "line.accordion.linkedAgreementLines": "بنود الاتفاقية المرتبطة"
+    "line.accordion.linkedAgreementLines": "بنود الاتفاقية المرتبطة",
+    "errors.incorrectFundDistributionTotal": "يجب أن يكون مجموع إجمالي توزيع التمويل هو 100% أو totalPrice",
+    "errors.piecesNeedToBeCreated": "قطع يجب إنشائها"
 }

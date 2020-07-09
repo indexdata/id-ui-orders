@@ -870,5 +870,7 @@
     "relatedAgreementLines.status.in_negotiation": "In negotiation",
     "relatedAgreementLines.status.requested": "Requested",
     "errors.polLimitExceeded": "Your FOLIO system is configured to limit the number of PO Lines on each order",
-    "line.accordion.linkedAgreementLines": "Linked agreement lines"
+    "line.accordion.linkedAgreementLines": "Linked agreement lines",
+    "errors.incorrectFundDistributionTotal": "Fund distribution total must add to 100% or totalPrice",
+    "errors.piecesNeedToBeCreated": "Pieces need to be created"
 }
