@@ -425,7 +425,7 @@
     "line.accordion.itemDetails": "Detalles del ítem",
     "line.accordion.physical": "Detalles del recurso físico",
     "line.accordion.vendor": "Vendor",
-    "line.paneTitle.details": "Details",
+    "line.paneTitle.details": "PO Line details - {poLineNumber}",
     "line.paneTitle.edit": "Editar - {lineNumber}",
     "line.paneTitle.new": "Añadir línea de pedido",
     "orderDetails.orderNumberPrefix": "Prefix",
