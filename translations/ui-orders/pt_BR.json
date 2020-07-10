@@ -870,7 +870,7 @@
     "relatedAgreementLines.status.in_negotiation": "Em negociação",
     "relatedAgreementLines.status.requested": "Requisitado",
     "errors.polLimitExceeded": "O seu sistema FOLIO está configurado para limitar o número de linhas de pedido em cada pedido",
-    "line.accordion.linkedAgreementLines": "Linked agreement lines",
-    "errors.incorrectFundDistributionTotal": "Fund distribution total must add to 100% or totalPrice",
-    "errors.piecesNeedToBeCreated": "Pieces need to be created"
+    "line.accordion.linkedAgreementLines": "Linhas de contrato vinculadas",
+    "errors.incorrectFundDistributionTotal": "O total da distribuição de fundos deve aumentar para 100% ou o total",
+    "errors.piecesNeedToBeCreated": "Peças precisam ser criadas"
 }
