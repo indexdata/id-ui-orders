@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
-import { getFormValues } from 'redux-form';
 
 import { LoadingView } from '@folio/stripes/components';
 import {
@@ -13,12 +12,10 @@ import {
   useShowCallout,
 } from '@folio/stripes-acq-components';
 
-import { PO_FORM_NAME } from '../../common/constants';
 import {
   prefixesResource,
   suffixesResource,
 } from '../../common/resources';
-import { getUserNameById } from '../../common/utils';
 import {
   ORDER_NUMBER_API,
   ORDER_NUMBER_VALIDATE_API,
@@ -45,7 +42,6 @@ function LayerPO({
   match: { params: { id } },
   mutator,
   resources,
-  stripes,
 }) {
   const sendCallout = useShowCallout();
 
@@ -57,29 +53,11 @@ function LayerPO({
 
   const [savingValues, setSavingValues] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [createdByName, setCreatedByName] = useState('');
-  const [assignedToUser, setAssignedToUser] = useState('');
   const [updateOrderError, setUpdateOrderError] = useState();
   const [isErrorsModalOpened, toggleErrorsModal] = useModalToggle();
   const order = id ? resources?.order?.records[0] : {};
-  const metadata = order?.metadata;
-  const assignedTo = order?.assignedTo;
-
-  const setUserFields = useCallback(() => {
-    if (metadata) {
-      getUserNameById(memoizedMutator.users, get(metadata, 'createdByUserId'))
-        .then(setCreatedByName);
-    }
-
-    if (assignedTo) {
-      getUserNameById(memoizedMutator.users, assignedTo)
-        .then(setAssignedToUser);
-    }
-  }, [assignedTo, memoizedMutator.users, metadata]);
 
   useEffect(() => {
-    setUserFields();
-
     memoizedMutator.orderNumber.reset();
     memoizedMutator.orderNumber.GET()
       .finally(setIsLoading);
@@ -105,10 +83,10 @@ function LayerPO({
         sendCallout({
           message: <SafeHTMLMessage id="ui-orders.order.save.success" values={{ orderNumber: savedOrder.poNumber }} />,
         });
-        setTimeout(() => history.push({
+        history.push({
           pathname: `/orders/view/${savedOrder.id}`,
           search: location.search,
-        }));
+        });
       })
       .catch(async e => {
         setIsLoading(false);
@@ -136,23 +114,18 @@ function LayerPO({
   const patchedOrder = {
     ...order,
     poNumber: purePONumber,
-    createdByName,
-    assignedToUser,
   };
   const initialValues = savingValues || patchedOrder; // use entered values in case of error response
-  const formValues = getFormValues(PO_FORM_NAME)(stripes.store.getState());
 
   return (
     <>
       <POForm
-        formValues={formValues} // hack to re-render redux-form
         generatedNumber={generatedNumber}
         initialValues={initialValues}
         onCancel={onCancel}
         onSubmit={updatePO}
         parentMutator={memoizedMutator}
         parentResources={resources}
-        stripes={stripes}
       />
       {isErrorsModalOpened && (
         <UpdateOrderErrorModal
@@ -196,7 +169,6 @@ LayerPO.propTypes = {
   match: PropTypes.object.isRequired,
   mutator: PropTypes.object.isRequired,
   resources: PropTypes.object.isRequired,
-  stripes: PropTypes.object.isRequired,
 };
 
 export default stripesConnect(LayerPO);

@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 
 import {
   Col,
@@ -17,9 +17,6 @@ import {
   FolioFormattedTime,
 } from '@folio/stripes-acq-components';
 
-import {
-  PO_FORM_NAME,
-} from '../../../common/constants';
 import { getAddressOptions } from '../../../common/utils';
 import {
   FieldPrefix,
@@ -37,7 +34,7 @@ import {
   isWorkflowStatusClosed,
   isWorkflowStatusIsPending,
 } from '../util';
-
+import UserValue from './UserValue';
 import css from './PODetailsForm.css';
 
 const CREATE_UNITS_PERM = 'orders.acquisitions-units-assignments.assign';
@@ -50,18 +47,17 @@ class PODetailsForm extends Component {
     prefixesSetting: fieldSelectOptionsShape.isRequired,
     suffixesSetting: fieldSelectOptionsShape.isRequired,
     formValues: PropTypes.object,
-    dispatch: PropTypes.func,
     change: PropTypes.func,
     addresses: PropTypes.arrayOf(PropTypes.object),
     order: PropTypes.object,
+    validateNumber: PropTypes.func.isRequired,
   }
 
-  fillBackGeneratedNumber = (e, value) => {
-    const { change, dispatch, generatedNumber } = this.props;
+  fillBackGeneratedNumber = ({ target: { value } }) => {
+    const { change, generatedNumber } = this.props;
 
     if (value === '') {
-      // setTimeout is required due to async nature of redux-form CHANGE field value event.
-      window.setTimeout(() => dispatch(change('poNumber', generatedNumber)));
+      change('poNumber', generatedNumber);
     }
   }
 
@@ -73,8 +69,8 @@ class PODetailsForm extends Component {
       prefixesSetting,
       suffixesSetting,
       order,
-      dispatch,
       change,
+      validateNumber,
     } = this.props;
 
     const isEditMode = Boolean(order.id);
@@ -85,7 +81,7 @@ class PODetailsForm extends Component {
     const addressShipTo = get(addresses.find(el => el.id === formValues.shipTo), 'address', '');
 
     return (
-      <Fragment>
+      <>
         <Row>
           <Col xs={4}>
             <FieldPrefix
@@ -101,6 +97,8 @@ class PODetailsForm extends Component {
               name="poNumber"
               disabled={!canUserEditOrderNumber || isPostPendingOrder}
               onBlur={this.fillBackGeneratedNumber}
+              validate={validateNumber}
+              validateFields={[]}
             />
           </Col>
           <Col xs={4}>
@@ -116,7 +114,6 @@ class PODetailsForm extends Component {
             lg={3}
           >
             <FieldOrganization
-              dispatch={dispatch}
               change={change}
               disabled={isClosedOrder}
               id={formValues.vendor}
@@ -128,13 +125,9 @@ class PODetailsForm extends Component {
             xs={6}
             lg={3}
           >
-            <Field
-              component={TextField}
-              fullWidth
-              label={<FormattedMessage id="ui-orders.orderDetails.createdBy" />}
-              name="createdByName"
-              disabled
-            />
+            <KeyValue label={<FormattedMessage id="ui-orders.orderDetails.createdBy" />}>
+              <UserValue userId={formValues?.metadata?.createdByUserId} />
+            </KeyValue>
           </Col>
           <Col
             xs={6}
@@ -149,9 +142,8 @@ class PODetailsForm extends Component {
             lg={3}
           >
             <FieldAssignedTo
-              dispatch={dispatch}
               change={change}
-              assignedToValue={formValues.assignedTo || formValues.assignedToUser}
+              userId={formValues?.assignedTo}
             />
           </Col>
         </Row>
@@ -183,6 +175,7 @@ class PODetailsForm extends Component {
               perm={isEditMode ? MANAGE_UNITS_PERM : CREATE_UNITS_PERM}
               isEdit={isEditMode}
               preselectedUnits={order.acqUnitIds}
+              isFinal
             />
           </Col>
           <Col
@@ -225,7 +218,8 @@ class PODetailsForm extends Component {
             lg={3}
           >
             <FieldTags
-              formName={PO_FORM_NAME}
+              change={change}
+              formValues={formValues}
               name="tags.tagList"
             />
           </Col>
@@ -235,7 +229,7 @@ class PODetailsForm extends Component {
             <FieldsNotes />
           </Col>
         </Row>
-      </Fragment>
+      </>
     );
   }
 }

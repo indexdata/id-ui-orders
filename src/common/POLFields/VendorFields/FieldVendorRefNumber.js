@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 
 import { TextField } from '@folio/stripes/components';
 
 import { requiredRefNumberType } from '../../../components/Utils/Validate';
 
 const FieldVendorRefNumber = ({ required }) => {
-  const validateRefNumber = required ? { validate: [requiredRefNumberType] } : {};
-
   return (
     <Field
       component={TextField}
@@ -17,7 +15,7 @@ const FieldVendorRefNumber = ({ required }) => {
       label={<FormattedMessage id="ui-orders.vendor.refNumber" />}
       name="vendorDetail.refNumber"
       required={required}
-      {...validateRefNumber}
+      validate={required ? requiredRefNumberType : undefined}
     />
   );
 };

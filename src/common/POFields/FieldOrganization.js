@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 
 import {
   Pluggable,
@@ -24,7 +24,6 @@ import {
 const FieldOrganization = ({
   change,
   disabled,
-  dispatch,
   labelId,
   name,
   required,
@@ -34,9 +33,13 @@ const FieldOrganization = ({
   const [selectedOrganization, setSelectedOrganization] = useState({});
 
   useEffect(() => {
-    if (id && selectedOrganization.id !== id) {
-      mutator.fieldOrganizationOrg.GET()
-        .then(setSelectedOrganization);
+    if (id) {
+      if (selectedOrganization.id !== id) {
+        mutator.fieldOrganizationOrg.GET()
+          .then(setSelectedOrganization);
+      }
+    } else {
+      setSelectedOrganization({});
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -45,7 +48,7 @@ const FieldOrganization = ({
     (organization) => {
       setSelectedOrganization(organization);
 
-      dispatch(change(name, organization.id));
+      change(name, organization.id);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [name],
@@ -55,7 +58,7 @@ const FieldOrganization = ({
     () => {
       setSelectedOrganization({});
 
-      dispatch(change(name, null));
+      change(name, null);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [name],
@@ -92,6 +95,7 @@ const FieldOrganization = ({
         name={name}
         required={required}
         validate={required ? validateRequired : undefined}
+        validateFields={[]}
         format={() => selectedOrganization.name}
       />
 
@@ -117,7 +121,6 @@ const FieldOrganization = ({
 FieldOrganization.propTypes = {
   change: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
   id: PropTypes.string,
   labelId: PropTypes.string,
   name: PropTypes.string,

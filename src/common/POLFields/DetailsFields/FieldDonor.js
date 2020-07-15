@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 
 import { TextField } from '@folio/stripes/components';
 
@@ -15,6 +15,7 @@ const FieldDonor = ({ disabled }) => {
       name="donor"
       type="text"
       disabled={disabled}
+      validateFields={[]}
     />
   );
 };

@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Field,
-  FieldArray,
-} from 'redux-form';
+import { Field } from 'react-final-form';
+import { FieldArray } from 'react-final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -12,21 +10,19 @@ import {
   TextField,
 } from '@folio/stripes/components';
 import {
-  FieldLocation,
-  validateRequired,
+  FieldLocationFinal,
+  RepeatableFieldWithValidation,
 } from '@folio/stripes-acq-components';
 
-import { RepeatableFieldWithErrorMessage } from '../../RepeatableFieldWithErrorMessage/RepeatableFieldWithErrorMessage';
 import {
   isLocationsRequired,
   parseQuantity,
   validateLocation,
-  validateNotNegative,
   validateQuantityElectronic,
   validateQuantityPhysical,
 } from './validate';
 
-const NO_VALIDATE = [];
+const NO_VALIDATE = undefined;
 
 const FieldsLocation = ({
   changeLocation,
@@ -41,7 +37,7 @@ const FieldsLocation = ({
   return (
     <FieldArray
       addLabel={<FormattedMessage id="ui-orders.location.button.addLocation" />}
-      component={RepeatableFieldWithErrorMessage}
+      component={RepeatableFieldWithValidation}
       name="locations"
       validate={withValidation ? isLocationsRequired : NO_VALIDATE}
       props={{
@@ -51,7 +47,7 @@ const FieldsLocation = ({
       renderField={(field) => (
         <Row>
           <Col xs={6}>
-            <FieldLocation
+            <FieldLocationFinal
               isDisabled={disabled}
               labelId="ui-orders.location.nameCode"
               locationsForDict={locations}
@@ -59,7 +55,7 @@ const FieldsLocation = ({
               onChange={changeLocation}
               prepopulatedLocationsIds={locationIds}
               required={withValidation}
-              validate={withValidation ? [validateRequired, validateLocation] : NO_VALIDATE}
+              validate={withValidation ? validateLocation : NO_VALIDATE}
             />
           </Col>
           <Col xs={3}>
@@ -69,7 +65,7 @@ const FieldsLocation = ({
               name={`${field}.quantityPhysical`}
               parse={parseQuantity}
               type="number"
-              validate={withValidation ? [validateNotNegative, validateQuantityPhysical] : NO_VALIDATE}
+              validate={withValidation ? validateQuantityPhysical : NO_VALIDATE}
               disabled={isDisabledToChangePaymentInfo}
             />
           </Col>
@@ -80,7 +76,7 @@ const FieldsLocation = ({
               name={`${field}.quantityElectronic`}
               parse={parseQuantity}
               type="number"
-              validate={withValidation ? [validateNotNegative, validateQuantityElectronic] : NO_VALIDATE}
+              validate={withValidation ? validateQuantityElectronic : NO_VALIDATE}
               disabled={isDisabledToChangePaymentInfo}
             />
           </Col>

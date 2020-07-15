@@ -2,10 +2,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import {
-  Field,
-  getFormValues,
-} from 'redux-form';
+import { Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
 import { get } from 'lodash';
 
@@ -20,11 +17,10 @@ import {
   TextField,
 } from '@folio/stripes/components';
 import {
-  FieldDatepicker,
+  FieldDatepickerFinal,
   selectOptionsShape,
   validateRequired,
 } from '@folio/stripes-acq-components';
-import { stripesShape } from '@folio/stripes/core';
 
 import {
   validateYear,
@@ -47,16 +43,13 @@ import css from './ItemForm.css';
 
 class ItemForm extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
     change: PropTypes.func.isRequired,
     identifierTypes: selectOptionsShape,
     contributorNameTypes: PropTypes.arrayOf(PropTypes.object),
     initialValues: PropTypes.object,
     order: PropTypes.object.isRequired,
-    formName: PropTypes.string.isRequired,
     formValues: PropTypes.object.isRequired,
     required: PropTypes.bool,
-    stripes: stripesShape.isRequired,
   };
 
   static defaultProps = {
@@ -71,32 +64,32 @@ class ItemForm extends Component {
   }
 
   onAddLinkPackage = ([selectedPoLine]) => {
-    const { dispatch, change } = this.props;
+    const { change } = this.props;
 
-    dispatch(change('packagePoLineId', selectedPoLine?.id || null));
+    change('packagePoLineId', selectedPoLine?.id || null);
   };
 
   onAddInstance = (instance) => {
-    const { dispatch, change, identifierTypes } = this.props;
+    const { change, identifierTypes } = this.props;
     const { contributors, editions, publication, title, identifiers, id } = instance;
     const inventoryData = { instanceId: id };
 
-    dispatch(change('instanceId', id));
-    dispatch(change('titleOrPackage', title || ''));
+    change('instanceId', id);
+    change('titleOrPackage', title || '');
     inventoryData.title = title || '';
     const { publisher, dateOfPublication } = publication?.[0] || {};
 
-    dispatch(change('publisher', publisher || ''));
+    change('publisher', publisher || '');
     inventoryData.publisher = publisher || '';
 
-    const publicationDate = dateOfPublication?.length === ALLOWED_YEAR_LENGTH ? dateOfPublication : '';
+    const publicationDate = dateOfPublication?.length === ALLOWED_YEAR_LENGTH ? dateOfPublication : null;
 
-    dispatch(change('publicationDate', publicationDate));
+    change('publicationDate', publicationDate);
     inventoryData.publicationDate = publicationDate;
 
     const edition = editions?.[0] || '';
 
-    dispatch(change('edition', edition));
+    change('edition', edition);
     inventoryData.edition = edition;
 
     const lineContributors = contributors?.map(({ name, contributorNameTypeId }) => ({
@@ -104,7 +97,7 @@ class ItemForm extends Component {
       contributorNameTypeId,
     })) || [];
 
-    dispatch(change('contributors', lineContributors));
+    change('contributors', lineContributors);
     inventoryData.contributors = lineContributors;
 
     if (identifiers && identifiers.length) {
@@ -129,10 +122,10 @@ class ItemForm extends Component {
           return result;
         });
 
-      dispatch(change('details.productIds', lineidentifiers));
+      change('details.productIds', lineidentifiers);
       inventoryData.productIds = lineidentifiers;
     } else {
-      dispatch(change('details.productIds', []));
+      change('details.productIds', []);
       inventoryData.productIds = [];
     }
 
@@ -140,7 +133,7 @@ class ItemForm extends Component {
       instanceId: inventoryData.instanceId,
       title: get(inventoryData, 'title', ''),
       publisher: get(inventoryData, 'publisher', ''),
-      publicationDate: get(inventoryData, 'publicationDate', ''),
+      publicationDate: get(inventoryData, 'publicationDate', null),
       edition: get(inventoryData, 'edition', ''),
       contributors: get(inventoryData, 'contributors', []),
       productIds: get(inventoryData, 'productIds', []),
@@ -148,24 +141,24 @@ class ItemForm extends Component {
   };
 
   onChangeField = (value, fieldName) => {
-    const { formName, dispatch, change, stripes: { store } } = this.props;
+    const { change } = this.props;
     const inventoryData = this.state;
 
-    dispatch(change(fieldName, value));
+    if (fieldName) change(fieldName, value);
 
-    const formValues = getFormValues(formName)(store.getState());
-
-    if (shouldSetInstanceId(formValues, inventoryData)) {
-      dispatch(change('instanceId', inventoryData.instanceId));
-    } else dispatch(change('instanceId', null));
+    setTimeout(() => {
+      if (shouldSetInstanceId(this.props.formValues, inventoryData)) {
+        change('instanceId', inventoryData.instanceId);
+      } else change('instanceId', null);
+    });
   };
 
   setTitleOrPackage = ({ target: { value } }) => {
     this.onChangeField(value, 'titleOrPackage');
   };
 
-  setIsPackage = ({ target: { value } }) => {
-    const isPackageValue = value === 'false';
+  setIsPackage = () => {
+    const isPackageValue = !this.props.formValues?.isPackage;
 
     this.onChangeField(isPackageValue, 'isPackage');
     this.onChangeField(isPackageValue, 'checkinItems');
@@ -176,7 +169,7 @@ class ItemForm extends Component {
   };
 
   setPublicationDate = ({ target: { value } }) => {
-    this.onChangeField(value, 'publicationDate');
+    this.onChangeField(value || null, 'publicationDate');
   };
 
   setEdition = ({ target: { value } }) => {
@@ -273,6 +266,7 @@ class ItemForm extends Component {
               onChange={this.setTitleOrPackage}
               validate={required ? validateRequired : undefined}
               disabled={isPostPendingOrder}
+              validateFields={[]}
             />
             {isSelectInstanceVisible && <InstancePlugin addInstance={this.onAddInstance} />}
           </Col>
@@ -287,6 +281,7 @@ class ItemForm extends Component {
               name="publisher"
               onChange={this.setPublisher}
               disabled={isPostPendingOrder}
+              validateFields={[]}
             />
           </Col>
           <Col
@@ -299,9 +294,9 @@ class ItemForm extends Component {
               label={<FormattedMessage id="ui-orders.itemDetails.publicationDate" />}
               name="publicationDate"
               onChange={this.setPublicationDate}
-              normalize={v => (v || null)}
               validate={validateYear}
               disabled={isPostPendingOrder}
+              validateFields={[]}
             />
           </Col>
           <Col
@@ -315,6 +310,7 @@ class ItemForm extends Component {
               onChange={this.setEdition}
               name="edition"
               disabled={isPostPendingOrder}
+              validateFields={[]}
             />
           </Col>
         </Row>
@@ -333,19 +329,21 @@ class ItemForm extends Component {
             xs={6}
             md={3}
           >
-            <FieldDatepicker
+            <FieldDatepickerFinal
               label={<FormattedMessage id="ui-orders.itemDetails.subscriptionFrom" />}
               name="details.subscriptionFrom"
+              validateFields={[]}
             />
           </Col>
           <Col
             xs={6}
             md={3}
           >
-            <FieldDatepicker
+            <FieldDatepickerFinal
               label={<FormattedMessage id="ui-orders.itemDetails.subscriptionTo" />}
               name="details.subscriptionTo"
               disabled={isPostPendingOrder}
+              validateFields={[]}
             />
           </Col>
           <Col
@@ -359,6 +357,7 @@ class ItemForm extends Component {
               type="number"
               fullWidth
               disabled={isPostPendingOrder}
+              validateFields={[]}
             />
           </Col>
         </Row>
@@ -392,6 +391,7 @@ class ItemForm extends Component {
               fullWidth
               label={<FormattedMessage id="ui-orders.itemDetails.receivingNote" />}
               name="details.receivingNote"
+              validateFields={[]}
             />
           </Col>
           <Col
@@ -403,6 +403,7 @@ class ItemForm extends Component {
               fullWidth
               label={<FormattedMessage id="ui-orders.itemDetails.internalNote" />}
               name="description"
+              validateFields={[]}
             />
           </Col>
         </Row>

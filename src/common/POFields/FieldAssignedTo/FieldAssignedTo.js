@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
 import { FormattedMessage } from 'react-intl';
+import { Field } from 'react-final-form';
 
 import {
   TextField,
   IconButton,
 } from '@folio/stripes/components';
 import {
-  withStripes,
+  stripesConnect,
   stripesShape,
   Pluggable,
 } from '@folio/stripes/core';
+import { getFullName } from '@folio/stripes/util';
 
+import { USERS } from '../../../components/Utils/resources';
+import { getUserNameById } from '../../utils';
 import styles from './FieldAssignedTo.css';
 
 const columnMapping = {
@@ -23,39 +26,30 @@ const columnMapping = {
 };
 const visibleColumns = ['name', 'patronGroup', 'username', 'barcode'];
 
-class FieldAssignedTo extends Component {
-  static propTypes = {
-    stripes: stripesShape.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    change: PropTypes.func.isRequired,
-    assignedToValue: PropTypes.string,
-  };
+function FieldAssignedTo({ change, userId, mutator, stripes }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const memoizedMutator = useMemo(() => mutator, []);
+  const [username, setUsername] = useState();
 
-  static defaultProps = {
-    assignedToValue: '',
-  };
+  useEffect(() => {
+    getUserNameById(memoizedMutator.users, userId)
+      .then(setUsername);
+  }, [memoizedMutator.users, userId]);
 
-  clearUser = () => {
-    const { dispatch, change } = this.props;
+  const clearUser = useCallback(() => {
+    change('assignedTo', null);
+  }, [change]);
 
-    dispatch(change('assignedToUser', ''));
-    dispatch(change('assignedTo', null));
-  };
+  const addUser = useCallback((user) => {
+    setUsername(getFullName(user));
+    change('assignedTo', user.id);
+  }, [change]);
 
-  addUser = (user) => {
-    const { dispatch, change } = this.props;
-
-    dispatch(change('assignedToUser', `${user.personal.firstName} ${user.personal.lastName}`));
-    dispatch(change('assignedTo', `${user.id}`));
-  };
-
-  renderClearButton = () => {
-    const { assignedToValue } = this.props;
-
-    if (assignedToValue && assignedToValue.length > 0) {
+  const clearButton = useMemo(() => {
+    if (username) {
       return (
         <IconButton
-          onClick={this.clearUser}
+          onClick={clearUser}
           icon="times-circle-solid"
           size="small"
         />
@@ -63,47 +57,54 @@ class FieldAssignedTo extends Component {
     }
 
     return null;
-  };
+  }, [clearUser, username]);
 
-  renderUsersPlugin = () => {
-    const { stripes } = this.props;
-
-    return (
-      <Pluggable
-        aria-haspopup="true"
-        type="find-user"
-        dataKey="user"
-        searchLabel="+"
-        searchButtonStyle="default"
-        selectUser={this.addUser}
-        visibleColumns={visibleColumns}
-        columnMapping={columnMapping}
-        disableRecordCreation
-        stripes={stripes}
-      >
-        <span>[no user-selection plugin]</span>
-      </Pluggable>
-    );
-  };
-
-  render() {
-    return (
-      <div className={styles.FieldAssignedToWrapper}>
-        <Field
-          component={TextField}
-          disabled
-          endControl={this.renderClearButton()}
-          fullWidth
-          hasClearIcon={false}
-          label={<FormattedMessage id="ui-orders.orderDetails.assignedTo" />}
-          name="assignedToUser"
-        />
-        <div className={styles.FieldAssignedToButtonWrapper}>
-          {this.renderUsersPlugin()}
-        </div>
+  return (
+    <div className={styles.FieldAssignedToWrapper}>
+      <Field
+        component={TextField}
+        disabled
+        endControl={clearButton}
+        format={() => username}
+        fullWidth
+        hasClearIcon={false}
+        label={<FormattedMessage id="ui-orders.orderDetails.assignedTo" />}
+        name="assignedTo"
+        validateFields={[]}
+      />
+      <div className={styles.FieldAssignedToButtonWrapper}>
+        <Pluggable
+          aria-haspopup="true"
+          type="find-user"
+          dataKey="user"
+          searchLabel="+"
+          searchButtonStyle="default"
+          selectUser={addUser}
+          visibleColumns={visibleColumns}
+          columnMapping={columnMapping}
+          disableRecordCreation
+          stripes={stripes}
+        >
+          <span>[<FormattedMessage id="stripes-acq-components.no-ui-plugin-find-user" />]</span>
+        </Pluggable>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default withStripes(FieldAssignedTo);
+FieldAssignedTo.propTypes = {
+  change: PropTypes.func.isRequired,
+  mutator: PropTypes.object.isRequired,
+  stripes: stripesShape.isRequired,
+  userId: PropTypes.string,
+};
+
+FieldAssignedTo.manifest = Object.freeze({
+  users: {
+    ...USERS,
+    accumulate: true,
+    fetch: false,
+  },
+});
+
+export default stripesConnect(FieldAssignedTo);

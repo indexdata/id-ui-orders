@@ -4,11 +4,9 @@ import { FormattedMessage } from 'react-intl';
 import {
   cloneDeep,
   get,
-  set,
 } from 'lodash';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
-import { getFormValues } from 'redux-form';
 
 import {
   stripesConnect,
@@ -37,7 +35,6 @@ import {
 import getCreateInventorySetting from '../../common/utils/getCreateInventorySetting';
 import {
   DISCOUNT_TYPE,
-  POL_TEMPLATE_FIELDS_MAP,
 } from '../POLine/const';
 import {
   cloneOrder,
@@ -56,7 +53,6 @@ import {
 } from '../Utils/resources';
 import { POLineForm } from '../POLine';
 import LinesLimit from '../PurchaseOrder/LinesLimit';
-import getOrderTemplateValue from '../Utils/getOrderTemplateValue';
 import ModalDeletePieces from '../ModalDeletePieces';
 
 function LayerPOLine({
@@ -257,11 +253,13 @@ function LayerPOLine({
     updatePOLine(savingValues);
   }, [savingValues, updatePOLine]);
 
-  const getCreatePOLIneInitialValues = () => {
+  const getCreatePOLIneInitialValues = useMemo(() => {
     const orderId = order?.id;
     const newObj = {
       source: sourceValues.user,
       cost: {
+        currency: stripes.currency,
+        discountType: DISCOUNT_TYPE.percentage,
       },
       vendorDetail: {
         instructions: '',
@@ -290,21 +288,9 @@ function LayerPOLine({
         newObj.cost.discount = vendor.discountPercent;
       }
     }
-    const templateValue = getOrderTemplateValue(resources, order?.template);
-
-    const { form } = stripes.store.getState();
-
-    Object.keys(get(form, 'POLineForm.registeredFields', {}))
-      .forEach(field => {
-        const templateField = POL_TEMPLATE_FIELDS_MAP[field] || field;
-        const templateFieldValue = get(templateValue, templateField);
-
-        if (templateFieldValue !== undefined) set(newObj, field, templateFieldValue);
-      });
-    set(newObj, 'cost.currency', newObj?.cost?.currency || stripes.currency);
 
     return newObj;
-  };
+  }, [createInventorySetting.eresource, createInventorySetting.physical, order, stripes.currency, vendor]);
 
   const vendorId = order?.vendor;
 
@@ -371,8 +357,7 @@ function LayerPOLine({
 
   if (isLoading || isntLoaded) return <LoadingView dismissible onClose={onCancel} />;
 
-  const formValues = getFormValues('POLineForm')(stripes.store.getState());
-  const initialValues = lineId ? poLine : getCreatePOLIneInitialValues();
+  const initialValues = lineId ? poLine : getCreatePOLIneInitialValues;
   const onSubmit = lineId ? updatePOLine : submitPOLine;
 
   return (
@@ -387,7 +372,6 @@ function LayerPOLine({
         parentResources={resources}
         stripes={stripes}
         isSaveAndOpenButtonVisible={isSaveAndOpenButtonVisible}
-        formValues={formValues} // hack to re-render redux-form
         enableSaveBtn={Boolean(savingValues)}
       />
       {isLinesLimitExceededModalOpened && (

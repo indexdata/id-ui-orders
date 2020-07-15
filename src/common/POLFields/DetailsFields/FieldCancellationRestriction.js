@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 
 import { Checkbox } from '@folio/stripes/components';
 
@@ -13,6 +13,7 @@ const FieldCancellationRestriction = () => {
       name="cancellationRestriction"
       type="checkbox"
       vertical
+      validateFields={[]}
     />
   );
 };

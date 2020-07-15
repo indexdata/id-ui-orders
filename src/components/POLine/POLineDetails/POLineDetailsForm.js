@@ -36,7 +36,6 @@ import getCreateInventorySetting from '../../../common/utils/getCreateInventoryS
 
 function POLineDetailsForm({
   change,
-  dispatch,
   formValues,
   initialValues: poLine,
   order,
@@ -68,7 +67,6 @@ function POLineDetailsForm({
         >
           <FieldOrderFormat
             change={change}
-            dispatch={dispatch}
             formValues={formValues}
             vendor={vendor}
             createInventorySetting={createInventorySetting}
@@ -173,7 +171,8 @@ function POLineDetailsForm({
           md={3}
         >
           <FieldTags
-            formName="POLineForm"
+            change={change}
+            formValues={formValues}
             name="tags.tagList"
           />
         </Col>
@@ -185,7 +184,6 @@ function POLineDetailsForm({
 POLineDetailsForm.propTypes = {
   initialValues: PropTypes.object.isRequired,
   change: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
   formValues: PropTypes.object.isRequired,
   order: PropTypes.object,
   vendor: PropTypes.object,
