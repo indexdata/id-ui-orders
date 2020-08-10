@@ -158,6 +158,7 @@
         "description": "",
         "visible": true,
         "subPermissions": [
+          "finance.funds.expense-classes.collection.get",
           "orders-storage.order-invoice-relationships.collection.get",
           "orders.po-lines.collection.get",
           "orders.po-lines.item.get",
@@ -171,6 +172,7 @@
         "description": "",
         "visible": true,
         "subPermissions": [
+          "finance.funds.expense-classes.collection.get",
           "orders.order-templates.collection.get",
           "orders.order-templates.item.get",
           "orders.po-lines.item.post"
@@ -182,6 +184,7 @@
         "description": "",
         "visible": true,
         "subPermissions": [
+          "finance.funds.expense-classes.collection.get",
           "orders-storage.pieces.collection.get",
           "orders.order-templates.collection.get",
           "orders.order-templates.item.get",
@@ -241,6 +244,7 @@
         "visible": true,
         "subPermissions": [
           "configuration.all",
+          "finance.expense-classes.collection.get",
           "orders.configuration.prefixes.all",
           "orders.configuration.reasons-for-closure.all",
           "orders.configuration.suffixes.all",
