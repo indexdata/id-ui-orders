@@ -628,5 +628,16 @@
     "errors.incorrectFundDistributionTotal": "Fund distribution total must add to 100% or totalPrice",
     "errors.piecesNeedToBeCreated": "Les pièces doivent être créées",
     "cost.discountType": "Type",
-    "validation.year": "Le champ doit comporter 4 chiffres pour l'année"
+    "validation.year": "Le champ doit comporter 4 chiffres pour l'année",
+    "permission.order.view": "Commandes: afficher les commandes",
+    "permission.order.create": "Commandes: créer des commandes",
+    "permission.order.edit": "Commandes: modifier les commandes",
+    "permission.order.delete": "Commandes: supprimer des commandes",
+    "permission.order-lines.view": "Commandes: afficher les lignes de commande",
+    "permission.order-lines.create": "Commandes: créer des lignes de commande",
+    "permission.order-lines.edit": "Commandes: modifier les lignes de commande",
+    "permission.order-lines.delete": "Commandes: supprimer les lignes de commande",
+    "permission.acq.unit.assignment.assign": "Commandes: attribuer des unités d'acquisition à une nouvelle commande",
+    "permission.acq.unit.assignment.manage": "Commandes: gérer les unités d'acquisition",
+    "permission.order.reopen": "Commandes: rouvrir les bons de commande"
 }

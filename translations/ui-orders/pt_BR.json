@@ -628,5 +628,16 @@
     "errors.incorrectFundDistributionTotal": "O total da distribuição de fundos deve aumentar para 100% ou o total",
     "errors.piecesNeedToBeCreated": "Peças precisam ser criadas",
     "cost.discountType": "Tipo",
-    "validation.year": "O campo deve ter um ano de 4 dígitos"
+    "validation.year": "O campo deve ter um ano de 4 dígitos",
+    "permission.order.view": "Pedidos: Ver pedidos",
+    "permission.order.create": "Pedidos: Criar pedidos",
+    "permission.order.edit": "Pedidos: Editar pedidos",
+    "permission.order.delete": "Pedidos: Remover pedidos",
+    "permission.order-lines.view": "Pedidos: Ver linhas de pedidos",
+    "permission.order-lines.create": "Pedidos: Criar linhas de pedido",
+    "permission.order-lines.edit": "Pedidos: Editar linhas de pedido",
+    "permission.order-lines.delete": "Pedidos: Excluir linhas de pedido",
+    "permission.acq.unit.assignment.assign": "Pedidos: Atribuirr unidades de aquisição ao novo pedido",
+    "permission.acq.unit.assignment.manage": "Pedidos: Gerenciar unidades de aquisição",
+    "permission.order.reopen": "Pedidos: Reabrir pedidos de compra"
 }

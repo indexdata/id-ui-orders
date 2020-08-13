@@ -628,5 +628,16 @@
     "errors.incorrectFundDistributionTotal": "يجب أن يكون مجموع إجمالي توزيع التمويل هو 100% أو totalPrice",
     "errors.piecesNeedToBeCreated": "قطع يجب إنشائها",
     "cost.discountType": "النوع",
-    "validation.year": "يجب أن يكون الحقل سنة مكونة من 4 أرقام"
+    "validation.year": "يجب أن يكون الحقل سنة مكونة من 4 أرقام",
+    "permission.order.view": "الطلبيات: اعرض الطلبيات",
+    "permission.order.create": "الطلبيات: أنشئ الطلبيات",
+    "permission.order.edit": "الطلبيات: حرّر الطلبيات",
+    "permission.order.delete": "الطلبيات: احذف الطلبيات",
+    "permission.order-lines.view": "الطلبيات: اعرض سطور الطلبية",
+    "permission.order-lines.create": "الطلبيات: أنشئ سطور الطلبيات",
+    "permission.order-lines.edit": "الطلبيات: حرّر سطور الطلبية",
+    "permission.order-lines.delete": "الطلبيات: احذف سطور الطلبيات",
+    "permission.acq.unit.assignment.assign": "الطلبيات: عيّن وحدات التزويد إلى طلبية جديدة",
+    "permission.acq.unit.assignment.manage": "الطلبيات: أدر وحدات التزويد",
+    "permission.order.reopen": "الطلبيات: إعادة فتح أوامر الشراء"
 }

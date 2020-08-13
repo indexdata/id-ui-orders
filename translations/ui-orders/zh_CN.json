@@ -628,5 +628,16 @@
     "errors.incorrectFundDistributionTotal": "经费分配总数必须加到100％或总额",
     "errors.piecesNeedToBeCreated": "需要创建的件",
     "cost.discountType": "类型",
-    "validation.year": "字段应为4位数的年份"
+    "validation.year": "字段应为4位数的年份",
+    "permission.order.view": "Orders: View orders",
+    "permission.order.create": "Orders: Create orders",
+    "permission.order.edit": "Orders: Edit orders",
+    "permission.order.delete": "Orders: Remove orders",
+    "permission.order-lines.view": "Orders: View order lines",
+    "permission.order-lines.create": "Orders: Create order lines",
+    "permission.order-lines.edit": "Orders: Edit order lines",
+    "permission.order-lines.delete": "Orders: Delete order lines",
+    "permission.acq.unit.assignment.assign": "Orders: Assign acquisition units to new order",
+    "permission.acq.unit.assignment.manage": "Orders: Manage acquisition units",
+    "permission.order.reopen": "Orders: Reopen purchase orders"
 }
