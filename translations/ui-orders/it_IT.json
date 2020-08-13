@@ -591,7 +591,7 @@
     "errors.missingOngoing": "Ongoing field must be present for Ongoing order",
     "errors.ongoingNotAllowed": "Ongoing field must be absent for One-time order",
     "errors.closeOrder": "Order failed to close",
-    "line.closedOrderMessage": "Purchase order is closed - {reason}",
+    "line.closedOrderMessage": "L'ordine di acquisto è stato chiuso - {reason}",
     "itemDetails.titleLookUp": "Title look-up",
     "itemDetails.titleLookUpNoPlugin": "[no instance-selection plugin]",
     "orderSummary.totalEncumbered": "Total encumbered",
@@ -628,5 +628,16 @@
     "errors.incorrectFundDistributionTotal": "Fund distribution total must add to 100% or totalPrice",
     "errors.piecesNeedToBeCreated": "Pieces need to be created",
     "cost.discountType": "Type",
-    "validation.year": "Field should be 4-digit year"
+    "validation.year": "Field should be 4-digit year",
+    "permission.order.view": "Orders: View orders",
+    "permission.order.create": "Orders: Create orders",
+    "permission.order.edit": "Orders: Edit orders",
+    "permission.order.delete": "Orders: Remove orders",
+    "permission.order-lines.view": "Orders: View order lines",
+    "permission.order-lines.create": "Orders: Create order lines",
+    "permission.order-lines.edit": "Orders: Edit order lines",
+    "permission.order-lines.delete": "Orders: Delete order lines",
+    "permission.acq.unit.assignment.assign": "Orders: Assign acquisition units to new order",
+    "permission.acq.unit.assignment.manage": "Orders: Manage acquisition units",
+    "permission.order.reopen": "Orders: Reopen purchase orders"
 }
