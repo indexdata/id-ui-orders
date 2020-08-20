@@ -11,7 +11,6 @@
     "acquisition_method.purchase": "Compra",
     "acquisition_method.purchaseAtVendorSystem": "Compra no sistema dos fornecedores",
     "acquisition_method.technical": "Técnico",
-    "dropdown.select": "--- Selecione ---",
     "order_format.container": "Contêiner",
     "order_format.electronicResource": "Recurso eletrônico",
     "order_format.PEMix": "Mix P/E",
@@ -641,5 +640,6 @@
     "permission.acq.unit.assignment.manage": "Pedidos: Gerenciar unidades de aquisição",
     "permission.order.reopen": "Pedidos: Reabrir pedidos de compra",
     "settings.poNumber.nameValidation": "Nome não é válido",
-    "errors.openOrder.inactiveExpenseClass": "O pedido NÃO pode ser <b>aberto</b> porque <b>{expenseClass}</b> está inativo."
+    "errors.openOrder.inactiveExpenseClass": "O pedido NÃO pode ser <b>aberto</b> porque <b>{expenseClass}</b> está inativo.",
+    "eresource.url": "URL"
 }

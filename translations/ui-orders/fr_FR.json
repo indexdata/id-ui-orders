@@ -11,7 +11,6 @@
     "acquisition_method.purchase": "Achat",
     "acquisition_method.purchaseAtVendorSystem": "Achat via le système du fournisseur",
     "acquisition_method.technical": "Technique",
-    "dropdown.select": "Sélectionner --- ",
     "order_format.container": "Conteneur",
     "order_format.electronicResource": "Ressource électronique",
     "order_format.PEMix": "Mix P / E",
@@ -640,6 +639,7 @@
     "permission.acq.unit.assignment.assign": "Commandes: attribuer des unités d'acquisition à une nouvelle commande",
     "permission.acq.unit.assignment.manage": "Commandes: gérer les unités d'acquisition",
     "permission.order.reopen": "Commandes: rouvrir les bons de commande",
-    "settings.poNumber.nameValidation": "Name is not valid",
-    "errors.openOrder.inactiveExpenseClass": "Order can NOT be <b>Opened</b> because <b>{expenseClass}</b> is inactive."
+    "settings.poNumber.nameValidation": "Le nom n'est pas valide",
+    "errors.openOrder.inactiveExpenseClass": "Order can NOT be <b>Opened</b> because expense class <b>{expenseClass}</b> is inactive.",
+    "eresource.url": "URL"
 }

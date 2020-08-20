@@ -11,7 +11,6 @@
     "acquisition_method.purchase": "Acquisto",
     "acquisition_method.purchaseAtVendorSystem": "Acquista con il sistema del fornitore",
     "acquisition_method.technical": "Technical",
-    "dropdown.select": "--- Seleziona ---",
     "order_format.container": "Container",
     "order_format.electronicResource": "Risorsa elettronica",
     "order_format.PEMix": "P/E mix",
@@ -641,5 +640,6 @@
     "permission.acq.unit.assignment.manage": "Orders: Manage acquisition units",
     "permission.order.reopen": "Orders: Reopen purchase orders",
     "settings.poNumber.nameValidation": "Name is not valid",
-    "errors.openOrder.inactiveExpenseClass": "Order can NOT be <b>Opened</b> because <b>{expenseClass}</b> is inactive."
+    "errors.openOrder.inactiveExpenseClass": "Order can NOT be <b>Opened</b> because expense class <b>{expenseClass}</b> is inactive.",
+    "eresource.url": "URL"
 }
