@@ -11,7 +11,6 @@
     "acquisition_method.purchase": "شراء",
     "acquisition_method.purchaseAtVendorSystem": "الشراء في نظام المورّد",
     "acquisition_method.technical": "تقني",
-    "dropdown.select": "--- تحديد ---",
     "order_format.container": "حاوية",
     "order_format.electronicResource": "مورد إلكتروني",
     "order_format.PEMix": "مزيج P/E",
@@ -641,5 +640,6 @@
     "permission.acq.unit.assignment.manage": "الطلبيات: أدر وحدات التزويد",
     "permission.order.reopen": "الطلبيات: إعادة فتح أوامر الشراء",
     "settings.poNumber.nameValidation": "الاسم غير صالح",
-    "errors.openOrder.inactiveExpenseClass": "Order can NOT be <b>Opened</b> because <b>{expenseClass}</b> is inactive."
+    "errors.openOrder.inactiveExpenseClass": "لا يمكن <b>فتح</b> الطلبية لأن <b>{expenseClass}</b> غير نشط.",
+    "eresource.url": "عنوان URL"
 }
