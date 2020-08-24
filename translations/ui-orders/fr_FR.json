@@ -640,6 +640,6 @@
     "permission.acq.unit.assignment.manage": "Commandes: gérer les unités d'acquisition",
     "permission.order.reopen": "Commandes: rouvrir les bons de commande",
     "settings.poNumber.nameValidation": "Le nom n'est pas valide",
-    "errors.openOrder.inactiveExpenseClass": "Order can NOT be <b>Opened</b> because expense class <b>{expenseClass}</b> is inactive.",
+    "errors.openOrder.inactiveExpenseClass": "La commande ne peut PAS être <b> ouverte </b> car la classe de dépenses <b> {expenseClass} </b> est inactive.",
     "eresource.url": "URL"
 }
