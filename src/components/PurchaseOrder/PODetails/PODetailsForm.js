@@ -7,6 +7,7 @@ import { Field } from 'react-final-form';
 import {
   Col,
   KeyValue,
+  NoValue,
   Row,
   TextField,
 } from '@folio/stripes/components';
@@ -85,25 +86,33 @@ class PODetailsForm extends Component {
         <Row>
           <Col xs={4}>
             <FieldPrefix
-              disabled={isPostPendingOrder}
+              isNonInteractive={isPostPendingOrder && formValues?.poNumberPrefix}
               prefixes={prefixesSetting}
             />
           </Col>
           <Col xs={4}>
-            <Field
-              component={TextField}
-              fullWidth
-              label={<FormattedMessage id="ui-orders.orderDetails.poNumber" />}
-              name="poNumber"
-              disabled={!canUserEditOrderNumber || isPostPendingOrder}
-              onBlur={this.fillBackGeneratedNumber}
-              validate={validateNumber}
-              validateFields={[]}
-            />
+            {(!canUserEditOrderNumber || isPostPendingOrder) ? (
+              <KeyValue
+                data-test-po-number
+                label={<FormattedMessage id="ui-orders.orderDetails.poNumber" />}
+                value={formValues?.poNumber || <NoValue />}
+              />
+            ) : (
+              <Field
+                component={TextField}
+                data-test-po-number
+                fullWidth
+                label={<FormattedMessage id="ui-orders.orderDetails.poNumber" />}
+                name="poNumber"
+                onBlur={this.fillBackGeneratedNumber}
+                validate={validateNumber}
+                validateFields={[]}
+              />
+            )}
           </Col>
           <Col xs={4}>
             <FieldSuffix
-              disabled={isPostPendingOrder}
+              isNonInteractive={isPostPendingOrder && formValues?.poNumberSuffix}
               suffixes={suffixesSetting}
             />
           </Col>
@@ -115,7 +124,7 @@ class PODetailsForm extends Component {
           >
             <FieldOrganization
               change={change}
-              disabled={isClosedOrder}
+              isNonInteractive={isClosedOrder}
               id={formValues.vendor}
               labelId="ui-orders.orderDetails.vendor"
               name="vendor"
@@ -125,7 +134,7 @@ class PODetailsForm extends Component {
             xs={6}
             lg={3}
           >
-            <FieldOrderType disabled={isPostPendingOrder} />
+            <FieldOrderType isNonInteractive={isPostPendingOrder && formValues?.orderType} />
           </Col>
           <Col
             xs={6}
@@ -157,7 +166,7 @@ class PODetailsForm extends Component {
           >
             <FieldBillTo
               addresses={addressesOptions}
-              disabled={isClosedOrder}
+              isNonInteractive={isClosedOrder && formValues?.billTo}
             />
           </Col>
           <Col

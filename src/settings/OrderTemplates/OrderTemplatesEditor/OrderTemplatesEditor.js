@@ -29,9 +29,6 @@ import {
   isFresource,
   isOtherResource,
 } from '../../../common/POLFields';
-import {
-  isOngoing,
-} from '../../../common/POFields';
 import { WORKFLOW_STATUS } from '../../../common/constants';
 import { ItemForm } from '../../../components/POLine/Item';
 import { CostForm } from '../../../components/POLine/Cost';
@@ -236,16 +233,7 @@ class OrderTemplatesEditor extends Component {
                     />
                   </Accordion>
 
-                  {
-                    isOngoing(formValues.orderType) && (
-                      <Accordion
-                        label={ORDER_TEMPLATES_ACCORDION_TITLES[ORDER_TEMPLATES_ACCORDION.PO_ONGOING]}
-                        id={ORDER_TEMPLATES_ACCORDION.PO_ONGOING}
-                      >
-                        <OngoingInfoForm ongoingFormValues={formValues.ongoing} />
-                      </Accordion>
-                    )
-                  }
+                  <OngoingInfoForm />
 
                   <Accordion
                     label={ORDER_TEMPLATES_ACCORDION_TITLES[ORDER_TEMPLATES_ACCORDION.PO_NOTES]}
