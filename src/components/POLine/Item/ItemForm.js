@@ -14,12 +14,11 @@ import {
   Label,
   Row,
   TextArea,
-  TextField,
 } from '@folio/stripes/components';
 import {
   FieldDatepickerFinal,
   selectOptionsShape,
-  validateRequired,
+  TextField,
 } from '@folio/stripes-acq-components';
 
 import {
@@ -39,6 +38,8 @@ import {
 import { isWorkflowStatusIsPending } from '../../PurchaseOrder/util';
 import { ALLOWED_YEAR_LENGTH } from '../const';
 import PackagePoLineField from './PackagePoLineField';
+import { TitleField } from './TitleField';
+// import { SubscriptionIntervalField } from './SubscriptionIntervalField';
 import css from './ItemForm.css';
 
 class ItemForm extends Component {
@@ -253,17 +254,12 @@ class ItemForm extends Component {
         </Row>
         <Row>
           <Col xs={12}>
-            <Field
-              className={css.titleWrapper}
-              component={TextField}
-              fullWidth
+            <TitleField
               label={this.getTitleLabel()}
-              marginBottom0
-              name="titleOrPackage"
+              isNonInteractive={isPostPendingOrder}
               onChange={this.setTitleOrPackage}
-              validate={required ? validateRequired : undefined}
-              disabled={isPostPendingOrder}
-              validateFields={[]}
+              poLineDetails={formValues}
+              required={required}
             />
             {isSelectInstanceVisible && <InstancePlugin addInstance={this.onAddInstance} />}
           </Col>
@@ -298,7 +294,7 @@ class ItemForm extends Component {
             <FieldDatepickerFinal
               label={<FormattedMessage id="ui-orders.itemDetails.subscriptionTo" />}
               name="details.subscriptionTo"
-              disabled={isPostPendingOrder}
+              isNonInteractive={isPostPendingOrder}
               validateFields={[]}
             />
           </Col>
@@ -312,7 +308,7 @@ class ItemForm extends Component {
               component={TextField}
               type="number"
               fullWidth
-              disabled={isPostPendingOrder}
+              isNonInteractive={isPostPendingOrder}
               validateFields={[]}
             />
           </Col>
@@ -329,7 +325,7 @@ class ItemForm extends Component {
               name="publicationDate"
               onChange={this.setPublicationDate}
               validate={validateYear}
-              disabled={isPostPendingOrder}
+              isNonInteractive={isPostPendingOrder}
               validateFields={[]}
             />
           </Col>
@@ -343,7 +339,7 @@ class ItemForm extends Component {
               label={<FormattedMessage id="ui-orders.itemDetails.publisher" />}
               name="publisher"
               onChange={this.setPublisher}
-              disabled={isPostPendingOrder}
+              isNonInteractive={isPostPendingOrder}
               validateFields={[]}
             />
           </Col>
@@ -357,7 +353,7 @@ class ItemForm extends Component {
               label={<FormattedMessage id="ui-orders.itemDetails.edition" />}
               onChange={this.setEdition}
               name="edition"
-              disabled={isPostPendingOrder}
+              isNonInteractive={isPostPendingOrder}
               validateFields={[]}
             />
           </Col>

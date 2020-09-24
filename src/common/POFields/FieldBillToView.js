@@ -6,17 +6,17 @@ import {
   KeyValue,
 } from '@folio/stripes/components';
 
-const OngoingInfoNotes = ({ value }) => {
+const FieldBillToView = ({ value }) => {
   return (
     <KeyValue
-      label={<FormattedMessage id="ui-orders.renewals.notes" />}
+      label={<FormattedMessage id="ui-orders.orderDetails.billTo" />}
       value={value}
     />
   );
 };
 
-OngoingInfoNotes.propTypes = {
+FieldBillToView.propTypes = {
   value: PropTypes.string,
 };
 
-export default OngoingInfoNotes;
+export default FieldBillToView;
