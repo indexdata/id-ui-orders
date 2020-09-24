@@ -576,7 +576,7 @@
     "order.clone.heading": "Dupliquer la commande?",
     "order.clone.message": "Voulez-vous vraiment dupliquer ce bon de commande et toutes ses lignes de commande?",
     "order.clone.success": "Le bon de commande a été dupliqué avec succès",
-    "order.reopen.success": "La <b> commande - {orderNumber} </b> a été <b> rouverte </b> avec succès <b>",
+    "order.reopen.success": "La <b>commande - {orderNumber}</b> a été <b>rouverte</b> avec succès",
     "paneBlock.cloneBtn": "Copier/dupliquer",
     "order.save.success": "La <b> commande - {orderNumber} </b> a été <b> enregistrée </b> avec succès",
     "paneBlock.ongoingInfo": "Informations sur la commande en cours",
@@ -641,5 +641,7 @@
     "permission.order.reopen": "Commandes: rouvrir les bons de commande",
     "settings.poNumber.nameValidation": "Le nom n'est pas valide",
     "errors.openOrder.inactiveExpenseClass": "La commande ne peut PAS être <b> ouverte </b> car la classe de dépenses <b> {expenseClass} </b> est inactive.",
-    "eresource.url": "URL"
+    "eresource.url": "URL",
+    "renewals.subscription.tooltip": "Choose Order type as Ongoing to interact with this field",
+    "renewals.manualRenewal.tooltip": "Check Subscription to interact with this field"
 }
