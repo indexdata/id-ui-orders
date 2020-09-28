@@ -254,7 +254,7 @@
     "errors.zeroCostQtyPhysical": "Physical cost quantity must be specified",
     "cost.additionalCost": "Additional cost",
     "cost.discount": "Discount",
-    "cost.unitPriceOfElectronic": "Unit price of electronic",
+    "cost.unitPriceOfElectronic": "Electronic unit price",
     "cost.validation.cantBeNegative": "Can not be negative",
     "cost.validation.shouldBePositive": "Should be positive",
     "eresource.createInventory": "Create inventory",
