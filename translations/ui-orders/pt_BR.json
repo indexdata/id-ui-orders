@@ -97,7 +97,7 @@
     "orderDetails.manualPO": "Manual",
     "orderDetails.note": "Nota",
     "orderDetails.removeNoteBtn": "Remover",
-    "cost.listPrice": "Preço unitário listado",
+    "cost.listPrice": "Preço unitário físico",
     "cost.currency": "Moeda",
     "cost.quantityPhysical": "Quantidade física",
     "cost.quantityElectronic": "Quantidade eletrônica",
