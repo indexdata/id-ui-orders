@@ -97,7 +97,7 @@
     "orderDetails.manualPO": "يدوي",
     "orderDetails.note": "ملاحظة",
     "orderDetails.removeNoteBtn": "إزالة",
-    "cost.listPrice": "قائمة سعر الوحدة",
+    "cost.listPrice": "سعر الوحدة المادية",
     "cost.currency": "العملة",
     "cost.quantityPhysical": "الكمية المادية",
     "cost.quantityElectronic": "الكمية الإلكترونية",
@@ -640,7 +640,7 @@
     "permission.acq.unit.assignment.manage": "الطلبيات: أدر وحدات التزويد",
     "permission.order.reopen": "الطلبيات: إعادة فتح أوامر الشراء",
     "settings.poNumber.nameValidation": "الاسم غير صالح",
-    "errors.openOrder.inactiveExpenseClass": "لا يمكن <b>فتح</b> الطلبية لأن <b>{expenseClass}</b> غير نشط.",
+    "errors.openOrder.inactiveExpenseClass": "لا يمكن <b>فتح</b> الطلبية لأن فئة المصروفات <b>{expenseClass}</b> غير نشطة.",
     "eresource.url": "عنوان URL",
     "renewals.subscription.tooltip": "اختر نوع الطلبية جارٍ للتفاعل مع هذا الحقل",
     "renewals.manualRenewal.tooltip": "تحقق من الاشتراك للتفاعل مع هذا الحقل"
