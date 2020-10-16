@@ -532,7 +532,7 @@
     "errors.currentFYearNotFound": "Anno fiscale corrente non trovato in contabilità generale",
     "errors.ledgerNotFoundForTransaction": "Contabilità generale non trovata per la transazione",
     "errors.organizationNotAVendor": "L'ordine non può essere aperto in quanto l'ID fornitore associato appartiene ad un'organizzazione non-fornitrice",
-    "errors.vendorIssue": "Order cannot be updated due to issues related to associated vendor/access provider",
+    "errors.vendorIssue": "L'ordine non può essere aggiornato a causa di problemi relativi al fornitore / fornitore di accesso associato",
     "errors.costAdditionalCostInvalid": "Il costo aggiuntivo deve essere un numero positivo",
     "errors.costUnitPriceElectronicInvalid": "Cost's list unit price for Electronic resource(s) is invalid",
     "errors.costUnitPriceInvalid": "Cost's list unit price is invalid",
