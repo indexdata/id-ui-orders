@@ -644,5 +644,7 @@
     "eresource.url": "URL",
     "renewals.subscription.tooltip": "Choose Order type as Ongoing to interact with this field",
     "renewals.manualRenewal.tooltip": "Check Subscription to interact with this field",
-    "orderSummary.totalExpended": "Total dépensé"
+    "orderSummary.totalExpended": "Total dépensé",
+    "orderLineList.orderWorkflow": "Statut de la commande",
+    "errors.budgetExpenseClassNotFound": "<b>{expenseClassName}</b> expense class not found on <b>{fundCode}</b> Fund"
 }

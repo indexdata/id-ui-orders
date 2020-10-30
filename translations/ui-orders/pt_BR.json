@@ -644,5 +644,7 @@
     "eresource.url": "URL",
     "renewals.subscription.tooltip": "Escolha o tipo de pedido como em andamento para interagir com este campo",
     "renewals.manualRenewal.tooltip": "Verifique a assinatura para interagir com este campo",
-    "orderSummary.totalExpended": "Total gasto"
+    "orderSummary.totalExpended": "Total gasto",
+    "orderLineList.orderWorkflow": "Status do pedido",
+    "errors.budgetExpenseClassNotFound": "Classe de despesa <b>{expenseClassName}</b> não encontrada no Fundo <b>{fundCode}</b>"
 }
