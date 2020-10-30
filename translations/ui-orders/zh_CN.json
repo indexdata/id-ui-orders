@@ -97,7 +97,7 @@
     "orderDetails.manualPO": "人工",
     "orderDetails.note": "附注",
     "orderDetails.removeNoteBtn": "移除",
-    "cost.listPrice": "列出单价",
+    "cost.listPrice": "实物单价",
     "cost.currency": "货币",
     "cost.quantityPhysical": "实体数量",
     "cost.quantityElectronic": "电子数量",
@@ -644,5 +644,7 @@
     "eresource.url": "URL",
     "renewals.subscription.tooltip": "选择订单类型为“进行中”，以与此字段进行交互",
     "renewals.manualRenewal.tooltip": "检查订阅以与该字段进行交互",
-    "orderSummary.totalExpended": "Total expended"
+    "orderSummary.totalExpended": "总支出",
+    "orderLineList.orderWorkflow": "订单工作流程",
+    "errors.budgetExpenseClassNotFound": "<b>{expenseClassName}</b> expense class not found on <b>{fundCode}</b> Fund"
 }
