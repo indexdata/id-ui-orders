@@ -170,7 +170,7 @@
     "instance.publishers": "出版社",
     "settings.poNumber": "Purchase order number",
     "settings.poNumber.editPONumber": "User can edit",
-    "buttons.line.close": "Close",
+    "buttons.line.close": "閉じる",
     "line.accordion.cost": "Cost details",
     "line.accordion.details": "PO line details",
     "line.accordion.eresource": "電子リソースの詳細",
