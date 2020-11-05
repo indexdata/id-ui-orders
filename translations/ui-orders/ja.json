@@ -304,7 +304,7 @@
     "checkIn.checkInItem.error": "Check-in error",
     "checkIn.checkInItem.success": "Check-in success",
     "checkIn.modalPaneTitle": "Check-in details",
-    "settings.closingReasons.editBtn": "Edit",
+    "settings.closingReasons.editBtn": "編集",
     "settings.closingReasons.cancelBtn": "キャンセル",
     "errors.costQtyPhysicalExceedsLoc": "Cost's physical quantity exceeds locations' physical quantity",
     "errors.locQtyPhysicalExceedsCost": "Locations physical quantity exceeds cost physical quantity",

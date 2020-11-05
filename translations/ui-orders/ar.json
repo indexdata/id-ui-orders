@@ -645,6 +645,6 @@
     "renewals.subscription.tooltip": "اختر نوع الطلبية جارٍ للتفاعل مع هذا الحقل",
     "renewals.manualRenewal.tooltip": "تحقق من الاشتراك للتفاعل مع هذا الحقل",
     "orderSummary.totalExpended": "إجمالي المنفق",
-    "orderLineList.orderWorkflow": "سير عمل الطلبية",
+    "orderLineList.orderWorkflow": "حالة الطلبية",
     "errors.budgetExpenseClassNotFound": "لم يتم العثور على فئة مصروفات <b>{expenseClassName}</b> في تمويل <b>{fundCode}</b>"
 }
