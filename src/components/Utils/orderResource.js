@@ -44,11 +44,21 @@ export const createOrEditOrderResource = (orderFormValues, mutator) => {
   return saveOrder(clonedOrder, mutator);
 };
 
-export const cloneOrder = (order, mutator, lines) => {
-  const clonedOrder = omit(
-    order,
-    ['id', 'adjustment', 'metadata', 'poNumber', 'poNumberPrefix', 'poNumberSuffix', 'workflowStatus', 'compositePoLines'],
-  );
+export const cloneOrder = async (order, mutator, orderNumberMutator, lines) => {
+  const orderNumberResponse = await orderNumberMutator.GET();
+  const poNumber = orderNumberResponse?.poNumber;
+
+  if (!poNumber) throw new Error();
+
+  const clonedOrder = {
+    ...omit(
+      order,
+      ['id', 'adjustment', 'metadata', 'poNumber', 'workflowStatus', 'compositePoLines'],
+    ),
+    poNumber,
+  };
+
+  clonedOrder.poNumber = getFullOrderNumber(clonedOrder);
 
   if (lines) {
     clonedOrder.compositePoLines = lines.map(line => ({
