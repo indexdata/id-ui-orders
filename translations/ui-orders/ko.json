@@ -1,5 +1,5 @@
 {
-    "meta.title": "Orders",
+    "meta.title": "주문",
     "search": "Search",
     "resultCount": "{count, number} {count, plural, one {Record found} other {Records found}}",
     "acquisition_method.approvalPlan": "Approval plan",
