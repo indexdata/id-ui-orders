@@ -309,7 +309,7 @@
     "errors.costQtyPhysicalExceedsLoc": "Cost's physical quantity exceeds locations' physical quantity",
     "errors.locQtyPhysicalExceedsCost": "Locations physical quantity exceeds cost physical quantity",
     "errors.locQtyElectronicExceedsCost": "Locations electronic quantity exceeds cost electronic quantity",
-    "checkIn.history.confirmation.message": "Are you sure you want to remove the piece(s) from Check-in history? They will return to a status of Expected and any associated item will be set as On-Order.",
+    "checkIn.history.confirmation.message": "Voulez-vous vraiment supprimer la ou les pièces de l'historique d'enregistrement? Elles seront alors de nouveau au statut Attendu.es et tout article associé sera défini comme En commande.",
     "line.accordion.other": "Autres détails de la ressource",
     "poLine.materialType": "Type de matériel",
     "errors.noCreateItemPlugin": "[no inventory create-item plugin]",
