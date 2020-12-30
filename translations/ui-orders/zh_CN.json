@@ -358,7 +358,7 @@
     "order.delete.success": "已成功删除订单{orderNumber}",
     "poLine.actions.viewPO": "查看PO",
     "renewal.date": "续订日期",
-    "renewal.manualRenewal": "续订手册",
+    "renewal.manualRenewal": "人工续订",
     "renewal.reviewPeriod": "续订审核期",
     "line.delete.message": "删除订单行？",
     "line.delete.success": "订单行{lineNumber}已成功删除",
@@ -566,8 +566,8 @@
     "poLine.package": "资源包",
     "search.titleOrPackage": "标题或资源包名称",
     "lineListing.titleOrPackage": "标题或资源包名称",
-    "poLine.receiveItems": "手动添加接收件",
-    "poLine.receiveItems.info": "需要为每个数量单位手动创建件。",
+    "poLine.receiveItems": "人工添加接收件",
+    "poLine.receiveItems.info": "需要为每个数量单位人工创建件。",
     "orderLineList.titleOrPackage": "标题或资源包名称",
     "closeOrder.error": "订单无法关闭",
     "closeOrder.success": "订单已关闭",
@@ -645,6 +645,8 @@
     "renewals.subscription.tooltip": "选择订单类型为“进行中”，以与此字段进行交互",
     "renewals.manualRenewal.tooltip": "检查订阅以与该字段进行交互",
     "orderSummary.totalExpended": "总支出",
-    "orderLineList.orderWorkflow": "订单工作流程",
-    "errors.budgetExpenseClassNotFound": "<b>{expenseClassName}</b> expense class not found on <b>{fundCode}</b> Fund"
+    "orderLineList.orderWorkflow": "订单状态",
+    "errors.budgetExpenseClassNotFound": "在<b> {fundCode} </b>经费中找不到<b> {expenseClassName} </b>费用类别",
+    "button.exportCSV": "导出结果（CSV）",
+    "permission.order.exportCSV": "订单：导出搜索结果"
 }

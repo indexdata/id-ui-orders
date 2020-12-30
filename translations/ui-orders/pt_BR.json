@@ -646,5 +646,7 @@
     "renewals.manualRenewal.tooltip": "Verifique a assinatura para interagir com este campo",
     "orderSummary.totalExpended": "Total gasto",
     "orderLineList.orderWorkflow": "Status do pedido",
-    "errors.budgetExpenseClassNotFound": "Classe de despesa <b>{expenseClassName}</b> não encontrada no Fundo <b>{fundCode}</b>"
+    "errors.budgetExpenseClassNotFound": "Classe de despesa <b>{expenseClassName}</b> não encontrada no Fundo <b>{fundCode}</b>",
+    "button.exportCSV": "Exportar resultados (CSV)",
+    "permission.order.exportCSV": "Pedidos: Exportar resultados da busca"
 }
