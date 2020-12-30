@@ -646,5 +646,7 @@
     "renewals.manualRenewal.tooltip": "이 필드와 상호 작용하려면 구독을 확인하십시오.",
     "orderSummary.totalExpended": "총 지출",
     "orderLineList.orderWorkflow": "Order status",
-    "errors.budgetExpenseClassNotFound": "<b>{expenseClassName}</b> expense class not found on <b>{fundCode}</b> Fund"
+    "errors.budgetExpenseClassNotFound": "<b>{expenseClassName}</b> expense class not found on <b>{fundCode}</b> Fund",
+    "button.exportCSV": "Export results (CSV)",
+    "permission.order.exportCSV": "Orders: Export search results"
 }

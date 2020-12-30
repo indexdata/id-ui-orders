@@ -646,5 +646,7 @@
     "renewals.manualRenewal.tooltip": "تحقق من الاشتراك للتفاعل مع هذا الحقل",
     "orderSummary.totalExpended": "إجمالي المنفق",
     "orderLineList.orderWorkflow": "حالة الطلبية",
-    "errors.budgetExpenseClassNotFound": "لم يتم العثور على فئة مصروفات <b>{expenseClassName}</b> في تمويل <b>{fundCode}</b>"
+    "errors.budgetExpenseClassNotFound": "لم يتم العثور على فئة مصروفات <b>{expenseClassName}</b> في تمويل <b>{fundCode}</b>",
+    "button.exportCSV": "تصدير النتائج (CSV)",
+    "permission.order.exportCSV": "الطلبيات: تصدير نتائج البحث"
 }
