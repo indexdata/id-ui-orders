@@ -648,5 +648,7 @@
     "orderLineList.orderWorkflow": "订单状态",
     "errors.budgetExpenseClassNotFound": "在<b> {fundCode} </b>经费中找不到<b> {expenseClassName} </b>费用类别",
     "button.exportCSV": "导出结果（CSV）",
-    "permission.order.exportCSV": "订单：导出搜索结果"
+    "permission.order.exportCSV": "订单：导出搜索结果",
+    "errors.conversionError": "No exchange rate could be retrieved for the chosen currency in PO lines",
+    "errors.orderLinesNotLoaded": "Error while loading PO Lines"
 }

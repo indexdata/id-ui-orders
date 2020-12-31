@@ -648,5 +648,7 @@
     "orderLineList.orderWorkflow": "オーダーの状況",
     "errors.budgetExpenseClassNotFound": "<b>{expenseClassName}</b> expense class not found on <b>{fundCode}</b> Fund",
     "button.exportCSV": "Export results (CSV)",
-    "permission.order.exportCSV": "Orders: Export search results"
+    "permission.order.exportCSV": "Orders: Export search results",
+    "errors.conversionError": "No exchange rate could be retrieved for the chosen currency in PO lines",
+    "errors.orderLinesNotLoaded": "Error while loading PO Lines"
 }
