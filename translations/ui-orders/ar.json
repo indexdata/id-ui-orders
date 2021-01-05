@@ -649,6 +649,6 @@
     "errors.budgetExpenseClassNotFound": "لم يتم العثور على فئة مصروفات <b>{expenseClassName}</b> في تمويل <b>{fundCode}</b>",
     "button.exportCSV": "تصدير النتائج (CSV)",
     "permission.order.exportCSV": "الطلبيات: تصدير نتائج البحث",
-    "errors.conversionError": "No exchange rate could be retrieved for the chosen currency in PO lines",
-    "errors.orderLinesNotLoaded": "Error while loading PO Lines"
+    "errors.conversionError": "تعذر استرجاع سعر الصرف للعملة المختارة في سطور أمر الشراء",
+    "errors.orderLinesNotLoaded": "خطأ أثناء تحميل سطر أمر الشراء"
 }
