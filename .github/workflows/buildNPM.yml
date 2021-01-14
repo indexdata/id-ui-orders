@@ -24,14 +24,6 @@ jobs:
       - run: mkdir -p artifacts/yarn/
       - run: cp yarn.lock artifacts/yarn/yarn.lock
       - run: bzip2 artifacts/yarn/yarn.lock
-      # - run: echo "Running Lint..."
-      # - run: mkdir -p ci
-      # - run: echo "<html><body><pre>" ci/lint.html
-      # - run: yarn lint 2>&1 >>  ci/lint.html
-      # - run: echo "</pre><body></html>" >> ci/lint.html
-      # - run: rm -rf ci
-      # - run: echo "Running Test..."
-      # - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test
   lint:
     needs: set-up
     runs-on: ubuntu-latest
@@ -39,6 +31,10 @@ jobs:
       - uses: folio-org/checkout@v2
         with:
           ref: FOLIO-2913
+       - run: echo "Set up folio registry..."
+       - run: yarn config set @folio:registry $FOLIO_REGISTRY
+         env:
+          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folio/
       - run: yarn install
       - run: echo "Running Lint..."
       - run: mkdir -p ci
