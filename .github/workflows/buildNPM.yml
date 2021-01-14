@@ -31,9 +31,9 @@ jobs:
       - uses: folio-org/checkout@v2
         with:
           ref: FOLIO-2913
-       - run: echo "Set up folio registry..."
-       - run: yarn config set @folio:registry $FOLIO_REGISTRY
-         env:
+      - run: echo "Set up folio registry..."
+      - run: yarn config set @folio:registry $FOLIO_REGISTRY
+        env:
           FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folio/
       - run: yarn install
       - run: echo "Running Lint..."
