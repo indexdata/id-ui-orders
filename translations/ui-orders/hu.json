@@ -650,5 +650,11 @@
     "button.exportCSV": "Export results (CSV)",
     "permission.order.exportCSV": "Orders: Export search results",
     "errors.conversionError": "No exchange rate could be retrieved for the chosen currency in PO lines",
-    "errors.orderLinesNotLoaded": "Error while loading PO Lines"
+    "errors.orderLinesNotLoaded": "Error while loading PO Lines",
+    "exportSettings.export": "Export",
+    "exportSettings.cancel": "Cancel",
+    "exportSettings.all": "All",
+    "exportSettings.orderFieldsLabel": "PO fields to export",
+    "exportSettings.lineFieldsLabel": "POL fields to export",
+    "exportSettings.label": "Export settings"
 }
