@@ -650,5 +650,11 @@
     "button.exportCSV": "Exportar resultados (CSV)",
     "permission.order.exportCSV": "Pedidos: Exportar resultados da busca",
     "errors.conversionError": "Nenhuma taxa de câmbio pôde ser recuperada para a moeda escolhida nas linhas do pedido",
-    "errors.orderLinesNotLoaded": "Erro ao carregar linhas do pedido"
+    "errors.orderLinesNotLoaded": "Erro ao carregar linhas do pedido",
+    "exportSettings.export": "Exportar",
+    "exportSettings.cancel": "Cancelar",
+    "exportSettings.all": "Todos",
+    "exportSettings.orderFieldsLabel": "Campos de linhas do pedido para exportar",
+    "exportSettings.lineFieldsLabel": "Campos de linhas do pedido para exportar",
+    "exportSettings.label": "Configurações de exportação"
 }

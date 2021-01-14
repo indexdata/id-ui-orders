@@ -650,5 +650,11 @@
     "button.exportCSV": "تصدير النتائج (CSV)",
     "permission.order.exportCSV": "الطلبيات: تصدير نتائج البحث",
     "errors.conversionError": "تعذر استرجاع سعر الصرف للعملة المختارة في سطور أمر الشراء",
-    "errors.orderLinesNotLoaded": "خطأ أثناء تحميل سطر أمر الشراء"
+    "errors.orderLinesNotLoaded": "خطأ أثناء تحميل سطر أمر الشراء",
+    "exportSettings.export": "Export",
+    "exportSettings.cancel": "Cancel",
+    "exportSettings.all": "All",
+    "exportSettings.orderFieldsLabel": "PO fields to export",
+    "exportSettings.lineFieldsLabel": "POL fields to export",
+    "exportSettings.label": "Export settings"
 }
