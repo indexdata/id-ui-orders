@@ -39,6 +39,7 @@ jobs:
       - uses: folio-org/checkout@v2
         with:
           ref: FOLIO-2913
+      - run: yarn install
       - run: echo "Running Lint..."
       - run: mkdir -p ci
       - run: echo "<html><body><pre>" ci/lint.html
