@@ -1,0 +1,47 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: buildNPM stripes CI
+
+on:
+  push:
+    branches: [FOLIO-2913]
+
+jobs:
+  set-up:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - run: echo "Set up folio registry..."
+      - run: yarn config set @folio:registry $FOLIO_REGISTRY
+        env:
+          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folio/
+      - run: echo "Installing dependencies..."
+      - run: yarn install
+      - run: yarn list --pattern @folio
+      - run: mkdir -p artifacts/yarn/
+      - run: cp yarn.lock artifacts/yarn/yarn.lock
+      - run: bzip2 artifacts/yarn/yarn.lock
+  lint:
+    needs: set-up
+    runs-on: ubuntu-latest
+    steps:
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - run: echo "Running Lint..."
+      - run: mkdir -p ci
+      - run: echo "<html><body><pre>" ci/lint.html
+      - run: yarn lint 2>&1 >>  ci/lint.html
+      - run: echo "</pre><body></html>" >> ci/lint.html
+      - run: rm -rf ci
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - run: echo "Running Test..."
+      - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test
