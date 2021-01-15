@@ -25,7 +25,6 @@ jobs:
       - run: cp yarn.lock artifacts/yarn/yarn.lock
       - run: bzip2 artifacts/yarn/yarn.lock
   lint:
-    needs: set-up
     runs-on: ubuntu-latest
     steps:
       - uses: folio-org/checkout@v2
@@ -42,12 +41,18 @@ jobs:
       - run: yarn lint 2>&1 >>  ci/lint.html
       - run: echo "</pre><body></html>" >> ci/lint.html
       - run: rm -rf ci
-  # test:
-  #   needs: set-up
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: folio-org/checkout@v2
-  #       with:
-  #         ref: FOLIO-2913
-  #     - run: echo "Running Test..."
-  #     - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - run: echo "Set up folio registry..."
+      - run: yarn config set @folio:registry $FOLIO_REGISTRY
+        env:
+          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folio/
+      - run: yarn install
+      - run: echo "Running Test..."
+      - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $runTestOptions
+        env:
+          runTestOptions: ""
