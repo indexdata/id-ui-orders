@@ -56,11 +56,11 @@ jobs:
       - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $runTestOptions
         env:
           runTestOptions: ""
-    sonarQube:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: folio-org/checkout@v2
-          with:
-            ref: FOLIO-2913
-        - uses: kitabisa/sonarqube-action@master
-        - run: echo "Sonarqube scan..."
+  sonarQube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - uses: kitabisa/sonarqube-action@master
+      - run: echo "Sonarqube scan..."
