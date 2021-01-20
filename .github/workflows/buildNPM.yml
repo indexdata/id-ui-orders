@@ -73,7 +73,7 @@ jobs:
           excludeFiles: ../docs/**,**/node_modules/**,**/examples/**,**/artifacts/**,**/ci/**,Jenkinsfile,**/LICENSE,**/*.css,**/*.md,**/*.json,**/tests/**,**/stories/*.js,**/test/**,**/.stories.js,**/resources/bigtest/interactors/**,**/resources/bigtest/network/**,**/*-test.js,**/*.test.js,**/*-spec.js,**/karma.conf.js,**/jest.config.js
       - run: git fetch --no-tags ${env.projUrl} +refs/heads/master:refs/remotes/origin/master
       - run: >
-           $scannerHome/bin/sonar-scanner
+          $scannerHome/bin/sonar-scanner
           -Dsonar.organization=folio-org
           -Dsonar.projectKey=org.folio:${env.projectName}
           -Dsonar.projectName=${env.projectName}
