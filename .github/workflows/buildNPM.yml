@@ -71,7 +71,8 @@ jobs:
             -Dsonar.sources=. 
             -Dsonar.language=js 
             -Dsonar.javascript.lcov.reportPaths=artifacts/coverage/lcov.info,coverage/lcov.info
-      - run: git fetch --no-tags ${env.projUrl} +refs/heads/master:refs/remotes/origin/master
-        env:
+         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - run: git fetch --no-tags ${env.projUrl} +refs/heads/master:refs/remotes/origin/master
+       
