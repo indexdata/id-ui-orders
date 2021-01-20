@@ -56,22 +56,22 @@ jobs:
       - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $runTestOptions
         env:
           runTestOptions: ""
-  sonarQube:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: folio-org/checkout@v2
-        with:
-          ref: ${{ github.REF }}
-          
-        run: echo "Sonarqube scan..."
-        uses: warchant/setup-sonar-scanner@v1
+  # sonarQube:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: folio-org/checkout@v2
+  #       with:
+  #         ref: ${{ github.REF }}
 
-      - if: endsWith(github.REF, '/master') != true
-        run: git fetch --no-tags ${env.projUrl} +refs/heads/master:refs/remotes/origin/master
-        env:
-          GITHUB_ACCESS_TOKEN: 6b0ebf62-3a12-4e6b-b77e-c45817b5791b
-          lcovPath: artifacts/coverage
-          lcovPath2: coverage
-          scannerHome: Sonarqube-Scanner-4
-          excludeFiles: ../docs/**,**/node_modules/**,**/examples/**,**/artifacts/**,**/ci/**,Jenkinsfile,**/LICENSE,**/*.css,**/*.md,**/*.json,**/tests/**,**/stories/*.js,**/test/**,**/.stories.js,**/resources/bigtest/interactors/**,**/resources/bigtest/network/**,**/*-test.js,**/*.test.js,**/*-spec.js,**/karma.conf.js,**/jest.config.js
-      #- run: $scannerHome/bin/sonar-scanner -Dsonar.organization=folio-org -Dsonar.projectKey=org.folio:${env.projectName} -Dsonar.projectName=${env.projectName} -Dsonar.branch.name=${{ github.REF }} -Dsonar.sources=. -Dsonar.language=js -Dsonar.exclusions=${excludeFiles} -Dsonar.javascript.lcov.reportPaths=${lcovPath}/lcov.info,${lcovPath2}/lcov.info
+  #       run: echo "Sonarqube scan..."
+  #       uses: warchant/setup-sonar-scanner@v1
+
+  #     - if: endsWith(github.REF, '/master') != true
+  #       run: git fetch --no-tags ${env.projUrl} +refs/heads/master:refs/remotes/origin/master
+  #       env:
+  #         GITHUB_ACCESS_TOKEN: 6b0ebf62-3a12-4e6b-b77e-c45817b5791b
+  #         lcovPath: artifacts/coverage
+  #         lcovPath2: coverage
+  #         scannerHome: Sonarqube-Scanner-4
+  #         excludeFiles: ../docs/**,**/node_modules/**,**/examples/**,**/artifacts/**,**/ci/**,Jenkinsfile,**/LICENSE,**/*.css,**/*.md,**/*.json,**/tests/**,**/stories/*.js,**/test/**,**/.stories.js,**/resources/bigtest/interactors/**,**/resources/bigtest/network/**,**/*-test.js,**/*.test.js,**/*-spec.js,**/karma.conf.js,**/jest.config.js
+  #     #- run: $scannerHome/bin/sonar-scanner -Dsonar.organization=folio-org -Dsonar.projectKey=org.folio:${env.projectName} -Dsonar.projectName=${env.projectName} -Dsonar.branch.name=${{ github.REF }} -Dsonar.sources=. -Dsonar.language=js -Dsonar.exclusions=${excludeFiles} -Dsonar.javascript.lcov.reportPaths=${lcovPath}/lcov.info,${lcovPath2}/lcov.info
