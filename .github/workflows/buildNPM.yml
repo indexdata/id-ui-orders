@@ -59,9 +59,10 @@ jobs:
   sonarQube:
     runs-on: ubuntu-latest
     steps:
-        uses: warchant/setup-sonar-scanner@v1
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           ref: FOLIO-2913
-      - if: endsWith(github.REF,'/master') != true
-        run: echo "Sonarqube setup done..."
+      - uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
