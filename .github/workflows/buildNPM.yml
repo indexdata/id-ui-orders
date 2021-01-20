@@ -64,7 +64,6 @@ jobs:
           ref: FOLIO-2913
       - uses: sonarsource/sonarcloud-github-action@master
         with:
-          projectBaseDir: SonarQube-Scanner-4/bin/sonar-scanner
           args: >
             -Dsonar.projectKey=org.folio:${env.projectName} 
             -Dsonar.projectName=${env.projectName} 
