@@ -63,7 +63,7 @@ jobs:
         with:
           ref: FOLIO-2913
       - uses: sonarsource/sonarcloud-github-action@master
-        run: git fetch --no-tags ${env.projUrl} +refs/heads/master:refs/remotes/origin/master
+      - run: git fetch --no-tags ${env.projUrl} +refs/heads/master:refs/remotes/origin/master
         with:
           projectBaseDir: ${scannerHome}/bin/sonar-scanner
           args: >
