@@ -188,7 +188,7 @@
     "order.paneTitle.details": "Bestellung - {orderNumber}",
     "order.paneTitle.detailsLoading": "Details",
     "order.paneTitle.edit": "Bearbeiten - {orderNumber}",
-    "orderSummary.closingReason": "Grund für den Abschluss",
+    "orderSummary.closingReason": "Grund für die Schließung",
     "orderSummary.closingNote": "Notizen zum Abschluss",
     "renewals.manualRenewal": "Manuelle Verlängerung",
     "renewals.renewalDate": "Verlängerungsdatum",
@@ -614,7 +614,7 @@
     "error.fetching.vendor": "Fehler beim Laden des Lieferanten",
     "relatedAgreementLines.actions.load.error": "Laden der Daten von Vereinbarungskomponenten fehlgeschlagen",
     "relatedAgreementLines.name": "Name",
-    "relatedAgreementLines.startDate": "Aktiv seit",
+    "relatedAgreementLines.startDate": "Aktiv ab",
     "relatedAgreementLines.endDate": "Aktiv bis",
     "relatedAgreementLines.status": "Gesamtstatus der Vereinbarung",
     "relatedAgreementLines.status.active": "Aktiv",
@@ -656,5 +656,6 @@
     "exportSettings.all": "All",
     "exportSettings.orderFieldsLabel": "PO fields to export",
     "exportSettings.lineFieldsLabel": "POL fields to export",
-    "exportSettings.label": "Export settings"
+    "exportSettings.label": "Export settings",
+    "exportSettings.message": "This export could take a few minutes. If you reload or close the page the export will not be completed. Once the file is ready it could take another minute for your browser to finish downloading the file. You can continue to work with orders and order lines in a different browser tab if needed."
 }
