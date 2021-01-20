@@ -57,13 +57,6 @@ jobs:
         env:
           runTestOptions: ""
   sonarQube:
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      scannerHome: SonarQube-Scanner-4
-      excludeFiles: /docs/**,**/node_modules/**,**/examples/**,**/artifacts/**,**/ci/**,Jenkinsfile,**/LICENSE,**/*.css,**/*.md,**/*.json,**/tests/**,**/stories/*.js,**/test/**,**/.stories.js,**/resources/bigtest/interactors/**,**/resources/bigtest/network/**,**/*-test.js,**/*.test.js,**/*-spec.js,**/karma.conf.js,**/jest.config.js
-      lcovPath: artifacts/coverage
-      lcovPath2: coverage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -79,3 +72,10 @@ jobs:
             -Dsonar.language=js 
             -Dsonar.exclusions=${excludeFiles} 
             -Dsonar.javascript.lcov.reportPaths=${lcovPath}/lcov.info,${lcovPath2}/lcov.info
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          scannerHome: SonarQube-Scanner-4
+          excludeFiles: /docs/**,**/node_modules/**,**/examples/**,**/artifacts/**,**/ci/**,Jenkinsfile,**/LICENSE,**/*.css,**/*.md,**/*.json,**/tests/**,**/stories/*.js,**/test/**,**/.stories.js,**/resources/bigtest/interactors/**,**/resources/bigtest/network/**,**/*-test.js,**/*.test.js,**/*-spec.js,**/karma.conf.js,**/jest.config.js
+          lcovPath: artifacts/coverage
+          lcovPath2: coverage
