@@ -17,7 +17,7 @@ jobs:
       - run: echo "Set up folio registry..."
       - run: yarn config set @folio:registry $FOLIO_REGISTRY
         env:
-          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folio/
+          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folioci/
       - run: echo "Installing dependencies..."
       - run: yarn install
       - run: yarn list --pattern @folio
@@ -33,7 +33,7 @@ jobs:
       - run: echo "Set up folio registry..."
       - run: yarn config set @folio:registry $FOLIO_REGISTRY
         env:
-          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folio/
+          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folioci/
       - run: yarn install
       - run: echo "Running Lint..."
       - run: mkdir -p ci
@@ -50,12 +50,12 @@ jobs:
       - run: echo "Set up folio registry..."
       - run: yarn config set @folio:registry $FOLIO_REGISTRY
         env:
-          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folio/
+          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folioci/
+          runTestOptions: ''
       - run: yarn install
       - run: echo "Running Test..."
-      # - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $runTestOptions
-      #   env:
-      #     runTestOptions: ""
+      - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $runTestOptions
+
   sonarQube:
     runs-on: ubuntu-latest
     steps:
