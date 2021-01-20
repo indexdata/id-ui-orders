@@ -63,5 +63,5 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: FOLIO-2913
-        - if: endsWith(github.REF,'/master') != true
-          run: echo "Sonarqube setup done..."
+      - if: endsWith(github.REF,'/master') != true
+        run: echo "Sonarqube setup done..."
