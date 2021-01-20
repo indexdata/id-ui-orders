@@ -53,16 +53,16 @@ jobs:
           FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folio/
       - run: yarn install
       - run: echo "Running Test..."
-      - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $runTestOptions
-        env:
-          runTestOptions: ""
+      # - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $runTestOptions
+      #   env:
+      #     runTestOptions: ""
   sonarQube:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.REF }}
-      - run: git fetch --no-tags ${GITHUB_REF} +refs/heads/master:refs/remotes/origin/master
+     # - run: git fetch --no-tags ${GITHUB_REF} +refs/heads/master:refs/remotes/origin/master
       - uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
