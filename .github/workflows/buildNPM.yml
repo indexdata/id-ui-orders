@@ -66,8 +66,8 @@ jobs:
       - uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.projectKey=org.folio:${projectName}
-            -Dsonar.projectName=${projectName}
+            -Dsonar.projectKey=org.folio:ui-orders
+            -Dsonar.projectName=ui-orders
             -Dsonar.branch.name=${GITHUB_REF}
             -Dsonar.sources=. 
             -Dsonar.language=js 
