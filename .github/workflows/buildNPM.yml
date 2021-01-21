@@ -62,11 +62,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.REF }}
+      - run: echo "repository name is ${{ github.repository.name }}"
       - uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.projectKey=org.folio:ui-orders
-            -Dsonar.projectName=ui-orders
+            -Dsonar.projectKey=org.folio:$projectName
+            -Dsonar.projectName=$projectName
             -Dsonar.branch.name=${GITHUB_REF}
             -Dsonar.sources=. 
             -Dsonar.language=js 
@@ -84,7 +85,7 @@ jobs:
         if: ${{ github.REF }} == 'master'
       - run: echo "Generating stripes module descriptor from package.json"
       - run: mkdir -p artifacts/md
-      - run: stripes mod descriptor --full --strict | jq '.[]' > artifacts/md/${folioName}.json
+      - run: stripes mod descriptor --full --strict | jq '.[]' > artifacts/md/$folioName.json
         env:
           folioName: folio_orders
       - run: echo "Step completed"
