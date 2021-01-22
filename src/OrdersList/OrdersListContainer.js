@@ -46,13 +46,18 @@ const OrdersListContainer = ({ mutator, location }) => {
   const [vendorsMap, setVendorsMap] = useState({});
   const [acqUnitsMap, setAcqUnitsMap] = useState({});
   const [usersMap, setUsersMap] = useState({});
+  const [ordersQuery, setOrdersQuery] = useState();
 
   const loadOrders = useCallback(async (offset) => {
+    const query = buildQuery(queryString.parse(location.search));
+
+    setOrdersQuery(query);
+
     return mutator.ordersListRecords.GET({
       params: {
         limit: RESULT_COUNT_INCREMENT,
         offset,
-        query: buildQuery(queryString.parse(location.search)),
+        query,
       },
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -128,6 +133,7 @@ const OrdersListContainer = ({ mutator, location }) => {
       orders={orders}
       refreshList={refreshList}
       resetData={resetData}
+      ordersQuery={ordersQuery}
     />
   );
 };
