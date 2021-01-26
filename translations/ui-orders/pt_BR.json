@@ -658,5 +658,9 @@
     "exportSettings.lineFieldsLabel": "Campos de linhas do pedido para exportar",
     "exportSettings.label": "Configurações de exportação",
     "exportSettings.message": "Esta exportação pode demorar alguns minutos. Se você recarregar ou fechar a página, a exportação não será concluída. Depois que o arquivo estiver pronto, pode levar mais um minuto para o navegador concluir o download do arquivo. Você pode continuar a trabalhar com pedidos e linhas de pedido em uma guia diferente do navegador, se necessário.",
-    "exportSettings.load.error": "Falha ao carregar dados para resultados de exportação (CSV)"
+    "exportSettings.load.error": "Falha ao carregar dados para resultados de exportação (CSV)",
+    "exportSettings.order.all": "Export all order fields",
+    "exportSettings.order.selected": "Export selected order fields",
+    "exportSettings.line.all": "Export all line fields",
+    "exportSettings.line.selected": "Export selected line fields"
 }
