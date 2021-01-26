@@ -66,14 +66,13 @@ jobs:
       - uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.projectKey=org.folio:$projectName
-            -Dsonar.projectName=$projectName
+            -Dsonar.projectKey=org.folio:ui-orders
+            -Dsonar.projectName=ui-orders
             -Dsonar.branch.name=${GITHUB_REF}
             -Dsonar.sources=. 
             -Dsonar.language=js 
             -Dsonar.javascript.lcov.reportPaths=artifacts/coverage/lcov.info,coverage/lcov.info
         env:
-          projectName: ui-orders
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   publishModDescriptor:
