@@ -658,5 +658,9 @@
     "exportSettings.lineFieldsLabel": "حقول سطر أمر الشراء للتصدير",
     "exportSettings.label": "إعدادات التصدير",
     "exportSettings.message": "قد يستغرق هذا التصدير بضع دقائق. إذا قمت بإعادة تحميل الصفحة أو إغلاقها، فلن يكتمل التصدير. بمجرد أن يصبح الملف جاهزًا، قد يستغرق متصفحك دقيقة أخرى لإنهاء تنزيل الملف. يمكنك الاستمرار في العمل مع الطلبيات وسطور الطلبيات في تبويب متصفح آخر إذا لزم الأمر.",
-    "exportSettings.load.error": "فشل تحميل البيانات لتصدير النتائج (CSV)"
+    "exportSettings.load.error": "فشل تحميل البيانات لتصدير النتائج (CSV)",
+    "exportSettings.order.all": "تصدير كل حقول الطلبية",
+    "exportSettings.order.selected": "تصدير حقول الطلبية المحددة",
+    "exportSettings.line.all": "تصدير كل حقول السطر",
+    "exportSettings.line.selected": "تصدير حقول السطر المحددة"
 }
