@@ -19,6 +19,10 @@ import {
 import { ADDRESSES } from '../../components/Utils/resources';
 import { getExportData } from './utils';
 import ExportSettingsModal from './ExportSettingsModal';
+import {
+  EXPORT_LINE_FIELDS,
+  EXPORT_ORDER_FIELDS,
+} from './constants';
 
 const ExportSettingsModalContainer = ({
   onCancel,
@@ -29,7 +33,7 @@ const ExportSettingsModalContainer = ({
   const showCallout = useShowCallout();
   const intl = useIntl();
 
-  const onExportCSV = useCallback(async () => {
+  const onExportCSV = useCallback(async (exportFields) => {
     try {
       setIsExporting(true);
 
@@ -39,8 +43,18 @@ const ExportSettingsModalContainer = ({
 
       setIsExporting(false);
 
-      return exportCsv(exportData, {});
+      onCancel();
+
+      return exportCsv(
+        [{ ...EXPORT_ORDER_FIELDS, ...EXPORT_LINE_FIELDS }, ...exportData],
+        {
+          onlyFields: exportFields,
+          header: false,
+        },
+      );
     } catch {
+      onCancel();
+
       return showCallout({
         messageId: 'ui-orders.exportSettings.load.error',
         type: 'error',
@@ -48,7 +62,7 @@ const ExportSettingsModalContainer = ({
     }
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [fetchOrdersAndLines, showCallout]);
+  [fetchOrdersAndLines, showCallout, onCancel]);
 
   return (
     <ExportSettingsModal
