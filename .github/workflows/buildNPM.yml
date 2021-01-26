@@ -25,16 +25,17 @@ jobs:
       - run: cp yarn.lock artifacts/yarn/yarn.lock
       - run: bzip2 artifacts/yarn/yarn.lock
   lint:
+    needs: set-up
     runs-on: ubuntu-latest
     steps:
       - uses: folio-org/checkout@v2
         with:
           ref: FOLIO-2913
-      - run: echo "Set up folio registry..."
-      - run: yarn config set @folio:registry $FOLIO_REGISTRY
-        env:
-          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folioci/
-      - run: yarn install
+      # - run: echo "Set up folio registry..."
+      # - run: yarn config set @folio:registry $FOLIO_REGISTRY
+      #   env:
+      #     FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folioci/
+      # - run: yarn install
       - run: echo "Running Lint..."
       - run: mkdir -p ci
       - run: echo "<html><body><pre>" ci/lint.html
