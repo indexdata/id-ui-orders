@@ -24,6 +24,9 @@ jobs:
       - run: mkdir -p artifacts/yarn/
       - run: cp yarn.lock artifacts/yarn/yarn.lock
       - run: bzip2 artifacts/yarn/yarn.lock
+      - run: echo "Setting NPM snapshot version..."
+      - run: chmod +x org/folio/folioci_npmver.sh
+      - run: npm --no-git-tag-version version `org/folio/folioci_npmver.sh`
       - run: echo "Running Lint..."
       - run: mkdir -p ci
       - run: echo "<html><body><pre>" ci/lint.html
@@ -59,10 +62,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.REF }}
-        if: ${{ github.REF }} == 'master'
-      - run: echo "Generating stripes module descriptor from package.json"
-      - run: mkdir -p artifacts/md
-      - run: stripes mod descriptor --full --strict | jq '.[]' > artifacts/md/$folioName.json
+      - if: ${{ github.REF }} == 'master'
+        run: > 
+          echo "Generating stripes module descriptor from package.json" && mkdir -p artifacts/md && 
+          stripes mod descriptor --full --strict | jq '.[]' > artifacts/md/$folioName.json
         env:
           folioName: folio_orders
       - run: echo "Step completed.."
