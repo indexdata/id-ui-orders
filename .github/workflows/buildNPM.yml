@@ -8,9 +8,10 @@ on:
     branches: [FOLIO-2913]
 
 jobs:
-  set-up:
+  build:
     runs-on: ubuntu-latest
     steps:
+      - name: Env set up
       - uses: folio-org/checkout@v2
         with:
           ref: FOLIO-2913
@@ -24,39 +25,18 @@ jobs:
       - run: mkdir -p artifacts/yarn/
       - run: cp yarn.lock artifacts/yarn/yarn.lock
       - run: bzip2 artifacts/yarn/yarn.lock
-  lint:
-    needs: set-up
-    runs-on: ubuntu-latest
-    steps:
-      - uses: folio-org/checkout@v2
-        with:
-          ref: FOLIO-2913
-      # - run: echo "Set up folio registry..."
-      # - run: yarn config set @folio:registry $FOLIO_REGISTRY
-      #   env:
-      #     FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folioci/
-      # - run: yarn install
+      - name: Run Lint
       - run: echo "Running Lint..."
       - run: mkdir -p ci
       - run: echo "<html><body><pre>" ci/lint.html
       - run: yarn lint 2>&1 >>  ci/lint.html
       - run: echo "</pre><body></html>" >> ci/lint.html
       - run: rm -rf ci
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: folio-org/checkout@v2
-        with:
-          ref: FOLIO-2913
-      - run: echo "Set up folio registry..."
-      - run: yarn config set @folio:registry $FOLIO_REGISTRY
-        env:
-          FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folioci/
-          runTestOptions: ''
-      - run: yarn install
+      - name: Run Test 
       - run: echo "Running Test..."
       - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $runTestOptions
-
+        env:
+          runTestOptions: ''
   sonarQube:
     runs-on: ubuntu-latest
     steps:
@@ -67,14 +47,13 @@ jobs:
       - uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.projectKey=org.folio:$projectKey
-            -Dsonar.projectName=$projectKey
+            -Dsonar.projectKey=org.folio:ui-orders
+            -Dsonar.projectName=ui-orders
             -Dsonar.branch.name=${GITHUB_REF}
             -Dsonar.sources=. 
             -Dsonar.language=js 
             -Dsonar.javascript.lcov.reportPaths=artifacts/coverage/lcov.info,coverage/lcov.info
         env:
-          projectKey: ui-orders
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   publishModDescriptor:
