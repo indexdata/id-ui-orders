@@ -169,7 +169,7 @@
     "instance.contributors": "Contributors",
     "instance.publishers": "Publishers",
     "settings.poNumber": "Purchase order number",
-    "settings.poNumber.editPONumber": "User can edit",
+    "settings.poNumber.editPONumber": "Bruger kan redigere",
     "buttons.line.close": "Close",
     "line.accordion.cost": "Cost details",
     "line.accordion.details": "PO line details",
