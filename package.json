@@ -248,6 +248,15 @@
         ]
       },
       {
+        "permissionName": "ui-orders.order.updateEncumbrances",
+        "displayName": "Orders: Update encumbrances",
+        "description": "",
+        "visible": true,
+        "subPermissions": [
+          "orders.re-encumber.item.post"
+        ]
+      },
+      {
         "permissionName": "settings.orders.enabled",
         "displayName": "Settings (Orders): Can view and edit settings",
         "visible": true,
