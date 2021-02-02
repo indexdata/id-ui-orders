@@ -662,5 +662,9 @@
     "exportSettings.order.all": "Export all order fields",
     "exportSettings.order.selected": "Export selected order fields",
     "exportSettings.line.all": "Export all line fields",
-    "exportSettings.line.selected": "Export selected line fields"
+    "exportSettings.line.selected": "Export selected line fields",
+    "cost.exchangeRate": "Exchange rate",
+    "order.updateEncumbrances.success": "Order encumbrances were updated",
+    "order.updateEncumbrances.error": "Order encumbrances were not updated",
+    "paneBlock.updateEncumbrances": "Update encumbrances"
 }
