@@ -662,5 +662,9 @@
     "exportSettings.order.all": "Alle Felder der Bestellung exportieren",
     "exportSettings.order.selected": "Ausgewählte Felder der Bestellung exportieren",
     "exportSettings.line.all": "Alle Felder des Bestellpostens exportieren",
-    "exportSettings.line.selected": "Ausgwählte Felder des Bestellpostens exportieren"
+    "exportSettings.line.selected": "Ausgwählte Felder des Bestellpostens exportieren",
+    "cost.exchangeRate": "Exchange rate",
+    "order.updateEncumbrances.success": "Order encumbrances were updated",
+    "order.updateEncumbrances.error": "Order encumbrances were not updated",
+    "paneBlock.updateEncumbrances": "Update encumbrances"
 }

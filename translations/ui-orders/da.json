@@ -572,12 +572,12 @@
     "closeOrder.error": "Order failed to close",
     "closeOrder.success": "Order was closed",
     "paneBlock.reopenBtn": "Reopen",
-    "order.clone.confirmLabel": "Clone",
-    "order.clone.heading": "Clone order?",
+    "order.clone.confirmLabel": "Duplicate",
+    "order.clone.heading": "Duplicate order?",
     "order.clone.message": "Are you sure you want to clone this purchase order and all of its purchase order lines?",
-    "order.clone.success": "The purchase order was successfully cloned",
+    "order.clone.success": "The purchase order was successfully duplicated",
     "order.reopen.success": "The <b>Purchase order - {orderNumber}</b> has been successfully <b>reopened</b>",
-    "paneBlock.cloneBtn": "Clone",
+    "paneBlock.cloneBtn": "Duplicate",
     "order.save.success": "<b> Indkøbsordren - {orderNumber} </b> er blevet <b> gemt </b>",
     "paneBlock.ongoingInfo": "Ongoing order information",
     "renewals.subscription": "Subscription",
@@ -662,5 +662,9 @@
     "exportSettings.order.all": "Export all order fields",
     "exportSettings.order.selected": "Export selected order fields",
     "exportSettings.line.all": "Export all line fields",
-    "exportSettings.line.selected": "Export selected line fields"
+    "exportSettings.line.selected": "Export selected line fields",
+    "cost.exchangeRate": "Exchange rate",
+    "order.updateEncumbrances.success": "Order encumbrances were updated",
+    "order.updateEncumbrances.error": "Order encumbrances were not updated",
+    "paneBlock.updateEncumbrances": "Update encumbrances"
 }
