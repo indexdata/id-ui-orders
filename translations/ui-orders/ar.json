@@ -663,8 +663,8 @@
     "exportSettings.order.selected": "تصدير حقول الطلبية المحددة",
     "exportSettings.line.all": "تصدير كل حقول السطر",
     "exportSettings.line.selected": "تصدير حقول السطر المحددة",
-    "cost.exchangeRate": "Exchange rate",
-    "order.updateEncumbrances.success": "Order encumbrances were updated",
-    "order.updateEncumbrances.error": "Order encumbrances were not updated",
-    "paneBlock.updateEncumbrances": "Update encumbrances"
+    "cost.exchangeRate": "سعر الصرف",
+    "order.updateEncumbrances.success": "تم تحديث تكاليف الطلبية",
+    "order.updateEncumbrances.error": "لم يتم تحديث تكاليف الطلبية",
+    "paneBlock.updateEncumbrances": "تحديث التكاليف"
 }
