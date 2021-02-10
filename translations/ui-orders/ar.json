@@ -661,10 +661,10 @@
     "paneBlock.updateEncumbrances": "تحديث التكاليف",
     "settings": "إعدادات الطلبيات",
     "permission.settings.all": "الإعدادات (الطلبيات): إمكانية عرض وتحرير كل الإعدادات",
-    "permission.settings.order-templates.create": "إمكانية عرض، وتحرير، وإنشاء قوالب طلبيات جديدة",
-    "permission.settings.order-templates.delete": "إمكانية عرض، وتحرير، وحذف قوالب الطلبيات",
-    "permission.settings.order-templates.edit": "إمكانية عرض وتحرير قوالب الطلبيات",
-    "permission.settings.order-templates.view": "إمكانية عرض قوالب الطلبيات",
+    "permission.settings.order-templates.create": "الإعدادات (الطلبيات): إمكانية عرض، وتحرير، وإنشاء قوالب طلبيات جديدة",
+    "permission.settings.order-templates.delete": "الإعدادات (الطلبيات): إمكانية عرض، وتحرير، وحذف قوالب الطلبيات",
+    "permission.settings.order-templates.edit": "الإعدادات (الطلبيات): إمكانية عرض وتحرير قوالب الطلبيات",
+    "permission.settings.order-templates.view": "الإعدادات (الطلبيات): إمكانية عرض قوالب الطلبيات",
     "permission.settings.view": "الإعدادات (الطلبيات): إمكانية عرض كل الإعدادات",
     "vendor.referenceNumbers": "أرقام المورّدين المرجعية"
 }
