@@ -2,9 +2,24 @@
 
 ## (IN PROGRESS)
 
+* Fix order templates list not refreshed after create new template. Refs UIOR-660.
+* Fix cannot save template with renewal date. Refs UIOR-659.
+* Make POL vendor reference number and type repeatable, paired fields. Refs UIOR-519.
+* Add granular permissions for Order settings - order templates. Refs UIOR-649.
+* Default sorting by updatedDate. UIOR-648.
+* Fix orders date search format. Refs UISACQCOMP-16.
+* Filter orders by Bill to & Ship to address. Refs UIOR-653.
+* Filter order lines by acquisition units. Refs UIOR-654.
+* Change label of "Clone" order to "Duplicate". Refs UIOR-652.
+* Set exchange rate manually for purchase order line. Refs UIOR-610.
+* Allow user to select data points for Export results to CSV. Refs UIOR-632.
+* Clone PO does not set POL status to Pending. Refs UIOR-647.
+* Export orders functionality - FE approach. Refs UIOR-645.
+* Filter order/order lines by prefix or suffix. Refs UIOR-646.
 * Update stripes to v6.0.0 in Thunderjet's modules. Refs UIOR-650.
 * Add "Export results (CSV)" action to orders app - POL search. Refs UIOR-638.
 * Fix order not loading when system cannot get exchange rate for chosen currency. Refs UIOR-642
+* Add Update encumbrances order action. Refs UIOR-644
 * Add personal data disclosure form. Refs UIOR-639
 * Remove accessProvider field requirement. Refs UIOR-629
 * Add "Export results (CSV)" action to orders app. Refs UIOR-631.

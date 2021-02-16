@@ -29,11 +29,11 @@ import {
 } from '@folio/stripes-acq-components';
 
 import OrdersNavigation from '../common/OrdersNavigation';
-import ExportSettingsModal from '../common/ExportSettingsModal/ExportSettingsModal';
 import OrderLinesFiltersContainer from './OrderLinesFiltersContainer';
 import Details from './Details';
 import { searchableIndexes } from './OrdersLinesSearchConfig';
 import OrderLinesListActionMenu from './OrderLinesListActionMenu';
+import LineExportSettingsModalContainer from './LineExportSettingModalContainer';
 
 const VENDOR_REF_NUMBER = 'vendorDetail.refNumber';
 const UPDATED_DATE = 'metadata.updatedDate';
@@ -68,6 +68,7 @@ function OrderLinesList({
   orderLines,
   orderLinesCount,
   refreshList,
+  linesQuery,
 }) {
   const [
     filters,
@@ -175,8 +176,9 @@ function OrderLinesList({
       </ResultsPane>
 
       {isExportModalOpened && (
-        <ExportSettingsModal
+        <LineExportSettingsModalContainer
           onCancel={toggleExportModal}
+          linesQuery={linesQuery}
         />
       )}
 
@@ -203,12 +205,14 @@ OrderLinesList.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
   refreshList: PropTypes.func.isRequired,
+  linesQuery: PropTypes.string,
 };
 
 OrderLinesList.defaultProps = {
   orderLinesCount: 0,
   isLoading: false,
   orderLines: [],
+  linesQuery: '',
 };
 
 export default withRouter(OrderLinesList);

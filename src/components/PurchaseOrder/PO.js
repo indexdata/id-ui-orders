@@ -36,7 +36,10 @@ import {
 import { useHandleOrderUpdateError } from '../../common/hooks/useHandleOrderUpdateError';
 import { isOngoing } from '../../common/POFields';
 import { WORKFLOW_STATUS } from '../../common/constants';
-import { reasonsForClosureResource } from '../../common/resources';
+import {
+  reasonsForClosureResource,
+  updateEncumbrancesResource,
+} from '../../common/resources';
 import {
   ADDRESSES,
   APPROVALS_SETTING,
@@ -162,7 +165,8 @@ const PO = ({
   const [isDeletePiecesOpened, toggleDeletePieces] = useModalToggle();
   const reasonsForClosure = get(resources, 'closingReasons.records');
   const orderNumber = get(order, 'poNumber', '');
-  const poLines = get(order, 'compositePoLines', []);
+  const poLines = order?.compositePoLines;
+  const poLinesCount = poLines?.length || 0;
   const workflowStatus = get(order, 'workflowStatus');
   const isAbleToAddLines = workflowStatus === WORKFLOW_STATUS.pending;
   const tags = get(order, 'tags.tagList', []);
@@ -180,7 +184,7 @@ const PO = ({
     () => {
       toggleCloneConfirmation();
       setIsLoading(true);
-      cloneOrder(order, mutator.orderDetails, mutator.generatedOrderNumber, order.compositePoLines)
+      cloneOrder(order, mutator.orderDetails, mutator.generatedOrderNumber, poLines)
         .then(newOrder => {
           sendCallout({
             message: <SafeHTMLMessage id="ui-orders.order.clone.success" />,
@@ -198,7 +202,6 @@ const PO = ({
           return handleErrorResponse(e, orderErrorModalShow, 'clone.error');
         });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       toggleCloneConfirmation,
       order,
@@ -208,6 +211,7 @@ const PO = ({
       refreshList,
       handleErrorResponse,
       orderErrorModalShow,
+      poLines,
     ],
   );
 
@@ -304,7 +308,7 @@ const PO = ({
         .then(
           () => {
             sendCallout({
-              message: <SafeHTMLMessage id="ui-orders.order.open.success" values={{ orderNumber: order.poNumber }} />,
+              message: <SafeHTMLMessage id="ui-orders.order.open.success" values={{ orderNumber: order?.poNumber }} />,
               type: 'success',
             });
             refreshList();
@@ -317,7 +321,6 @@ const PO = ({
         )
         .finally(setIsLoading);
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       isOpenOrderModalOpened,
       toggleOpenOrderModal,
@@ -450,7 +453,7 @@ const PO = ({
     () => {
       const linesLimit = Number(get(resources, ['linesLimit', 'records', '0', 'value'], LINES_LIMIT_DEFAULT));
 
-      if (linesLimit <= poLines.length) {
+      if (linesLimit <= poLinesCount) {
         toggleLinesLimitExceededModal();
       } else {
         history.push({
@@ -459,7 +462,7 @@ const PO = ({
         });
       }
     },
-    [resources, match.params.id, history, location.search, poLines.length, toggleLinesLimitExceededModal],
+    [resources, match.params.id, history, location.search, poLinesCount, toggleLinesLimitExceededModal],
   );
 
   const updateOrderCB = useCallback(async (orderWithTags) => {
@@ -478,6 +481,26 @@ const PO = ({
         <FormattedMessage id="ui-orders.button.addLine" />
       </Button>
     </IfPermission>
+  );
+
+  const updateEncumbrances = useCallback(
+    () => {
+      setIsLoading(true);
+      mutator.updateEncumbrances.POST({})
+        .then(
+          () => {
+            sendCallout({ message: <SafeHTMLMessage id="ui-orders.order.updateEncumbrances.success" /> });
+
+            return fetchOrder();
+          },
+          e => {
+            return handleErrorResponse(e, orderErrorModalShow, 'ui-orders.order.updateEncumbrances.error');
+          },
+        )
+        .finally(setIsLoading);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [fetchOrder, handleErrorResponse, orderErrorModalShow, sendCallout],
   );
 
   if (isLoading || order?.id !== match.params.id) {
@@ -504,6 +527,7 @@ const PO = ({
         clickReceive: goToReceiving,
         clickReopen: reopenOrder,
         clickUnopen: toggleUnopenOrderModal,
+        clickUpdateEncumbrances: updateEncumbrances,
         order,
       })}
       data-test-order-details
@@ -627,7 +651,7 @@ const PO = ({
         <ModalDeletePieces
           onCancel={toggleDeletePieces}
           onSubmit={openOrder}
-          poLines={order?.compositePoLines}
+          poLines={poLines}
         />
       )}
     </Pane>
@@ -675,6 +699,7 @@ PO.manifest = Object.freeze({
     accumulate: true,
     fetch: false,
   },
+  updateEncumbrances: updateEncumbrancesResource,
 });
 
 PO.propTypes = {

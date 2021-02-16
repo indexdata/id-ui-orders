@@ -1,6 +1,7 @@
 import uniq from 'lodash/uniq';
 
 import {
+  buildArrayFieldQuery,
   batchFetch,
   buildDateRangeQuery,
   buildDateTimeRangeQuery,
@@ -9,9 +10,7 @@ import {
   connectQuery,
 } from '@folio/stripes-acq-components';
 
-import {
-  FILTERS,
-} from './constants';
+import { FILTERS } from '@folio/plugin-find-po-line/FindPOLine/constants';
 import {
   getKeywordQuery,
 } from './OrdersLinesSearchConfig';
@@ -41,11 +40,15 @@ export const buildOrderLinesQuery = (queryParams, isbnId, normalizedISBN) => {
       [FILTERS.EXPECTED_RECEIPT_DATE]: buildDateRangeQuery.bind(null, [FILTERS.EXPECTED_RECEIPT_DATE]),
       [FILTERS.RECEIPT_DUE]: buildDateRangeQuery.bind(null, [FILTERS.RECEIPT_DUE]),
       [FILTERS.CLAIM_SENT]: buildDateRangeQuery.bind(null, [FILTERS.CLAIM_SENT]),
+      [FILTERS.TAGS]: buildArrayFieldQuery.bind(null, [FILTERS.TAGS]),
+      [FILTERS.FUND_CODE]: buildArrayFieldQuery.bind(null, [FILTERS.FUND_CODE]),
+      [FILTERS.LOCATION]: buildArrayFieldQuery.bind(null, [FILTERS.LOCATION]),
+      [FILTERS.ACQUISITIONS_UNIT]: buildArrayFieldQuery.bind(null, [FILTERS.ACQUISITIONS_UNIT]),
     },
   );
 
   const filterQuery = queryParamsFilterQuery || 'cql.allRecords=1';
-  const sortingQuery = buildSortingQuery(queryParams) || 'sortby poLineNumber/sort.descending';
+  const sortingQuery = buildSortingQuery(queryParams) || 'sortby metadata.updatedDate/sort.descending';
 
   return connectQuery(filterQuery, sortingQuery);
 };

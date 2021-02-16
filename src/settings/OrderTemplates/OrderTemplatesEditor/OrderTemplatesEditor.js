@@ -207,7 +207,7 @@ class OrderTemplatesEditor extends Component {
             </Row>
 
             <Row center="xs">
-              <Col xs={12} md={8}>
+              <Col xs={12} md={8} style={{ textAlign: 'left' }}>
                 <AccordionSet
                   accordionStatus={sections}
                   onToggle={this.onToggleSection}
@@ -302,10 +302,10 @@ class OrderTemplatesEditor extends Component {
                     id={ORDER_TEMPLATES_ACCORDION.POL_COST_DETAILS}
                   >
                     <CostForm
-                      change={change}
                       formValues={formValues}
                       order={ORDER}
                       required={false}
+                      initialValues={initialValues}
                     />
                   </Accordion>
 

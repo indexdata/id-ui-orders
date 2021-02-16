@@ -1,1 +1,1 @@
-export { default } from './ExportSettingsModal';
+export { default } from './ExportSettingsModalContainer';

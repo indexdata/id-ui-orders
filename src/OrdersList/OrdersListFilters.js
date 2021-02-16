@@ -13,9 +13,12 @@ import {
   PluggableOrganizationFilter,
   PluggableUserFilter,
 } from '@folio/stripes-acq-components';
+import OrdersTextFilter from '@folio/plugin-find-po-line/FindPOLine/OrdersTextFilter';
+import PrefixFilter from '@folio/plugin-find-po-line/FindPOLine/PrefixFilter';
+import SuffixFilter from '@folio/plugin-find-po-line/FindPOLine/SuffixFilter';
 
 import ClosingReasonFilter from '../common/ClosingReasonFilter';
-import OrdersTextFilter from '../common/OrdersTextFilter';
+import AddressFilter from '../common/AddressFilter';
 import {
   closingReasonsShape,
 } from '../common/shapes';
@@ -27,7 +30,7 @@ import {
 
 const applyFiltersAdapter = (applyFilters) => ({ name, values }) => applyFilters(name, values);
 
-function OrdersListFilters({ activeFilters, closingReasons, applyFilters, disabled }) {
+function OrdersListFilters({ activeFilters, closingReasons, applyFilters, disabled, addresses }) {
   const onChange = useCallback(
     applyFiltersAdapter(applyFilters),
     [applyFilters],
@@ -43,6 +46,22 @@ function OrdersListFilters({ activeFilters, closingReasons, applyFilters, disabl
         onChange={onChange}
         options={STATUS_FILTER_OPTIONS}
         closedByDefault={false}
+        disabled={disabled}
+      />
+      <PrefixFilter
+        id={FILTERS.PREFIX}
+        activeFilters={activeFilters[FILTERS.PREFIX]}
+        labelId="ui-orders.orderDetails.orderNumberPrefix"
+        name={FILTERS.PREFIX}
+        onChange={onChange}
+        disabled={disabled}
+      />
+      <SuffixFilter
+        id={FILTERS.SUFFIX}
+        activeFilters={activeFilters[FILTERS.SUFFIX]}
+        labelId="ui-orders.orderDetails.orderNumberSuffix"
+        name={FILTERS.SUFFIX}
+        onChange={onChange}
         disabled={disabled}
       />
       <BooleanFilter
@@ -159,6 +178,24 @@ function OrdersListFilters({ activeFilters, closingReasons, applyFilters, disabl
         onChange={onChange}
         disabled={disabled}
       />
+      <AddressFilter
+        activeFilters={activeFilters[FILTERS.BILL_TO]}
+        addresses={addresses}
+        disabled={disabled}
+        id={FILTERS.BILL_TO}
+        labelId="ui-orders.orderDetails.billTo"
+        name={FILTERS.BILL_TO}
+        onChange={onChange}
+      />
+      <AddressFilter
+        activeFilters={activeFilters[FILTERS.SHIP_TO]}
+        addresses={addresses}
+        disabled={disabled}
+        id={FILTERS.SHIP_TO}
+        labelId="ui-orders.orderDetails.shipTo"
+        name={FILTERS.SHIP_TO}
+        onChange={onChange}
+      />
     </AccordionSet>
   );
 }
@@ -168,6 +205,7 @@ OrdersListFilters.propTypes = {
   applyFilters: PropTypes.func.isRequired,
   closingReasons: closingReasonsShape,
   disabled: PropTypes.bool.isRequired,
+  addresses: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default OrdersListFilters;

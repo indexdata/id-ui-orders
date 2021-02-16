@@ -18,8 +18,8 @@ import {
 
 import {
   IDENTIFIER_TYPES,
-  ORDER_LINES,
   ORDERS,
+  ORDER_LINES,
 } from '../components/Utils/resources';
 import { QUALIFIER_SEPARATOR } from '../common/constants';
 import OrderLinesList from './OrderLinesList';
@@ -35,6 +35,7 @@ const resetData = () => { };
 const OrderLinesListContainer = ({ mutator, location }) => {
   const [isbnId, setIsbnId] = useState();
   const [ordersMap, setOrdersMap] = useState({});
+  const [linesQuery, setLinesQuery] = useState();
 
   const loadOrderLines = useCallback(async (offset, hasFilters) => {
     const queryParams = queryString.parse(location.search);
@@ -69,12 +70,16 @@ const OrderLinesListContainer = ({ mutator, location }) => {
       }
     }
 
+    const query = buildOrderLinesQuery(queryParams, typeISBNId, normalizedISBN);
+
+    setLinesQuery(query);
+
     const loadRecordsPromise = hasToCallAPI
       ? mutator.orderLinesListRecords.GET({
         params: {
           limit: RESULT_COUNT_INCREMENT,
           offset,
-          query: buildOrderLinesQuery(queryParams, typeISBNId, normalizedISBN),
+          query,
         },
       })
       : Promise.resolve();
@@ -123,6 +128,7 @@ const OrderLinesListContainer = ({ mutator, location }) => {
       orderLines={orderLines}
       refreshList={refreshList}
       resetData={resetData}
+      linesQuery={linesQuery}
     />
   );
 };
@@ -148,8 +154,8 @@ OrderLinesListContainer.manifest = Object.freeze({
   },
   lineOrders: {
     ...ORDERS,
-    accumulate: true,
     fetch: false,
+    accumulate: true,
   },
 });
 

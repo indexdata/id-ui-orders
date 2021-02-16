@@ -10,14 +10,12 @@ import {
 import {
   baseManifest,
   ORDER_STATUSES,
+  prefixesResource,
+  suffixesResource,
   useModalToggle,
   useShowCallout,
 } from '@folio/stripes-acq-components';
 
-import {
-  prefixesResource,
-  suffixesResource,
-} from '../../common/resources';
 import {
   createOrEditOrderResource,
 } from '../Utils/orderResource';
@@ -150,7 +148,10 @@ LayerPO.manifest = Object.freeze({
   orderNumberSetting: ORDER_NUMBER_SETTING,
   prefixesSetting: prefixesResource,
   suffixesSetting: suffixesResource,
-  orderTemplates: ORDER_TEMPLATES,
+  orderTemplates: {
+    ...ORDER_TEMPLATES,
+    shouldRefresh: () => false,
+  },
   expenseClass: {
     ...baseManifest,
     accumulate: true,

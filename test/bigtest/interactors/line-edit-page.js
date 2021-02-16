@@ -166,8 +166,8 @@ const ITEM_DETAILS = {
 }
 
 @interactor class Currency {
-  value = text('#selected-cost-currency-item');
-  options = new OptionListInteractor('#sl-cost-currency');
+  value = text('#selected-currency-item');
+  options = new OptionListInteractor('#sl-currency');
   button = new Button('[name="cost.currency"]');
 }
 

@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { get } from 'lodash';
 
+import { IfPermission } from '@folio/stripes/core';
 import {
   Accordion,
   AccordionSet,
@@ -17,7 +18,10 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-import { FundDistributionView } from '@folio/stripes-acq-components';
+import {
+  FundDistributionView,
+  ORDER_FORMATS,
+} from '@folio/stripes-acq-components';
 
 import { PODetailsView } from '../../../components/PurchaseOrder/PODetails';
 import { SummaryView } from '../../../components/PurchaseOrder/Summary';
@@ -33,7 +37,6 @@ import LocationView from '../../../components/POLine/Location/LocationView';
 import {
   ERESOURCES,
   PHRESOURCES,
-  OTHER,
 } from '../../../components/POLine/const';
 import { isOngoing } from '../../../common/POFields';
 import {
@@ -120,27 +123,31 @@ class OrderTemplateView extends Component {
 
     return (
       <div data-test-view-order-template-actions>
-        <Button
-          data-test-view-order-template-action-edit
-          buttonStyle="dropdownItem"
-          to={`${rootPath}/${id}/edit`}
-        >
-          <Icon icon="edit">
-            <FormattedMessage id="ui-orders.button.edit" />
-          </Icon>
-        </Button>
-        <Button
-          data-test-view-order-template-action-delete
-          buttonStyle="dropdownItem"
-          onClick={() => {
-            onToggle();
-            this.showConfirmDelete();
-          }}
-        >
-          <Icon icon="trash">
-            <FormattedMessage id="ui-orders.button.delete" />
-          </Icon>
-        </Button>
+        <IfPermission perm="ui-orders.settings.order-templates.edit">
+          <Button
+            data-test-view-order-template-action-edit
+            buttonStyle="dropdownItem"
+            to={`${rootPath}/${id}/edit`}
+          >
+            <Icon icon="edit">
+              <FormattedMessage id="ui-orders.button.edit" />
+            </Icon>
+          </Button>
+        </IfPermission>
+        <IfPermission perm="ui-orders.settings.order-templates.delete">
+          <Button
+            data-test-view-order-template-action-delete
+            buttonStyle="dropdownItem"
+            onClick={() => {
+              onToggle();
+              this.showConfirmDelete();
+            }}
+          >
+            <Icon icon="trash">
+              <FormattedMessage id="ui-orders.button.delete" />
+            </Icon>
+          </Button>
+        </IfPermission>
       </div>
     );
   };
@@ -158,7 +165,7 @@ class OrderTemplateView extends Component {
     const orderFormat = get(orderTemplate, 'orderFormat');
     const showEresources = ERESOURCES.includes(orderFormat);
     const showPhresources = PHRESOURCES.includes(orderFormat);
-    const showOther = orderFormat === OTHER;
+    const showOther = orderFormat === ORDER_FORMATS.other;
     const orderType = get(orderTemplate, 'orderType');
 
     const estimatedPrice = get(orderTemplate, ['cost', 'poLineEstimatedPrice'], 0);

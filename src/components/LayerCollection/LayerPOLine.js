@@ -303,7 +303,7 @@ function LayerPOLine({
       isPackage: false,
     };
 
-    if (vendor) {
+    if (vendor?.id) {
       newObj.eresource.accessProvider = vendor.id;
       newObj.physical.materialSupplier = vendor.id;
 
@@ -435,7 +435,10 @@ LayerPOLine.manifest = Object.freeze({
     fetch: false,
   },
   createInventory: CREATE_INVENTORY,
-  orderTemplates: ORDER_TEMPLATES,
+  orderTemplates: {
+    ...ORDER_TEMPLATES,
+    shouldRefresh: () => false,
+  },
   locations: {
     ...locationsManifest,
     accumulate: false,
