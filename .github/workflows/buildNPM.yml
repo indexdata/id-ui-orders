@@ -22,13 +22,16 @@ jobs:
       - run: yarn install
       - run: yarn list --pattern @folio
       - run: mkdir -p artifacts/yarn/
-      - run: cp yarn.lock artifacts/yarn/yarn.lock
+      - run: cp yarn.git lock artifacts/yarn/yarn.lock
       - run: bzip2 artifacts/yarn/yarn.lock
       - run: echo "Setting NPM snapshot version..."
-      - run: chmod +x org/folio/folioci_npmver.sh
-      - run: npm --no-git-tag-version version `org/folio/folioci_npmver.sh`
+      - run: git clone $npmSnapshotScript
+        env:
+          npmSnapshotScript: https://github.com/folio-org/jenkins-pipeline-libs.git
+      # - run: chmod +x resources/org/folio/folioci_npmver.sh
+      # - run: npm --no-git-tag-version version `resources/org/folio/folioci_npmver.sh`
       - run: echo "Running Lint..."
-      - run: mkdir -p ci
+      - run: mkdir -p ci 
       - run: echo "<html><body><pre>" ci/lint.html
       - run: yarn lint 2>&1 >>  ci/lint.html
       - run: echo "</pre><body></html>" >> ci/lint.html
