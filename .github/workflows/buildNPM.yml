@@ -30,6 +30,7 @@ jobs:
           npmSnapshotScript: https://github.com/folio-org/jenkins-pipeline-libs.git
       - run: chmod +x jenkins-pipeline-libs/resources/org/folio/folioci_npmver.sh
       - run: npm --no-git-tag-version version `jenkins-pipeline-libs/resources/org/folio/folioci_npmver.sh`
+      - run: rm -rf jenkins-pipeline-libs
       - run: echo "Running Lint..."
       - run: mkdir -p ci 
       - run: echo "<html><body><pre>" ci/lint.html
