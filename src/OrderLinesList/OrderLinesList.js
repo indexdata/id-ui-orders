@@ -12,6 +12,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import {
   MultiColumnList,
+  NoValue,
   Paneset,
 } from '@folio/stripes/components';
 import {
@@ -39,11 +40,13 @@ const VENDOR_REF_NUMBER = 'vendorDetail.refNumber';
 const UPDATED_DATE = 'metadata.updatedDate';
 const title = <FormattedMessage id="ui-orders.navigation.orderLines" />;
 const visibleColumns = ['poLineNumber', UPDATED_DATE, 'title', 'productIds', VENDOR_REF_NUMBER, 'funCodes', 'orderWorkflow'];
-const sortableColumns = ['poLineNumber', UPDATED_DATE, 'title', VENDOR_REF_NUMBER];
+const sortableColumns = ['poLineNumber', UPDATED_DATE, 'title'];
 const resultsFormatter = {
   [UPDATED_DATE]: line => <FolioFormattedDate value={get(line, 'metadata.updatedDate')} />,
   productIds: line => get(line, 'details.productIds', []).map(product => product.productId).join(', '),
-  [VENDOR_REF_NUMBER]: line => get(line, 'vendorDetail.refNumber', ''),
+  [VENDOR_REF_NUMBER]: line => (
+    line.vendorDetail?.referenceNumbers?.map(({ refNumber }) => refNumber)?.join(', ') || <NoValue />
+  ),
   title: line => get(line, 'titleOrPackage', ''),
   funCodes: line => line.fundDistribution?.map(({ code }) => code).filter(Boolean).join(', '),
   orderWorkflow: line => ORDER_STATUS_LABEL[line.orderWorkflow],
