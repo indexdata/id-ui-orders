@@ -7,12 +7,10 @@ import { expect } from 'chai';
 
 import {
   ACQUISITION_METHOD,
+  INVENTORY_RECORDS_TYPE,
   ORDER_FORMATS,
 } from '@folio/stripes-acq-components';
 
-import {
-  INVENTORY_RECORDS_TYPE,
-} from '../../../src/components/POLine/const';
 import {
   CONFIG_OPEN_ORDER,
   MODULE_ORDERS,
@@ -367,7 +365,7 @@ describe('Line edit test', function () {
 
     describe('Other Resource Details accordion is shown', function () {
       beforeEach(async function () {
-        await lineEditPage.physicalCreateInventory.select('Instance, holding, item');
+        await lineEditPage.physicalCreateInventory.select('Instance, holdings, item');
         await lineEditPage.updateLineButton.click();
       });
 
@@ -386,7 +384,7 @@ describe('Line edit test', function () {
     beforeEach(async function () {
       await lineEditPage.itemDetailsAccordion.inputTitle(TITLE);
       await lineEditPage.quantityPhysical.fill(2);
-      await lineEditPage.physicalCreateInventory.select('Instance, holding, item');
+      await lineEditPage.physicalCreateInventory.select('Instance, holdings, item');
       await lineEditPage.physicalDetailsAccordion.materialType(materialTypes[0].name);
       await lineEditPage.saveAndOpenButton.click();
       await lineDetailsPage.whenLoaded();
