@@ -254,9 +254,9 @@
     "settings.createInventory.eresource": "Électronique (par défaut)",
     "settings.createInventory.physical": "Physique (par défaut)",
     "settings.createInventory.other": "Autre (par défaut)",
-    "settings.createInventory.recordType.all": "Instance, holding, item",
+    "settings.createInventory.recordType.all": "Instance, holdings, item",
     "settings.createInventory.recordType.instance": "Instance",
-    "settings.createInventory.recordType.instanceAndHolding": "Instance, holding",
+    "settings.createInventory.recordType.instanceAndHolding": "Instance, holdings",
     "settings.createInventory.recordType.none": "Aucun",
     "checkIn.addPiece.error": "La pièce n'a pas été sauvegardée",
     "checkIn.addPiece.success": "La pièce a été sauvegardée avec succès",
@@ -313,7 +313,6 @@
     "order.orderType": "Type de commande",
     "order.createdDate": "Date de création",
     "lineListing.productId": "Identifiant Produit",
-    "lineListing.vendorRefNumber": "N° du fournisseur",
     "lineListing.fundCode": "Code budgétaire",
     "location.quantityElectronic.notMatchOrEmpty": "Locations electronic quantity should be empty or match with PO line electronic quantity",
     "location.required": "Au moins un emplacement doit être renseigné",
@@ -666,5 +665,6 @@
     "permission.settings.order-templates.edit": "Settings (Orders): Can view, edit Order Templates",
     "permission.settings.order-templates.view": "Settings (Orders): Can view Order Templates",
     "permission.settings.view": "Settings (Orders): Can view all settings",
-    "vendor.referenceNumbers": "Vendor reference numbers"
+    "vendor.referenceNumbers": "Vendor reference numbers",
+    "lineListing.refNumber": "Vendor reference number"
 }

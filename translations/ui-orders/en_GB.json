@@ -313,7 +313,6 @@
     "order.orderType": "Order type",
     "order.createdDate": "Created date",
     "lineListing.productId": "Product ID",
-    "lineListing.vendorRefNumber": "Vendor ref number",
     "lineListing.fundCode": "Fund code",
     "location.quantityElectronic.notMatchOrEmpty": "Locations electronic quantity should be empty or match with PO line electronic quantity",
     "location.required": "At least one location must be entered",
@@ -666,5 +665,6 @@
     "permission.settings.order-templates.edit": "Can view, edit Order Templates",
     "permission.settings.order-templates.view": "Can view Order Templates",
     "permission.settings.view": "Settings (Orders): Can view all settings",
-    "vendor.referenceNumbers": "Vendor reference numbers"
+    "vendor.referenceNumbers": "Vendor reference numbers",
+    "lineListing.refNumber": "Vendor reference number"
 }
