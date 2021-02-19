@@ -254,9 +254,9 @@
     "settings.createInventory.eresource": "Electronic default",
     "settings.createInventory.physical": "Physical default",
     "settings.createInventory.other": "Other default",
-    "settings.createInventory.recordType.all": "Instance, holding, item",
+    "settings.createInventory.recordType.all": "Instance, holdings, item",
     "settings.createInventory.recordType.instance": "インスタンス",
-    "settings.createInventory.recordType.instanceAndHolding": "Instance, holding",
+    "settings.createInventory.recordType.instanceAndHolding": "Instance, holdings",
     "settings.createInventory.recordType.none": "None",
     "checkIn.addPiece.error": "Piece was not saved",
     "checkIn.addPiece.success": "Piece was saved successfully",
@@ -313,7 +313,6 @@
     "order.orderType": "発注タイプ",
     "order.createdDate": "Created date",
     "lineListing.productId": "製品 ID",
-    "lineListing.vendorRefNumber": "Vendor ref number",
     "lineListing.fundCode": "ファンドコード",
     "location.quantityElectronic.notMatchOrEmpty": "Locations electronic quantity should be empty or match with PO line electronic quantity",
     "location.required": "At least one location must be entered",
@@ -666,5 +665,6 @@
     "permission.settings.order-templates.edit": "Settings (Orders): Can view, edit Order Templates",
     "permission.settings.order-templates.view": "Settings (Orders): Can view Order Templates",
     "permission.settings.view": "Settings (Orders): Can view all settings",
-    "vendor.referenceNumbers": "Vendor reference numbers"
+    "vendor.referenceNumbers": "Vendor reference numbers",
+    "lineListing.refNumber": "Vendor reference number"
 }

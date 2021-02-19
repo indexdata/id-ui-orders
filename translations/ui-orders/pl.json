@@ -313,7 +313,6 @@
     "order.orderType": "Typ zamówienia",
     "order.createdDate": "Data utworzenia",
     "lineListing.productId": "ID produktu",
-    "lineListing.vendorRefNumber": "Numer ref. sprzedawcy",
     "lineListing.fundCode": "Kod funduszu",
     "location.quantityElectronic.notMatchOrEmpty": "Ilość zasobów elektronicznych w lokalizacji powinna być pusta lub zgodna z ilością w pozycji zamówienia",
     "location.required": "Należy wprowadzić co najmniej jedną lokalizację",
@@ -499,7 +498,7 @@
     "createdDateAndTime": "Data i czas utworzenia",
     "createdSource": "Źródło utworzenia",
     "fund.fundIdentifier": "ID funduszu",
-    "fund.selectAdjustment": "Wybierz regulację",
+    "fund.selectAdjustment": "Wybierz korektę",
     "fund.value": "Wartość",
     "order.adminData": "Dane administracyjne zamówienia",
     "order.notes.date": "Data",
@@ -666,5 +665,6 @@
     "permission.settings.order-templates.edit": "Ustawienia (Zamówienia): Może wyświetlać, edytować Szablony Zamówień",
     "permission.settings.order-templates.view": "Ustawienia (Zamówienia): Może wyświetlać Szablony Zamówień",
     "permission.settings.view": "Ustawienia (Zamówienia): Może wyświetlać wszystkie ustawienia",
-    "vendor.referenceNumbers": "Numery referencyjne sprzedawców"
+    "vendor.referenceNumbers": "Numery referencyjne sprzedawców",
+    "lineListing.refNumber": "Numer referencyjny sprzedawcy"
 }
