@@ -48,7 +48,8 @@ jobs:
         with:
           ref: ${{ github.REF }}
       - run: echo "repository name is ${{ github.REPOSITORY }}"
-      - uses: sonarsource/sonarcloud-github-action@master
+      - if: ${{ github.REF }} != 'master'
+        uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
             -Dsonar.projectKey=org.folio:ui-orders
@@ -60,6 +61,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - if: ${{ github.REF }} == 'master'
+        run: git fetch --no-tags $projUrl +refs/heads/master:refs/remotes/origin/master
+        env:
+          projUrl: https://github.com/folio-org/ui-orders
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.organization=folio-org 
+            -Dsonar.projectKey=org.folio:ui-orders
+            -Dsonar.projectName=ui-orders
+            -Dsonar.branch.name=${GITHUB_REF}
+            -Dsonar.sources=.
+            -Dsonar.language=js
+            -Dsonar.exclusions=**/platform/alias-service.js,**/docs/**,**/node_modules/**,**/examples/**,**/artifacts/**,**/ci/**,Jenkinsfile,**/LICENSE,**/*.css,**/*.md,**/*.json,**/tests/**,**/stories/*.js,**/test/**,**/.stories.js,**/resources/bigtest/interactors/**,**/resources/bigtest/network/**,**/*-test.js,**/*.test.js,**/*-spec.js,**/karma.conf.js,**/jest.config.js
+            -Dsonar.javascript.lcov.reportPaths=artifacts/coverage/lcov.info
   publishModDescriptor:
     runs-on: ubuntu-latest
     steps:
