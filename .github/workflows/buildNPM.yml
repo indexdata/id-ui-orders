@@ -62,9 +62,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - if: ${{ github.REF }} == 'master'
-        run: git fetch --no-tags $projUrl +refs/heads/master:refs/remotes/origin/master
-        env:
-          projUrl: https://github.com/folio-org/ui-orders
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
