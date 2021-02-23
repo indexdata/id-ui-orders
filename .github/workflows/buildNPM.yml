@@ -33,9 +33,13 @@ jobs:
       - run: rm -rf jenkins-pipeline-libs
       - run: echo "Running Lint..."
       - run: mkdir -p ci 
-      - run: echo "<html><body><pre>" ci/lint.html
+      - run: echo "<html><body><pre>" >> ci/lint.html
       - run: yarn lint 2>&1 >>  ci/lint.html
       - run: echo "</pre><body></html>" >> ci/lint.html
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ci-lint-log
+          path: ci/lint.html
       - run: rm -rf ci
       - run: echo "Running Test..."
       - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $runTestOptions
@@ -72,7 +76,7 @@ jobs:
             -Dsonar.sources=.
             -Dsonar.language=js
             -Dsonar.exclusions=**/platform/alias-service.js,**/docs/**,**/node_modules/**,**/examples/**,**/artifacts/**,**/ci/**,Jenkinsfile,**/LICENSE,**/*.css,**/*.md,**/*.json,**/tests/**,**/stories/*.js,**/test/**,**/.stories.js,**/resources/bigtest/interactors/**,**/resources/bigtest/network/**,**/*-test.js,**/*.test.js,**/*-spec.js,**/karma.conf.js,**/jest.config.js
-            -Dsonar.javascript.lcov.reportPaths=artifacts/coverage/lcov.info
+            -Dsonar.javascript.lcov.reportPaths=artifacts/coverage/lcov.info,coverage/lcov.info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
