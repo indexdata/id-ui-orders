@@ -416,7 +416,6 @@
     "search.publisher": "Éditeur",
     "search.selector": "Sélecteur",
     "search.vendorDetail.vendorAccount": "Compte fournisseur",
-    "search.vendorDetail.refNumber": "Numéro de référence du fournisseur",
     "search.physical.volumes": "Volumes",
     "search.metadata.createdDate": "Date de création",
     "closeOrderModal.closingReasons.complete": "Complet",
@@ -666,5 +665,6 @@
     "permission.settings.order-templates.view": "Settings (Orders): Can view Order Templates",
     "permission.settings.view": "Settings (Orders): Can view all settings",
     "vendor.referenceNumbers": "Vendor reference numbers",
-    "lineListing.refNumber": "Vendor reference number"
+    "lineListing.refNumber": "Vendor reference number",
+    "search.vendorDetail.referenceNumbers": "Vendor reference number"
 }

@@ -416,7 +416,6 @@
     "search.publisher": "出版社",
     "search.selector": "Selector",
     "search.vendorDetail.vendorAccount": "Vendor account",
-    "search.vendorDetail.refNumber": "ベンダー参照番号",
     "search.physical.volumes": "巻",
     "search.metadata.createdDate": "作成日",
     "closeOrderModal.closingReasons.complete": "Complete",
@@ -666,5 +665,6 @@
     "permission.settings.order-templates.view": "Settings (Orders): Can view Order Templates",
     "permission.settings.view": "Settings (Orders): Can view all settings",
     "vendor.referenceNumbers": "Vendor reference numbers",
-    "lineListing.refNumber": "Vendor reference number"
+    "lineListing.refNumber": "Vendor reference number",
+    "search.vendorDetail.referenceNumbers": "Vendor reference number"
 }

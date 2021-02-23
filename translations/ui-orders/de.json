@@ -416,7 +416,6 @@
     "search.publisher": "Verlag",
     "search.selector": "Fachreferat",
     "search.vendorDetail.vendorAccount": "Kreditorenkonto",
-    "search.vendorDetail.refNumber": "Lieferanten-Referenznummer",
     "search.physical.volumes": "Bände",
     "search.metadata.createdDate": "Erstellungsdatum",
     "closeOrderModal.closingReasons.complete": "Vollständig",
@@ -666,5 +665,6 @@
     "permission.settings.order-templates.view": "Einstellungen (Bestellungen): Kann Bestellvorlagen anzeigen",
     "permission.settings.view": "Einstellungen (Bestellungen): Kann alle Einstellungen anzeigen",
     "vendor.referenceNumbers": "Lieferanten-Referenznummer",
-    "lineListing.refNumber": "Lieferanten-Referenznummer"
+    "lineListing.refNumber": "Lieferanten-Referenznummer",
+    "search.vendorDetail.referenceNumbers": "Vendor reference number"
 }
