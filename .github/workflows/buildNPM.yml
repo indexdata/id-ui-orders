@@ -15,6 +15,7 @@ jobs:
         with:
           ref: FOLIO-2913
       - run: echo "Set up folio registry..."
+      - run: echo "repository name is ${{ github.event.repository.name }}"
       - run: yarn config set @folio:registry $FOLIO_REGISTRY
         env:
           FOLIO_REGISTRY: https://repository.folio.org/repository/npm-folioci/
