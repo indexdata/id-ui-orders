@@ -313,7 +313,6 @@
     "order.orderType": "نوع الطلبية",
     "order.createdDate": "تاريخ الإنشاء",
     "lineListing.productId": "معرّف المنتج",
-    "lineListing.vendorRefNumber": "رقم المورّد المرجعي",
     "lineListing.fundCode": "رمز التمويل",
     "location.quantityElectronic.notMatchOrEmpty": "يجب أن تكون الكمية الإلكترونية للمواقع فارغة أو مطابقة للكمية الإلكترونية لسطر أمر الشراء",
     "location.required": "يجب إدخال موقع واحد على الأقل",
@@ -417,7 +416,6 @@
     "search.publisher": "الناشر",
     "search.selector": "محدد",
     "search.vendorDetail.vendorAccount": "حساب المورّد",
-    "search.vendorDetail.refNumber": "رقم المورّد المرجعي",
     "search.physical.volumes": "مجلدات",
     "search.metadata.createdDate": "تاريخ الإنشاء",
     "closeOrderModal.closingReasons.complete": "تام",
@@ -666,5 +664,7 @@
     "permission.settings.order-templates.edit": "الإعدادات (الطلبيات): إمكانية عرض وتحرير قوالب الطلبيات",
     "permission.settings.order-templates.view": "الإعدادات (الطلبيات): إمكانية عرض قوالب الطلبيات",
     "permission.settings.view": "الإعدادات (الطلبيات): إمكانية عرض كل الإعدادات",
-    "vendor.referenceNumbers": "أرقام المورّدين المرجعية"
+    "vendor.referenceNumbers": "أرقام المورّدين المرجعية",
+    "lineListing.refNumber": "رقم المورّد المرجعي",
+    "search.vendorDetail.referenceNumbers": "رقم المورّد المرجعي"
 }

@@ -1,5 +1,5 @@
 {
-    "meta.title": "Zamówienia",
+    "meta.title": "Zamówienia zakupowe",
     "search": "Szukaj",
     "resultCount": "{count, number} {count, plural, one {znaleziony rekord} other {znalezione rekordy}}",
     "acquisition_method.approvalPlan": "Plan zatwierdzania",
@@ -117,7 +117,7 @@
     "physical.volume": "Wolumin",
     "physical.addVolume": "Dodaj wolumin",
     "physical.addVolumeBtn": "Dodaj wolumin",
-    "settings.index.paneTitle": "Zamówienia",
+    "settings.index.paneTitle": "Zamówienia zakupowe",
     "settings.saveBtn": "Zapisz",
     "settings.setPOLInesLimit": "Ustaw limit pozycji zamówienia zakupowego",
     "settings.setPOLInesLimit.changed": "Limit pozycji zamówienia zakupowego został pomyślnie zapisany",
@@ -313,7 +313,6 @@
     "order.orderType": "Typ zamówienia",
     "order.createdDate": "Data utworzenia",
     "lineListing.productId": "ID produktu",
-    "lineListing.vendorRefNumber": "Numer ref. sprzedawcy",
     "lineListing.fundCode": "Kod funduszu",
     "location.quantityElectronic.notMatchOrEmpty": "Ilość zasobów elektronicznych w lokalizacji powinna być pusta lub zgodna z ilością w pozycji zamówienia",
     "location.required": "Należy wprowadzić co najmniej jedną lokalizację",
@@ -326,7 +325,7 @@
     "dateOrdered": "Data zamówienia",
     "assignedToMe": "Przypisane do mnie",
     "workflowStatus": "Status",
-    "navigation.orders": "Zamówienia",
+    "navigation.orders": "Zamówienia zakupowe",
     "navigation.orderLines": "Pozycje zamówień",
     "orderLineList.poLineNumber": "Numer pozycji zamówienia",
     "orderLineList.updatedDate": "Zaktualizowana data",
@@ -417,7 +416,6 @@
     "search.publisher": "Wydawca",
     "search.selector": "Selektor",
     "search.vendorDetail.vendorAccount": "Konto sprzedawcy",
-    "search.vendorDetail.refNumber": "Numer referencyjny sprzedawcy",
     "search.physical.volumes": "Woluminy",
     "search.metadata.createdDate": "Data utworzenia",
     "closeOrderModal.closingReasons.complete": "Kompletne",
@@ -499,7 +497,7 @@
     "createdDateAndTime": "Data i czas utworzenia",
     "createdSource": "Źródło utworzenia",
     "fund.fundIdentifier": "ID funduszu",
-    "fund.selectAdjustment": "Wybierz regulację",
+    "fund.selectAdjustment": "Wybierz korektę",
     "fund.value": "Wartość",
     "order.adminData": "Dane administracyjne zamówienia",
     "order.notes.date": "Data",
@@ -666,5 +664,7 @@
     "permission.settings.order-templates.edit": "Ustawienia (Zamówienia): Może wyświetlać, edytować Szablony Zamówień",
     "permission.settings.order-templates.view": "Ustawienia (Zamówienia): Może wyświetlać Szablony Zamówień",
     "permission.settings.view": "Ustawienia (Zamówienia): Może wyświetlać wszystkie ustawienia",
-    "vendor.referenceNumbers": "Numery referencyjne sprzedawców"
+    "vendor.referenceNumbers": "Numery referencyjne sprzedawców",
+    "lineListing.refNumber": "Numer referencyjny sprzedawcy",
+    "search.vendorDetail.referenceNumbers": "Vendor reference number"
 }

@@ -313,7 +313,6 @@
     "order.orderType": "订单类型",
     "order.createdDate": "创建日期",
     "lineListing.productId": "产品ID",
-    "lineListing.vendorRefNumber": "供应商参考号",
     "lineListing.fundCode": "经费代码",
     "location.quantityElectronic.notMatchOrEmpty": "馆藏地电子数量应为空或与订单行电子数量匹配",
     "location.required": "必须至少输入一个馆藏地",
@@ -417,7 +416,6 @@
     "search.publisher": "出版者",
     "search.selector": "选择者",
     "search.vendorDetail.vendorAccount": "供应商帐户",
-    "search.vendorDetail.refNumber": "供应商参考号",
     "search.physical.volumes": "卷",
     "search.metadata.createdDate": "创建日期",
     "closeOrderModal.closingReasons.complete": "完成",
@@ -666,5 +664,7 @@
     "permission.settings.order-templates.edit": "Settings (Orders): Can view, edit Order Templates",
     "permission.settings.order-templates.view": "Settings (Orders): Can view Order Templates",
     "permission.settings.view": "Settings (Orders): Can view all settings",
-    "vendor.referenceNumbers": "Vendor reference numbers"
+    "vendor.referenceNumbers": "Vendor reference numbers",
+    "lineListing.refNumber": "Vendor reference number",
+    "search.vendorDetail.referenceNumbers": "Vendor reference number"
 }

@@ -313,7 +313,6 @@
     "order.orderType": "Tipo de pedido",
     "order.createdDate": "Fecha de creación",
     "lineListing.productId": "ID producto",
-    "lineListing.vendorRefNumber": "Ref. Num. Proveedor",
     "lineListing.fundCode": "Código de Presupuesto",
     "location.quantityElectronic.notMatchOrEmpty": "La cantidad electrónica de ubicaciones debe estar vacía o coincidir con la cantidad electrónica de la línea de pedido.",
     "location.required": "At least one location must be entered",
@@ -417,7 +416,6 @@
     "search.publisher": "Publisher",
     "search.selector": "Selector",
     "search.vendorDetail.vendorAccount": "Vendor account",
-    "search.vendorDetail.refNumber": "Vendor reference number",
     "search.physical.volumes": "Volumes",
     "search.metadata.createdDate": "Date created",
     "closeOrderModal.closingReasons.complete": "Complete",
@@ -666,5 +664,7 @@
     "permission.settings.order-templates.edit": "Settings (Orders): Can view, edit Order Templates",
     "permission.settings.order-templates.view": "Settings (Orders): Can view Order Templates",
     "permission.settings.view": "Settings (Orders): Can view all settings",
-    "vendor.referenceNumbers": "Vendor reference numbers"
+    "vendor.referenceNumbers": "Vendor reference numbers",
+    "lineListing.refNumber": "Vendor reference number",
+    "search.vendorDetail.referenceNumbers": "Vendor reference number"
 }
