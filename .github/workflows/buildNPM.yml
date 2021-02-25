@@ -52,7 +52,7 @@ jobs:
         with:
           ref: ${{ github.REF }}
       - run: echo "repository name is ${{ github.REPOSITORY }}"
-      - if: ${{ github.REF }} != 'master'
+      - if: github.REF != 'master'
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
@@ -65,7 +65,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - if: ${{ github.REF }} == 'master'
+      - if: github.REF == 'master'
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
@@ -86,7 +86,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.REF }}
-      - if: ${{ github.REF }} == 'master'
+      - if: github.REF == 'master'
         run: > 
           echo "Generating stripes module descriptor from package.json" && mkdir -p artifacts/md && 
           stripes mod descriptor --full --strict | jq '.[]' > artifacts/md/$folioName.json
