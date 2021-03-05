@@ -666,5 +666,5 @@
     "permission.settings.view": "Ustawienia (Zamówienia): Może wyświetlać wszystkie ustawienia",
     "vendor.referenceNumbers": "Numery referencyjne sprzedawców",
     "lineListing.refNumber": "Numer referencyjny sprzedawcy",
-    "search.vendorDetail.referenceNumbers": "Vendor reference number"
+    "search.vendorDetail.referenceNumbers": "Numer referencyjny sprzedawcy"
 }
