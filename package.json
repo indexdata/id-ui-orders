@@ -401,6 +401,7 @@
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-intl": "^5.7.1",
+    "react-query": "^3.6.0",
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -417,10 +418,12 @@
     "lodash": "^4.17.19",
     "prop-types": "^15.6.2",
     "query-string": "^6.1.0",
+    "react-fast-compare": "^3.2.0",
     "react-final-form": "^6.4.0",
     "react-final-form-arrays": "^3.1.1",
     "react-hot-loader": "^4.3.12",
     "react-router-prop-types": "^1.0.4",
+    "react-to-print": "^2.12.3",
     "redux-form": "^8.3.0"
   },
   "peerDependencies": {

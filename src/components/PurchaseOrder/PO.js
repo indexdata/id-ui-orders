@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { get } from 'lodash';
+import { useReactToPrint } from 'react-to-print';
 
 import {
   IfPermission,
@@ -30,6 +31,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 
+import { PrintSettingsModalContainer } from '../../common/ExportSettingsModal';
 import {
   getAddresses,
 } from '../../common/utils';
@@ -40,6 +42,10 @@ import {
   reasonsForClosureResource,
   updateEncumbrancesResource,
 } from '../../common/resources';
+import {
+  hydrateOrderToPrint,
+  PrintContent,
+} from '../../PrintOrder';
 import {
   ADDRESSES,
   APPROVALS_SETTING,
@@ -134,7 +140,7 @@ const PO = ({
     ])
       .then(([orderResp, orderInvoicesResp, compositePoLines, orderListResp]) => {
         setOrder({
-          ...orderListResp[0],
+          ...(orderListResp[0] || {}),
           compositePoLines,
           ...orderResp,
         });
@@ -163,6 +169,7 @@ const PO = ({
   const [isOpenOrderModalOpened, toggleOpenOrderModal] = useModalToggle();
   const [isUnopenOrderModalOpened, toggleUnopenOrderModal] = useModalToggle();
   const [isDeletePiecesOpened, toggleDeletePieces] = useModalToggle();
+  const [isPrintModalOpened, togglePrintModal] = useModalToggle();
   const reasonsForClosure = get(resources, 'closingReasons.records');
   const orderNumber = get(order, 'poNumber', '');
   const poLines = order?.compositePoLines;
@@ -503,6 +510,20 @@ const PO = ({
     [fetchOrder, handleErrorResponse, orderErrorModalShow, sendCallout],
   );
 
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+  const [orderToPrint, setOrderToPrint] = useState();
+  const printOrderModal = (exportData) => {
+    setOrderToPrint(exportData);
+    handlePrint();
+  };
+
+  const hydratedOrderToPrint = useMemo(() => {
+    return hydrateOrderToPrint({ order: orderToPrint });
+  }, [orderToPrint]);
+
   if (isLoading || order?.id !== match.params.id) {
     return (
       <LoadingPane
@@ -534,6 +555,7 @@ const PO = ({
         clickReopen: reopenOrder,
         clickUnopen: toggleUnopenOrderModal,
         clickUpdateEncumbrances: updateEncumbrances,
+        handlePrint: togglePrintModal,
         order,
       })}
       data-test-order-details
@@ -659,6 +681,17 @@ const PO = ({
           poLines={poLines}
         />
       )}
+      {isPrintModalOpened && (
+        <PrintSettingsModalContainer
+          onCancel={togglePrintModal}
+          printOrder={printOrderModal}
+          orderToPrint={order}
+        />
+      )}
+      <PrintContent
+        ref={componentRef}
+        dataSource={hydratedOrderToPrint}
+      />
     </Pane>
   );
 
