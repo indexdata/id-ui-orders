@@ -171,7 +171,7 @@
     "line.accordion.itemDetails": "Exemplardetails",
     "line.accordion.physical": "Details zur physischen Ressource",
     "line.accordion.vendor": "Lieferant",
-    "line.paneTitle.details": "Details zum Bestellposten - {Bestellpostennummer}",
+    "line.paneTitle.details": "Details zum Bestellposten - {poLineNumber}",
     "line.paneTitle.edit": "Bearbeiten - {lineNumber}",
     "line.paneTitle.new": "Bestellposten hinzufügen",
     "orderDetails.orderNumberPrefix": "Präfix",

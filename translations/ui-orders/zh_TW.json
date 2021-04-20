@@ -171,7 +171,7 @@
     "line.accordion.itemDetails": "單件詳細資訊",
     "line.accordion.physical": "实体资源详情",
     "line.accordion.vendor": "代理商",
-    "line.paneTitle.details": "詳細資料",
+    "line.paneTitle.details": "PO Line details - {poLineNumber}",
     "line.paneTitle.edit": "編輯 -  {lineNumber}",
     "line.paneTitle.new": "添加订单行",
     "orderDetails.orderNumberPrefix": "前缀",
