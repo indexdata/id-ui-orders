@@ -57,6 +57,7 @@ import CostView from './Cost/CostView';
 import VendorView from './Vendor/VendorView';
 import EresourcesView from './Eresources/EresourcesView';
 import ItemView from './Item/ItemView';
+import { LineLinkedInstances } from './LineLinkedInstances';
 import PhysicalView from './Physical/PhysicalView';
 import { OtherView } from './Other';
 import POLineInvoicesContainer from './POLineInvoices';
@@ -96,6 +97,7 @@ const POLineView = ({
     [ACCORDION_ID.relatedInvoices]: true,
     [ACCORDION_ID.notes]: true,
     [ACCORDION_ID.poLine]: true,
+    [ACCORDION_ID.linkedInstances]: false,
   });
   const [showConfirmDelete, toggleConfirmDelete] = useModalToggle();
   const [isPrintModalOpened, togglePrintModal] = useModalToggle();
@@ -399,6 +401,11 @@ const POLineView = ({
         <POLineAgreementLinesContainer
           label={<FormattedMessage id="ui-orders.line.accordion.linkedAgreementLines" />}
           lineId={line.id}
+        />
+
+        <LineLinkedInstances
+          line={line}
+          toggleSection={onToggleSection}
         />
       </AccordionSet>
       {showConfirmDelete && (
