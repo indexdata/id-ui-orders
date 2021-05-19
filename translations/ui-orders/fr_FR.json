@@ -640,7 +640,7 @@
     "button.exportCSV": "Exporter les résultats (CSV)",
     "permission.order.exportCSV": "Commandes: exporter les résultats de la recherche",
     "errors.conversionError": "Aucun taux de change n'a pu être récupéré pour la devise choisie dans les lignes de commande",
-    "errors.orderLinesNotLoaded": "Error while loading PO Lines",
+    "errors.orderLinesNotLoaded": "Erreur lors du chargement des lignes de commande",
     "exportSettings.export": "Exporter",
     "exportSettings.cancel": "Annuler",
     "exportSettings.all": "Tout",
