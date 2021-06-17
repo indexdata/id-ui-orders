@@ -346,7 +346,7 @@
     "order.delete.confirmLabel": "Eliminar",
     "order.delete.heading": "¿Eliminar {orderNumber} ?",
     "order.delete.message": "Eliminar orden de compra?",
-    "order.delete.success": "La línea de orden de compra {lineNumber} fue eliminada exitosamente",
+    "order.delete.success": "La línea de orden de compra {orderNumber} fue eliminada exitosamente",
     "poLine.actions.viewPO": "Ver PO",
     "renewal.date": "Fecha de renovación",
     "renewal.manualRenewal": "Manual de renovación",
