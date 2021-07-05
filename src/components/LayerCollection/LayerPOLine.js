@@ -32,6 +32,7 @@ import {
   ERROR_CODES,
   WORKFLOW_STATUS,
 } from '../../common/constants';
+import { useLinesLimit } from '../../common/hooks';
 import getCreateInventorySetting from '../../common/utils/getCreateInventorySetting';
 import {
   DISCOUNT_TYPE,
@@ -58,7 +59,7 @@ import ModalDeletePieces from '../ModalDeletePieces';
 
 function LayerPOLine({
   history,
-  location: { search },
+  location: { search, state: locationState },
   match: { params: { id, lineId } },
   mutator,
   resources,
@@ -78,6 +79,8 @@ function LayerPOLine({
   const [poLines, setPoLines] = useState();
   const poLine = poLines?.find((u) => u.id === lineId);
   const [vendor, setVendor] = useState();
+  const { isLoading: isLinesLimitLoading, linesLimit } = useLinesLimit(!(lineId || poLine));
+  const [isCreateAnotherChecked, setCreateAnotherChecked] = useState(locationState?.isCreateAnotherChecked);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const memoizedMutator = useMemo(() => mutator, []);
@@ -114,7 +117,7 @@ function LayerPOLine({
       }
 
       if (response.errors && response.errors.length) {
-        if (response.errors.find(el => el.code === 'lines_limit')) {
+        if (response.errors.find(el => el.code === ERROR_CODES.polLimitExceeded)) {
           openLineLimitExceededModal(line);
         } else if (response.errors.find(el => el.code === ERROR_CODES.piecesNeedToBeDeleted)) {
           toggleDeletePieces();
@@ -186,10 +189,18 @@ function LayerPOLine({
         type: 'success',
       });
 
+      const pathname = isCreateAnotherChecked
+        ? `/orders/view/${id}/po-line/create`
+        : `/orders/view/${id}/po-line/view/${savedLine.id}`;
+      const state = isCreateAnotherChecked ? { isCreateAnotherChecked: true } : {};
+
       history.push({
-        pathname: `/orders/view/${id}/po-line/view/${savedLine.id}`,
+        pathname,
         search,
+        state,
       });
+      setSavingValues();
+      setIsLoading(false);
     } catch (e) {
       if (saveAndOpen && savedLine) {
         await memoizedMutator.poLines.DELETE(savedLine);
@@ -198,7 +209,8 @@ function LayerPOLine({
       setIsLoading(false);
       handleErrorResponse(e, line);
     }
-  }, [handleErrorResponse, history, id, search, memoizedMutator.poLines, openOrder, sendCallout]);
+  },
+  [handleErrorResponse, history, id, search, memoizedMutator.poLines, openOrder, sendCallout, isCreateAnotherChecked]);
 
   const createNewOrder = useCallback(
     async () => {
@@ -381,7 +393,8 @@ function LayerPOLine({
     get(resources, 'locations.hasLoaded') &&
     get(resources, `${DICT_IDENTIFIER_TYPES}.hasLoaded`) &&
     get(resources, 'materialTypes.hasLoaded') &&
-    get(order, 'id') === id
+    get(order, 'id') === id &&
+    !isLinesLimitLoading
   );
 
   if (isLoading || isntLoaded) return <LoadingView dismissible onClose={onCancel} />;
@@ -402,6 +415,9 @@ function LayerPOLine({
         stripes={stripes}
         isSaveAndOpenButtonVisible={isSaveAndOpenButtonVisible}
         enableSaveBtn={Boolean(savingValues)}
+        linesLimit={linesLimit}
+        isCreateAnotherChecked={isCreateAnotherChecked}
+        toggleCreateAnother={setCreateAnotherChecked}
       />
       {isLinesLimitExceededModalOpened && (
         <LinesLimit
