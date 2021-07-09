@@ -32,7 +32,7 @@ import {
 
 import {
   isEresource,
-  isFresource,
+  isPhresource,
   isOtherResource,
 } from '../../common/POLFields';
 import LocationForm from './Location/LocationForm';
@@ -61,7 +61,7 @@ import styles from './POLineForm.css';
 const GAME_CHANGER_FIELDS = ['isPackage', 'orderFormat', 'checkinItems', 'packagePoLineId'];
 
 function POLineForm({
-  form: { change },
+  form: { change, batch },
   form,
   initialValues,
   onCancel,
@@ -253,7 +253,7 @@ function POLineForm({
 
   const orderFormat = get(formValues, 'orderFormat');
   const showEresources = isEresource(orderFormat);
-  const showPhresources = isFresource(orderFormat);
+  const showPhresources = isPhresource(orderFormat);
   const showOther = isOtherResource(orderFormat);
   const materialTypes = getMaterialTypesForSelect(parentResources);
   const identifierTypes = getIdentifierTypesForSelect(parentResources);
@@ -333,6 +333,7 @@ function POLineForm({
                         order={order}
                         contributorNameTypes={contributorNameTypes}
                         change={change}
+                        batch={batch}
                         identifierTypes={identifierTypes}
                         initialValues={initialValues}
                         stripes={stripes}

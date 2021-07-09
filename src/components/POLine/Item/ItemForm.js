@@ -45,6 +45,7 @@ import css from './ItemForm.css';
 class ItemForm extends Component {
   static propTypes = {
     change: PropTypes.func.isRequired,
+    batch: PropTypes.func.isRequired,
     identifierTypes: selectOptionsShape,
     contributorNameTypes: PropTypes.arrayOf(PropTypes.object),
     initialValues: PropTypes.object,
@@ -159,10 +160,20 @@ class ItemForm extends Component {
   };
 
   setIsPackage = () => {
-    const isPackageValue = !this.props.formValues?.isPackage;
+    const { batch, change, formValues } = this.props;
+    const isPackageValue = !formValues?.isPackage;
 
     this.onChangeField(isPackageValue, 'isPackage');
     this.onChangeField(isPackageValue, 'checkinItems');
+
+    if (isPackageValue) {
+      batch(() => {
+        formValues?.locations?.forEach((_, i) => {
+          change(`locations[${i}].quantityPhysical`, null);
+          change(`locations[${i}].quantityElectronic`, null);
+        });
+      });
+    }
   };
 
   setPublisher = ({ target: { value } }) => {

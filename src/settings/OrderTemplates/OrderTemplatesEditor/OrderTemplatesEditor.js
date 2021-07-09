@@ -26,7 +26,7 @@ import {
 
 import {
   isEresource,
-  isFresource,
+  isPhresource,
   isOtherResource,
 } from '../../../common/POLFields';
 import { WORKFLOW_STATUS } from '../../../common/constants';
@@ -159,7 +159,7 @@ class OrderTemplatesEditor extends Component {
       handleSubmit,
       close,
       values: formValues,
-      form: { change },
+      form: { change, batch },
       title,
       vendors,
       stripes,
@@ -274,6 +274,7 @@ class OrderTemplatesEditor extends Component {
                       order={ORDER}
                       formValues={formValues}
                       change={change}
+                      batch={batch}
                       required={false}
                       stripes={stripes}
                     />
@@ -284,7 +285,6 @@ class OrderTemplatesEditor extends Component {
                     id={ORDER_TEMPLATES_ACCORDION.POL_DETAILS}
                   >
                     <POLineDetailsForm
-                      change={change}
                       formValues={formValues}
                       createInventorySetting={createInventorySetting}
                     />
@@ -331,11 +331,12 @@ class OrderTemplatesEditor extends Component {
                       changeLocation={this.changeLocation}
                       locationIds={locationIds}
                       locations={locations}
+                      formValues={formValues}
                     />
                   </Accordion>
 
                   {
-                    isFresource(orderFormat) && (
+                    isPhresource(orderFormat) && (
                       <Accordion
                         label={ORDER_TEMPLATES_ACCORDION_TITLES[ORDER_TEMPLATES_ACCORDION.POL_FRESOURCES]}
                         id={ORDER_TEMPLATES_ACCORDION.POL_FRESOURCES}
