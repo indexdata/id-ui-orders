@@ -7,6 +7,7 @@
 * Checking and unchecking isPackage can hide invalid data that prevents saving POL. Refs UIOR-737.
 * Allow user to select holding rather than location at point of order. Refs UIOR-724.
 * Restrict editing order location and quantity on POL. Refs UIOR-726.
+* Allow user to sort "Related invoices" table by Invoice date. Refs UIOR-752.
 
 ## [2.4.0](https://github.com/folio-org/ui-orders/tree/v2.4.0) (2021-06-18)
 [Full Changelog](https://github.com/folio-org/ui-orders/compare/v2.3.1...v2.4.0)
