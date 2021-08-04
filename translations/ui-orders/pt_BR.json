@@ -672,7 +672,7 @@
     "errors.renewalIntervalIsNotSet": "Renewal interval is not set",
     "errors.renewalDateIsNotSet": "Renewal date is not set",
     "export.invalidReference": "Referência inválida",
-    "filter.expenseClass": "Expense class",
+    "filter.expenseClass": "Classe de despesa",
     "instance.relations": "Relação",
     "line.accordion.linkedInstances": "Linked instances",
     "print.po": "Pedido de compra",
