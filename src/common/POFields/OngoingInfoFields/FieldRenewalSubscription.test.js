@@ -1,6 +1,6 @@
 import React from 'react';
 import user from '@testing-library/user-event';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Form } from 'react-final-form';
 
 import FieldRenewalSubscription from './FieldRenewalSubscription';
@@ -26,8 +26,8 @@ describe('FieldRenewalSubscription', () => {
     expect(screen.getByText('ui-orders.renewals.subscription')).toBeInTheDocument();
   });
 
-  it('should render subscription field tooltip if it disabled', async () => {
-    await waitFor(() => renderFieldRenewalSubscription({ disabled: true }));
+  it('should render subscription field tooltip if it disabled', () => {
+    renderFieldRenewalSubscription({ disabled: true });
 
     expect(screen.getByText('ui-orders.renewals.subscription.tooltip')).toBeInTheDocument();
   });
