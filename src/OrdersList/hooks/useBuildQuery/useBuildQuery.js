@@ -5,20 +5,16 @@ import {
   useLocaleDateFormat,
 } from '@folio/stripes-acq-components';
 
-import { makeSearchQuery } from './OrdersListSearchConfig';
-import { customFilterMap } from './OrdersListFilterConfig';
+import { makeSearchQuery } from '../../OrdersListSearchConfig';
+import { customFilterMap } from '../../OrdersListFilterConfig';
 
-function useBuildQuery() {
+export function useBuildQuery() {
   const localeDateFormat = useLocaleDateFormat();
 
-  const buildQuery = useCallback(makeQueryBuilder(
+  return useCallback(makeQueryBuilder(
     'cql.allRecords=1',
     makeSearchQuery(localeDateFormat),
     'sortby metadata.updatedDate/sort.descending',
     customFilterMap,
   ), [localeDateFormat]);
-
-  return buildQuery;
 }
-
-export default useBuildQuery;
