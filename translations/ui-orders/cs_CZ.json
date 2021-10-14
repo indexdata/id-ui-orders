@@ -359,7 +359,7 @@
     "piece.delete.message": "Delete piece?",
     "settings.closingOrderReasons": "Closing purchase order reasons",
     "settings.general.label": "General",
-    "settings.inventoryInteractions": "Inventory interactions",
+    "settings.inventoryInteractions": "Inventory interactions defaults",
     "settings.newBtn": "New",
     "settings.orderTemplates": "Order templates",
     "settings.polinesLimit": "Purchase order lines limit",
@@ -406,7 +406,7 @@
     "settings.orderTemplates.accordion.polOtherResources": "Other resource details",
     "order.poNumber": "PO number",
     "order.lastUpdated": "Last updated",
-    "order.acquisitionsUnit": "Acquisitions unit",
+    "order.acquisitionsUnit": "Acquisition unit",
     "search.contributors": "Contributor",
     "search.donor": "Donor",
     "search.details.productIds": "Product ID",
@@ -699,5 +699,10 @@
     "location.editInReceiving": "Edit in receiving",
     "orderDetails.dateOrdered": "\nDatum objednání",
     "relatedInvoices.vendorInvoiceNo": "Číslo faktury dodavatele",
-    "permission.order.updateEncumbrances": "Orders: Update encumbrances"
+    "permission.order.updateEncumbrances": "Orders: Update encumbrances",
+    "settings.inventoryInteraction.label": "Inventory interaction",
+    "settings.instanceMatching": "Instance matching",
+    "settings.instanceMatching.description": "When active instance matching will cause purchase order lines that are set to create instance, but are not manualy linked to an instance record. To first search instances to find a match for one or more of the product IDs provided on the POL. If a product Id is found that instance will be linked to the POL and the system will NOT create a new instance for that POL. If no matches are found the system will create a new instance record and link the POL to that instance.",
+    "settings.instanceMatching.toggle": "Disable instance matching",
+    "shortcut.addPOL": "Add POL"
 }
