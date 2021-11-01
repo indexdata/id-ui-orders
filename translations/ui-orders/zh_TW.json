@@ -424,7 +424,6 @@
     "relatedInvoices.expendedAmount": "支出金額",
     "relatedInvoices.invoice": "發票號碼",
     "relatedInvoices.invoiceDate": "發票日期",
-    "relatedInvoices.pieces": "件數",
     "relatedInvoices.quantity": "數量",
     "relatedInvoices.status": "狀態",
     "relatedInvoices.vendorName": "代理商名稱",

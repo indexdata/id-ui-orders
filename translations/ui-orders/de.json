@@ -424,7 +424,6 @@
     "relatedInvoices.expendedAmount": "Verausgabter Betrag",
     "relatedInvoices.invoice": "Rechnung #",
     "relatedInvoices.invoiceDate": "Rechnungsdatum",
-    "relatedInvoices.pieces": "Teil(e)",
     "relatedInvoices.quantity": "Anzahl",
     "relatedInvoices.status": "Status",
     "relatedInvoices.vendorName": "Lieferantenname",
