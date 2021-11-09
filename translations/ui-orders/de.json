@@ -630,7 +630,7 @@
     "renewals.subscription.tooltip": "Bestellungstyp \"Fortlaufend\" für dieses Feld auswählen",
     "renewals.manualRenewal.tooltip": "\"Abonnement\" für dieses Feld auswählen",
     "orderSummary.totalExpended": "Gesamtausgaben",
-    "orderLineList.orderWorkflow": "Bestellstatus",
+    "orderLineList.orderWorkflow": "Bestellungsstatus",
     "errors.budgetExpenseClassNotFound": "<b>{expenseClassName}</b> Kostenart für Fonds <b>{fundCode}</b> nicht gefunden",
     "button.exportCSV": "Ergebnisse exportieren (CSV)",
     "permission.order.exportCSV": "Bestellungen: Suchergebnisse exportieren",
