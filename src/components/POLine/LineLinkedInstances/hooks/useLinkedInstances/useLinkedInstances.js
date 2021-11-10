@@ -49,7 +49,7 @@ export const useLinkedTitles = line => {
     () => {
       const searchParams = {
         limit: LIMIT_MAX,
-        query: `poLineId=${line.id} and instanceId=""`,
+        query: `poLineId=${line.id} and instanceId="" sortby title`,
       };
 
       return ky.get('orders/titles', { searchParams }).json();
@@ -68,12 +68,7 @@ export const useLinkedInstances = line => {
   const { isLoading: isLinkedTitlesLoading, linkedTitles = [], refetchLinkedTitles } = useLinkedTitles(line);
   const ky = useOkapiKy();
 
-  const instanceTitlesMap = linkedTitles.reduce((acc, title) => {
-    acc[title.instanceId] = title;
-
-    return acc;
-  }, {});
-  const linkedInstanceIds = Object.keys(instanceTitlesMap).filter(Boolean);
+  const linkedInstanceIds = linkedTitles.map(({ instanceId }) => instanceId).filter(Boolean);
 
   if (
     line.instanceId
@@ -84,17 +79,25 @@ export const useLinkedInstances = line => {
   }
 
   const { isLoading, data } = useQuery(
-    ['ui-orders', 'linked-instances', line.id, linkedInstanceIds],
+    ['ui-orders', 'linked-instances', line.id, linkedInstanceIds, linkedTitles],
     async () => {
       const { data: relationTypesData } = await fetchInstanceRelationTypes();
 
       return batchRequest(
         async ({ params: searchParams }) => {
           const { instances = [] } = await ky.get('inventory/instances', { searchParams }).json();
+          const hydrateLinkedInstancesMap = instances.reduce((acc, instance) => {
+            acc[instance.id] = {
+              ...instance,
+              ...hydrateLinkedInstance(instance, relationTypesData?.instanceRelationshipTypes),
+            };
 
-          return instances.map(instance => ({
-            ...hydrateLinkedInstance(instance, relationTypesData?.instanceRelationshipTypes),
-            receivingTitle: instanceTitlesMap[instance.id],
+            return acc;
+          }, {});
+
+          return linkedTitles.map((title) => ({
+            ...hydrateLinkedInstancesMap[title.instanceId],
+            receivingTitle: title,
           }));
         },
         linkedInstanceIds,
