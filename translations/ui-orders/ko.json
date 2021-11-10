@@ -631,7 +631,7 @@
     "renewals.manualRenewal.tooltip": "이 필드와 상호 작용하려면 구독을 확인하십시오.",
     "orderSummary.totalExpended": "총 지출",
     "orderLineList.orderWorkflow": "주문 상태",
-    "errors.budgetExpenseClassNotFound": "<b>{비용ClassName}</b> 비용 클래스는 <b>{fundCode}</b> 펀드에서 찾을 수 없습니다.",
+    "errors.budgetExpenseClassNotFound": "<b>{expenseClassName}</b> 비용 클래스는 <b>{fundCode}</b> 펀드에서 찾을 수 없습니다.",
     "button.exportCSV": "결과 내보내기(CSV)",
     "permission.order.exportCSV": "주문: 검색 결과 내보내기",
     "errors.conversionError": "PO 라인에서 선택한 통화에 대한 환율을 검색할 수 없습니다.",
