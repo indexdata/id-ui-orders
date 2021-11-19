@@ -446,7 +446,7 @@
     "requests.title.multiple": "多个单件有未结请求",
     "requests.message.single": "以下单件有一个未结请求",
     "requests.message.multiple": "以下单件有未结请求",
-    "requests.message.barcode": "条码（ {barcode} ）",
+    "requests.message.barcode": "條碼（ {barcode} ）",
     "requests.message.itemId": "单件（ {itemId} ）",
     "requests.request": "请求",
     "requests.request.isOpened": "是",
