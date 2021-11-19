@@ -29,8 +29,10 @@ export const useConnectedInvoiceLines = (orderLineId) => {
     [namespace],
     async () => {
       const { invoiceLines = [] } = await ky.get(INVOICE_LINES_API, {
-        query: `poLineId==${orderLineId}`,
-        limit: LIMIT_MAX,
+        searchParams: {
+          query: `poLineId==${orderLineId}`,
+          limit: LIMIT_MAX,
+        },
       }).json();
 
       const invoicesIds = invoiceLines.map(({ invoiceId }) => invoiceId);
