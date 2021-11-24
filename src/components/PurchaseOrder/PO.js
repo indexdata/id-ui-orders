@@ -12,6 +12,7 @@ import {
   baseManifest,
   LIMIT_MAX,
   handleKeyCommand,
+  RECEIPT_STATUS,
   Tags,
   TagsBadge,
   useAcqRestrictions,
@@ -184,7 +185,10 @@ const PO = ({
   const tags = get(order, 'tags.tagList', []);
   const accordionStatusRef = useRef();
 
-  const hasRemovablePieces = poLines?.some(({ cost, checkinItems }) => (
+  const isReceiptRequired = !(poLines?.every(({ receiptStatus }) => (
+    receiptStatus === RECEIPT_STATUS.receiptNotRequired
+  )));
+  const hasRemovablePieces = isReceiptRequired && poLines?.some(({ cost, checkinItems }) => (
     !checkinItems
     && (cost?.quantityPhysical || 0 + cost?.quantityElectronic || 0) > 0
   ));
@@ -733,7 +737,7 @@ const PO = ({
             id="order-unopen-confirmation"
             confirmLabel={<FormattedMessage id="ui-orders.unopenOrderModal.confirmLabel" />}
             heading={<FormattedMessage id="ui-orders.unopenOrderModal.title" values={{ orderNumber }} />}
-            message={<FormattedMessage id={`ui-orders.unopenOrderModal.message.${hasRemovablePieces ? 'withPieces' : 'withoutPiceses'}`} />}
+            message={<FormattedMessage id={`ui-orders.unopenOrderModal.message.${hasRemovablePieces ? 'withPieces' : 'withoutPieces'}`} />}
             onCancel={toggleUnopenOrderModal}
             onConfirm={unopenOrder}
             open
