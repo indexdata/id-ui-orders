@@ -48,6 +48,7 @@ function POLineDetailsForm({
   integrationConfigs = [],
 }) {
   const createInventorySetting = getCreateInventorySetting(get(parentResources, ['createInventory', 'records'], []));
+  const isManualOrder = Boolean(order?.manualPo);
   const isPostPendingOrder = !isWorkflowStatusIsPending(order);
   const isPackage = get(formValues, 'isPackage');
 
@@ -87,7 +88,10 @@ function POLineDetailsForm({
             xs={6}
             md={3}
           >
-            <FieldAutomaticExport disabled={isPostPendingOrder} />
+            <FieldAutomaticExport
+              disabled={isPostPendingOrder || isManualOrder}
+              isManualOrder={isManualOrder}
+            />
           </Col>
         </IfFieldVisible>
 
