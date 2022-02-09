@@ -535,7 +535,7 @@
     "errors.userHasNoApprovalPermission": "L'utente non dispone delle autorizzazioni per approvare l'ordine - l'operazione è riservata",
     "errors.zeroLocQty": "Physical or electronic location quantity must be specified",
     "checkIn.receivedDate": "Data di ricevimento",
-    "errors.fundCannotBePaid": "Una o più distribuzioni di fondi su quest'ordine non possono essere impegnate, perché non c'è abbastanza denaro nel bilancio",
+    "errors.fundCannotBePaid": "La distribuzione di fondi selezionata per quest'ordine non può essere impegnata poiché supera la disponibilità del budget",
     "receiving.itemStatus.Order closed": "Ordine chiuso",
     "cost.quantity": "Quantità",
     "itemDetails.packageName": "Nome pacchetto",
