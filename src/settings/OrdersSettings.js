@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Settings } from '@folio/stripes/smart-components';
 
+import AcquisitionMethods from './AcquisitionMethods';
 import POLinesLimit from './POLinesLimit';
 import ClosingReasons from './ClosingReasons';
 import OrderNumber from './OrderNumber';
@@ -15,6 +16,7 @@ import Prefixes from './Prefixes';
 import InstanceStatus from './InstanceStatus';
 import InstanceType from './InstanceType';
 import LoanType from './LoanType';
+import InstanceMatching from './InstanceMatching';
 
 const sections = [
   {
@@ -33,30 +35,6 @@ const sections = [
         perm: 'ui-orders.settings.view',
       },
       {
-        component: CreateInventory,
-        label: <FormattedMessage id="ui-orders.settings.inventoryInteractions" />,
-        route: 'create-inventory',
-        perm: 'ui-orders.settings.view',
-      },
-      {
-        component: InstanceStatus,
-        label: <FormattedMessage id="ui-orders.settings.instanceStatus" />,
-        route: 'instance-status',
-        perm: 'ui-orders.settings.view',
-      },
-      {
-        component: InstanceType,
-        label: <FormattedMessage id="ui-orders.settings.instanceType" />,
-        route: 'instance-type',
-        perm: 'ui-orders.settings.view',
-      },
-      {
-        component: LoanType,
-        label: <FormattedMessage id="ui-orders.settings.loanType" />,
-        route: 'loan-type',
-        perm: 'ui-orders.settings.view',
-      },
-      {
         component: OrderTemplates,
         label: <FormattedMessage id="ui-orders.settings.orderTemplates" />,
         route: 'order-templates',
@@ -72,6 +50,12 @@ const sections = [
         component: OpenOrder,
         label: <FormattedMessage id="ui-orders.settings.openOrder" />,
         route: 'open-order',
+        perm: 'ui-orders.settings.view',
+      },
+      {
+        component: AcquisitionMethods,
+        label: <FormattedMessage id="ui-orders.settings.acquisitionMethods" />,
+        route: 'acquisition-methods',
         perm: 'ui-orders.settings.view',
       },
     ],
@@ -95,6 +79,41 @@ const sections = [
         component: Suffixes,
         label: <FormattedMessage id="ui-orders.settings.poNumber.suffixes" />,
         route: 'suffixes',
+        perm: 'ui-orders.settings.view',
+      },
+    ],
+  },
+  {
+    label: <FormattedMessage id="ui-orders.settings.inventoryInteraction.label" />,
+    pages: [
+      {
+        component: InstanceMatching,
+        label: <FormattedMessage id="ui-orders.settings.instanceMatching" />,
+        route: 'instance-matching',
+        perm: 'ui-orders.settings.all',
+      },
+      {
+        component: CreateInventory,
+        label: <FormattedMessage id="ui-orders.settings.inventoryInteractions" />,
+        route: 'create-inventory',
+        perm: 'ui-orders.settings.view',
+      },
+      {
+        component: InstanceStatus,
+        label: <FormattedMessage id="ui-orders.settings.instanceStatus" />,
+        route: 'instance-status',
+        perm: 'ui-orders.settings.view',
+      },
+      {
+        component: InstanceType,
+        label: <FormattedMessage id="ui-orders.settings.instanceType" />,
+        route: 'instance-type',
+        perm: 'ui-orders.settings.view',
+      },
+      {
+        component: LoanType,
+        label: <FormattedMessage id="ui-orders.settings.loanType" />,
+        route: 'loan-type',
         perm: 'ui-orders.settings.view',
       },
     ],

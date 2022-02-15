@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { Field } from 'react-final-form';
 
 import { Button, TextField } from '@folio/stripes/components';
 import { Pluggable, stripesConnect } from '@folio/stripes/core';
@@ -8,6 +9,8 @@ import {
   baseManifest,
   LINES_API,
 } from '@folio/stripes-acq-components';
+
+import styles from './PackagePoLineField.css';
 
 function PackagePoLineField({ disabled, poLineId, resources, onSelectLine }) {
   const { id, titleOrPackage } = resources?.linkedPoLine?.records?.[0] ?? {};
@@ -27,7 +30,9 @@ function PackagePoLineField({ disabled, poLineId, resources, onSelectLine }) {
   ), []);
 
   return (
-    <>
+    <div className={styles.packagePoLineField}>
+      {/* non-rendering Field component for updating value with form.change() and affecting FormState */}
+      <Field name="packagePoLineId">{() => null}</Field>
       <TextField
         data-test-package-line-title
         fullWidth
@@ -42,8 +47,7 @@ function PackagePoLineField({ disabled, poLineId, resources, onSelectLine }) {
           addLines={onSelectLine}
           aria-haspopup="true"
           dataKey="find-po-line"
-          filters="isPackage.true"
-          initialFilterState={{ isPackage: ['true'] }}
+          initialFilters={{ isPackage: ['true'] }}
           isSingleSelect
           type="find-po-line"
           renderTrigger={pluginButton}
@@ -51,7 +55,7 @@ function PackagePoLineField({ disabled, poLineId, resources, onSelectLine }) {
           <FormattedMessage id="ui-orders.find-po-line-plugin-unavailable" />
         </Pluggable>
       )}
-    </>
+    </div>
   );
 }
 

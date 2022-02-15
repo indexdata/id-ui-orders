@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-final-form';
 
 import {
   Col,
@@ -11,17 +12,31 @@ import {
   FieldVendorInstructions,
   FieldVendorAccountNumber,
 } from '../../../common/POLFields';
+import { IfFieldVisible } from '../../../common/IfFieldVisible';
 import { isWorkflowStatusIsPending } from '../../PurchaseOrder/util';
+import { toggleAutomaticExport } from '../../Utils/toggleAutomaticExport';
 
 const VendorForm = ({
-  accounts,
   order,
+  accounts = [],
+  hiddenFields = {},
+  integrationConfigs = [],
 }) => {
+  const { change, getState } = useForm();
   const isPostPendingOrder = !isWorkflowStatusIsPending(order);
-  const accountsDataOptions = accounts.map(({ accountNo }) => ({
-    label: accountNo,
+  const accountsDataOptions = accounts.map(({ name, accountNo }) => ({
+    label: `${name} (${accountNo})`,
     value: accountNo,
   }));
+
+  const onAccountChange = useCallback(
+    ({ target: { value } }) => {
+      change('vendorDetail.vendorAccount', value);
+      const acquisitionMethod = getState().values?.acquisitionMethod;
+
+      toggleAutomaticExport({ vendorAccount: value, acquisitionMethod, integrationConfigs, change });
+    }, [change, getState, integrationConfigs],
+  );
 
   return (
     <>
@@ -29,21 +44,27 @@ const VendorForm = ({
         fieldName="vendorDetail.referenceNumbers"
       />
       <Row>
-        <Col
-          xs={6}
-          md={3}
-        >
-          <FieldVendorAccountNumber
-            accounts={accountsDataOptions}
-            disabled={isPostPendingOrder}
-          />
-        </Col>
-        <Col
-          xs={6}
-          md={3}
-        >
-          <FieldVendorInstructions disabled={isPostPendingOrder} />
-        </Col>
+        <IfFieldVisible visible={!hiddenFields.vendorDetail?.vendorAccount} name="vendorDetail.vendorAccount">
+          <Col
+            xs={6}
+            md={3}
+          >
+            <FieldVendorAccountNumber
+              accounts={accountsDataOptions}
+              disabled={isPostPendingOrder}
+              onChange={onAccountChange}
+            />
+          </Col>
+        </IfFieldVisible>
+
+        <IfFieldVisible visible={!hiddenFields.vendorDetail?.instructions} name="vendorDetail.instructions">
+          <Col
+            xs={6}
+            md={3}
+          >
+            <FieldVendorInstructions disabled={isPostPendingOrder} />
+          </Col>
+        </IfFieldVisible>
       </Row>
     </>
   );
@@ -52,10 +73,8 @@ const VendorForm = ({
 VendorForm.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.object),
   order: PropTypes.object.isRequired,
-};
-
-VendorForm.defaultProps = {
-  accounts: [],
+  hiddenFields: PropTypes.object,
+  integrationConfigs: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default VendorForm;

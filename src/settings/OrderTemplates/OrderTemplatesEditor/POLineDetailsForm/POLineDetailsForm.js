@@ -9,6 +9,7 @@ import {
 import {
   FieldPOLineNumber,
   FieldAcquisitionMethod,
+  FieldAutomaticExport,
   FieldOrderFormat,
   FieldReceiptDate,
   FieldDonor,
@@ -23,8 +24,9 @@ import {
   FieldCancellationRestrictionNote,
   FieldPOLineDescription,
 } from '../../../../common/POLFields';
+import { VisibilityControl } from '../../../../common/VisibilityControl';
 
-const POLineDetailsForm = ({ change, formValues, createInventorySetting }) => {
+const POLineDetailsForm = ({ formValues, createInventorySetting }) => {
   return (
     <>
       <Row>
@@ -44,10 +46,18 @@ const POLineDetailsForm = ({ change, formValues, createInventorySetting }) => {
 
         <Col
           xs={3}
+          data-col-order-template-pol-auto-export
+        >
+          <VisibilityControl name="hiddenFields.automaticExport">
+            <FieldAutomaticExport />
+          </VisibilityControl>
+        </Col>
+
+        <Col
+          xs={3}
           data-col-order-template-pol-order-format
         >
           <FieldOrderFormat
-            change={change}
             formValues={formValues}
             createInventorySetting={createInventorySetting}
             required={false}
@@ -60,21 +70,27 @@ const POLineDetailsForm = ({ change, formValues, createInventorySetting }) => {
           xs={3}
           data-col-order-template-pol-receipt-date
         >
-          <FieldReceiptDate />
+          <VisibilityControl name="hiddenFields.receiptDate">
+            <FieldReceiptDate />
+          </VisibilityControl>
         </Col>
 
         <Col
           xs={3}
           data-col-order-template-pol-receipt-status
         >
-          <FieldReceiptStatus workflowStatus="template" />
+          <VisibilityControl name="hiddenFields.receiptStatus">
+            <FieldReceiptStatus workflowStatus="template" />
+          </VisibilityControl>
         </Col>
 
         <Col
           xs={3}
           data-col-order-template-pol-payment-status
         >
-          <FieldPaymentStatus workflowStatus="template" />
+          <VisibilityControl name="hiddenFields.paymentStatus">
+            <FieldPaymentStatus workflowStatus="template" />
+          </VisibilityControl>
         </Col>
       </Row>
 
@@ -83,21 +99,27 @@ const POLineDetailsForm = ({ change, formValues, createInventorySetting }) => {
           xs={3}
           data-col-order-template-pol-donor
         >
-          <FieldDonor />
+          <VisibilityControl name="hiddenFields.donor">
+            <FieldDonor />
+          </VisibilityControl>
         </Col>
 
         <Col
           xs={3}
           data-col-order-template-pol-selector
         >
-          <FieldSelector />
+          <VisibilityControl name="hiddenFields.selector">
+            <FieldSelector />
+          </VisibilityControl>
         </Col>
 
         <Col
           xs={3}
           data-col-order-template-pol-requester
         >
-          <FieldRequester />
+          <VisibilityControl name="hiddenFields.requester">
+            <FieldRequester />
+          </VisibilityControl>
         </Col>
       </Row>
 
@@ -106,28 +128,36 @@ const POLineDetailsForm = ({ change, formValues, createInventorySetting }) => {
           xs={3}
           data-col-order-template-pol-cancel-restriction
         >
-          <FieldCancellationRestriction />
+          <VisibilityControl name="hiddenFields.cancellationRestriction">
+            <FieldCancellationRestriction />
+          </VisibilityControl>
         </Col>
 
         <Col
           xs={3}
           data-col-order-template-pol-rush
         >
-          <FieldRush />
+          <VisibilityControl name="hiddenFields.rush">
+            <FieldRush />
+          </VisibilityControl>
         </Col>
 
         <Col
           xs={3}
           data-col-order-template-pol-collection
         >
-          <FieldCollection />
+          <VisibilityControl name="hiddenFields.collection">
+            <FieldCollection />
+          </VisibilityControl>
         </Col>
 
         <Col
           xs={3}
           data-col-order-template-pol-check-in
         >
-          <FieldCheckInItems disabled={formValues.isPackage} />
+          <VisibilityControl name="hiddenFields.checkinItems">
+            <FieldCheckInItems disabled={formValues.isPackage} />
+          </VisibilityControl>
         </Col>
       </Row>
 
@@ -136,14 +166,18 @@ const POLineDetailsForm = ({ change, formValues, createInventorySetting }) => {
           xs={3}
           data-col-order-template-pol-cancel-restr-note
         >
-          <FieldCancellationRestrictionNote />
+          <VisibilityControl name="hiddenFields.cancellationRestrictionNote">
+            <FieldCancellationRestrictionNote />
+          </VisibilityControl>
         </Col>
 
         <Col
           xs={3}
           data-col-order-template-pol-description
         >
-          <FieldPOLineDescription />
+          <VisibilityControl name="hiddenFields.poLineDescription">
+            <FieldPOLineDescription />
+          </VisibilityControl>
         </Col>
       </Row>
     </>
@@ -151,7 +185,6 @@ const POLineDetailsForm = ({ change, formValues, createInventorySetting }) => {
 };
 
 POLineDetailsForm.propTypes = {
-  change: PropTypes.func.isRequired,
   formValues: PropTypes.object.isRequired,
   createInventorySetting: PropTypes.object,
 };

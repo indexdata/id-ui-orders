@@ -7,10 +7,14 @@ import {
   Button,
   Col,
   Pane,
+  PaneFooter,
   Row,
   TextField,
+  HasCommand,
+  checkScope,
 } from '@folio/stripes/components';
 import stripesForm from '@folio/stripes/form';
+import { handleKeyCommand, usePaneFocus } from '@folio/stripes-acq-components';
 
 import { LINES_LIMIT_DEFAULT } from '../components/Utils/const';
 
@@ -21,6 +25,8 @@ const validateLimit = value => {
 };
 
 const POLinesLimitForm = props => {
+  const { paneTitleRef } = usePaneFocus();
+
   const {
     handleSubmit,
     pristine,
@@ -28,42 +34,65 @@ const POLinesLimitForm = props => {
     paneTitle,
   } = props;
 
-  const lastMenu = (
+  const submitButton = (
     <Button
       buttonStyle="primary paneHeaderNewButton"
       disabled={(pristine || submitting)}
       id="set-polines-limit-submit-btn"
-      marginBottom0
       type="submit"
     >
       <FormattedMessage id="ui-orders.settings.saveBtn" />
     </Button>
   );
 
+  const footer = (
+    <PaneFooter
+      renderEnd={submitButton}
+    />
+  );
+
+  const shortcuts = [
+    {
+      name: 'save',
+      handler: handleKeyCommand(handleSubmit, { disabled: pristine || submitting }),
+    },
+  ];
+
   return (
-    <form id="po-lines-limit-form" onSubmit={handleSubmit}>
-      <Pane
-        defaultWidth="100%"
-        fluidContentWidth
-        lastMenu={lastMenu}
-        paneTitle={paneTitle}
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <form
+        id="po-lines-limit-form"
+        onSubmit={handleSubmit}
+        style={{ height: '100vh' }}
       >
-        <Row>
-          <Col xs={6}>
-            <div>
-              <Field
-                component={TextField}
-                label={<FormattedMessage id="ui-orders.settings.setPOLInesLimit" />}
-                name="value"
-                placeholder={LINES_LIMIT_DEFAULT}
-                type="number"
-                validate={validateLimit}
-              />
-            </div>
-          </Col>
-        </Row>
-      </Pane>
-    </form>
+        <Pane
+          defaultWidth="100%"
+          fluidContentWidth
+          footer={footer}
+          paneTitle={paneTitle}
+          paneTitleRef={paneTitleRef}
+        >
+          <Row>
+            <Col xs={6}>
+              <div>
+                <Field
+                  component={TextField}
+                  label={<FormattedMessage id="ui-orders.settings.setPOLInesLimit" />}
+                  name="value"
+                  placeholder={LINES_LIMIT_DEFAULT}
+                  type="number"
+                  validate={validateLimit}
+                />
+              </div>
+            </Col>
+          </Row>
+        </Pane>
+      </form>
+    </HasCommand>
   );
 };
 

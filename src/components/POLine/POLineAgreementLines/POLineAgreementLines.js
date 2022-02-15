@@ -29,24 +29,25 @@ const resultFormatter = {
   name: (agrLine) => (!agrLine.owner?.id ? <NoValue /> : (
     <Link
       data-test-link-to-agreement
-      to={`/erm/agreements/${agrLine.owner.id}`}
+      to={`/erm/agreements/${agrLine.owner.id}/line/${agrLine.id}`}
     >
       {agrLine.owner.name}
     </Link>
   )),
   startDate: ({ startDate }) => startDate || '',
   endDate: ({ endDate }) => endDate || '',
-  // eslint-disable-next-line react/prop-types
-  status: ({ owner }) => (
-    owner?.agreementStatus?.value
+  status: agreement => {
+    const { owner } = agreement;
+
+    return owner?.agreementStatus?.value
       ? (
         <FormattedMessage
           id={`ui-orders.relatedAgreementLines.status.${owner?.agreementStatus?.value}`}
           defaultMessage={owner?.agreementStatus?.label}
         />
       )
-      : owner?.agreementStatus?.label || <NoValue />
-  ),
+      : owner?.agreementStatus?.label || <NoValue />;
+  },
   arrow: () => <Icon icon="caret-right" />,
 };
 

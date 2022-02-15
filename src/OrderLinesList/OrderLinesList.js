@@ -13,41 +13,46 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import {
   MultiColumnList,
   NoValue,
-  Paneset,
 } from '@folio/stripes/components';
+import {
+  ColumnManagerMenu,
+  PersistedPaneset,
+  useColumnManager,
+} from '@folio/stripes/smart-components';
 import {
   FiltersPane,
   FolioFormattedDate,
   NoResultsMessage,
   ORDER_STATUS_LABEL,
+  PrevNextPagination,
   ResetButton,
   ResultsPane,
   SingleSearchForm,
+  useFiltersToogle,
   useLocalStorageFilters,
   useLocationSorting,
-  useToggle,
   useModalToggle,
+  useItemToView,
 } from '@folio/stripes-acq-components';
+import { searchableIndexes } from '@folio/plugin-find-po-line';
 
 import OrdersNavigation from '../common/OrdersNavigation';
 import OrderLinesFiltersContainer from './OrderLinesFiltersContainer';
 import Details from './Details';
-import { searchableIndexes } from './OrdersLinesSearchConfig';
 import OrderLinesListActionMenu from './OrderLinesListActionMenu';
 import LineExportSettingsModalContainer from './LineExportSettingModalContainer';
 
 const VENDOR_REF_NUMBER = 'vendorDetail.refNumber';
 const UPDATED_DATE = 'metadata.updatedDate';
 const title = <FormattedMessage id="ui-orders.navigation.orderLines" />;
-const visibleColumns = ['poLineNumber', UPDATED_DATE, 'title', 'productIds', VENDOR_REF_NUMBER, 'funCodes', 'orderWorkflow'];
-const sortableColumns = ['poLineNumber', UPDATED_DATE, 'title'];
-const resultsFormatter = {
-  [UPDATED_DATE]: line => <FolioFormattedDate value={get(line, 'metadata.updatedDate')} />,
+const sortableColumns = ['poLineNumber', UPDATED_DATE, 'titleOrPackage'];
+
+export const resultsFormatter = {
+  [UPDATED_DATE]: line => <FolioFormattedDate value={get(line, 'metadata.updatedDate')} utc={false} />,
   productIds: line => get(line, 'details.productIds', []).map(product => product.productId).join(', '),
   [VENDOR_REF_NUMBER]: line => (
     line.vendorDetail?.referenceNumbers?.map(({ refNumber }) => refNumber)?.join(', ') || <NoValue />
   ),
-  title: line => get(line, 'titleOrPackage', ''),
   funCodes: line => line.fundDistribution?.map(({ code }) => code).filter(Boolean).join(', '),
   orderWorkflow: line => ORDER_STATUS_LABEL[line.orderWorkflow],
 };
@@ -55,11 +60,12 @@ const resultsFormatter = {
 export const columnMapping = {
   poLineNumber: <FormattedMessage id="ui-orders.orderLineList.poLineNumber" />,
   [UPDATED_DATE]: <FormattedMessage id="ui-orders.orderLineList.updatedDate" />,
-  title: <FormattedMessage id="ui-orders.orderLineList.titleOrPackage" />,
+  titleOrPackage: <FormattedMessage id="ui-orders.orderLineList.titleOrPackage" />,
   productIds: <FormattedMessage id="ui-orders.orderLineList.productIds" />,
   [VENDOR_REF_NUMBER]: <FormattedMessage id="ui-orders.orderLineList.vendorRefNumber" />,
   funCodes: <FormattedMessage id="ui-orders.orderLineList.funCodes" />,
   orderWorkflow: <FormattedMessage id="ui-orders.orderLineList.orderWorkflow" />,
+  acqUnit: <FormattedMessage id="ui-orders.order.acquisitionsUnit" />,
 };
 
 function OrderLinesList({
@@ -72,6 +78,7 @@ function OrderLinesList({
   orderLinesCount,
   refreshList,
   linesQuery,
+  pagination,
 }) {
   const [
     filters,
@@ -88,7 +95,7 @@ function OrderLinesList({
     sortingDirection,
     changeSorting,
   ] = useLocationSorting(location, history, resetData, sortableColumns);
-  const [isFiltersOpened, toggleFilters] = useToggle(true);
+  const { isFiltersOpened, toggleFilters } = useFiltersToogle('ui-orders/order-lines/filters');
   const [isExportModalOpened, toggleExportModal] = useModalToggle();
   const selectOrderLine = useCallback(
     (e, { id }) => {
@@ -99,6 +106,8 @@ function OrderLinesList({
     },
     [history, location.search],
   );
+  const { visibleColumns, toggleColumn } = useColumnManager('order-lines-column-manager', columnMapping);
+  const { itemToView, setItemToView, deleteItemToView } = useItemToView('order-lines-list');
 
   const resultsStatusMessage = (
     <NoResultsMessage
@@ -111,19 +120,34 @@ function OrderLinesList({
 
   const renderActionMenu = useCallback(
     ({ onToggle }) => (
-      <OrderLinesListActionMenu
-        orderLinesCount={orderLinesCount}
-        onToggle={onToggle}
-        toggleExportModal={toggleExportModal}
-      />
+      <>
+        <OrderLinesListActionMenu
+          orderLinesCount={orderLinesCount}
+          onToggle={onToggle}
+          toggleExportModal={toggleExportModal}
+        />
+        <ColumnManagerMenu
+          prefix="order-lines"
+          columnMapping={columnMapping}
+          visibleColumns={visibleColumns}
+          toggleColumn={toggleColumn}
+        />
+      </>
     ),
-    [orderLinesCount, toggleExportModal],
+    [orderLinesCount, toggleExportModal, visibleColumns, toggleColumn],
   );
 
   return (
-    <Paneset data-test-order-line-instances>
+    <PersistedPaneset
+      appId="ui-orders"
+      id="order-lines"
+      data-test-order-line-instances
+    >
       {isFiltersOpened && (
-        <FiltersPane toggleFilters={toggleFilters}>
+        <FiltersPane
+          id="order-lines-filters-pane"
+          toggleFilters={toggleFilters}
+        >
           <OrdersNavigation isOrderLines />
           <SingleSearchForm
             applySearch={applySearch}
@@ -150,6 +174,8 @@ function OrderLinesList({
       )}
 
       <ResultsPane
+        id="order-lines-results-pane"
+        autosize
         count={orderLinesCount}
         renderActionMenu={renderActionMenu}
         filters={filters}
@@ -157,25 +183,41 @@ function OrderLinesList({
         title={title}
         toggleFiltersPane={toggleFilters}
       >
-        <MultiColumnList
-          autosize
-          columnMapping={columnMapping}
-          contentData={orderLines}
-          formatter={resultsFormatter}
-          hasMargin
-          id="order-line-list"
-          isEmptyMessage={resultsStatusMessage}
-          loading={isLoading}
-          onHeaderClick={changeSorting}
-          onNeedMoreData={onNeedMoreData}
-          onRowClick={selectOrderLine}
-          pagingType="click"
-          sortDirection={sortingDirection}
-          sortOrder={sortingField}
-          totalCount={orderLinesCount}
-          virtualize
-          visibleColumns={visibleColumns}
-        />
+        {({ height, width }) => (
+          <>
+            <MultiColumnList
+              columnMapping={columnMapping}
+              contentData={orderLines}
+              formatter={resultsFormatter}
+              hasMargin
+              id="order-line-list"
+              isEmptyMessage={resultsStatusMessage}
+              loading={isLoading}
+              onHeaderClick={changeSorting}
+              onNeedMoreData={onNeedMoreData}
+              onRowClick={selectOrderLine}
+              pagingType="none"
+              sortDirection={sortingDirection}
+              sortOrder={sortingField}
+              totalCount={orderLines.length}
+              visibleColumns={visibleColumns}
+              height={height - PrevNextPagination.HEIGHT}
+              width={width}
+              onMarkPosition={setItemToView}
+              onMarkReset={deleteItemToView}
+              itemToView={itemToView}
+            />
+
+            {orderLines.length > 0 && (
+              <PrevNextPagination
+                {...pagination}
+                totalCount={orderLinesCount}
+                disabled={isLoading}
+                onChange={onNeedMoreData}
+              />
+            )}
+          </>
+        )}
       </ResultsPane>
 
       {isExportModalOpened && (
@@ -195,7 +237,7 @@ function OrderLinesList({
           />
         )}
       />
-    </Paneset>
+    </PersistedPaneset>
   );
 }
 
@@ -209,6 +251,7 @@ OrderLinesList.propTypes = {
   location: ReactRouterPropTypes.location.isRequired,
   refreshList: PropTypes.func.isRequired,
   linesQuery: PropTypes.string,
+  pagination: PropTypes.object,
 };
 
 OrderLinesList.defaultProps = {

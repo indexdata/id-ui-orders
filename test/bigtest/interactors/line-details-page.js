@@ -18,7 +18,7 @@ import { TIMEOUT } from './const';
 }
 
 @interactor class RelatedInvoicesAccordion {
-  static defaultScope = '#relatedInvoices';
+  static defaultScope = '#invoiceLines';
 
   invoices = collection('[class*=mclRow---]', {
     link: clickable('[data-test-link-to-invoice]'),
@@ -43,7 +43,7 @@ import { TIMEOUT } from './const';
 }
 
 export default interactor(class LineDetailsPage {
-  static defaultScope = '#pane-poLineDetails';
+  static defaultScope = '#order-lines-details';
   receiveButton = new Button('[data-test-line-receive-button]');
   checkInButton = new Button('[data-test-line-check-in-button]');
   otherDetailsAccordion = isPresent('#other');
@@ -51,7 +51,7 @@ export default interactor(class LineDetailsPage {
   isLoaded = isPresent('#ItemDetails');
   relatedInvoicesAccordion = new RelatedInvoicesAccordion();
   notesAccordion = new NotesAccordion();
-  lineInvoicesIsPresent = isPresent('#lineInvoices');
+  lineInvoicesIsPresent = isPresent('#invoiceLines');
   closingReasonMessage = isPresent('[data-test-message-banner]');
   relatedAgreementLinesAccordion = new RelatedAgreementLinesAccordion();
   agreementLinesArePresent = isPresent('#po-line-agreement-lines');

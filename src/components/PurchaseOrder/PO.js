@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { get } from 'lodash';
 
 import {
@@ -12,8 +11,11 @@ import {
 import {
   baseManifest,
   LIMIT_MAX,
+  handleKeyCommand,
+  RECEIPT_STATUS,
   Tags,
   TagsBadge,
+  useAcqRestrictions,
   useModalToggle,
   useShowCallout,
 } from '@folio/stripes-acq-components';
@@ -22,16 +24,31 @@ import {
   AccordionSet,
   AccordionStatus,
   Button,
+  Col,
+  checkScope,
+  collapseAllSections,
   ConfirmationModal,
+  Dropdown,
+  DropdownMenu,
   ExpandAllButton,
+  expandAllSections,
+  HasCommand,
+  Icon,
+  Loading,
   LoadingPane,
   Pane,
   PaneMenu,
   Row,
+  ErrorModal,
 } from '@folio/stripes/components';
+import {
+  ColumnManagerMenu,
+  useColumnManager,
+} from '@folio/stripes/smart-components';
 
 import {
   getAddresses,
+  getExportAccountNumbers,
 } from '../../common/utils';
 import { useHandleOrderUpdateError } from '../../common/hooks/useHandleOrderUpdateError';
 import { isOngoing } from '../../common/POFields';
@@ -40,6 +57,10 @@ import {
   reasonsForClosureResource,
   updateEncumbrancesResource,
 } from '../../common/resources';
+import { useOrderTemplate } from '../../common/hooks';
+import {
+  PrintOrder,
+} from '../../PrintOrder';
 import {
   ADDRESSES,
   APPROVALS_SETTING,
@@ -56,6 +77,7 @@ import {
   updateOrderResource,
 } from '../Utils/orderResource';
 import { LINES_LIMIT_DEFAULT } from '../Utils/const';
+import { LINE_LISTING_COLUMN_MAPPING } from './constants';
 import CloseOrderModal from './CloseOrder';
 import OpenOrderConfirmationModal from './OpenOrderConfirmationModal';
 import LineListing from './LineListing';
@@ -75,16 +97,20 @@ const PO = ({
   mutator,
   resources,
   refreshList,
+  stripes,
 }) => {
   const sendCallout = useShowCallout();
   const orderId = match.params.id;
   const [handleErrorResponse] = useHandleOrderUpdateError(mutator.expenseClass);
 
-  const [order, setOrder] = useState();
+  const [order, setOrder] = useState({});
   const [orderInvoicesIds, setOrderInvoicesIds] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isErrorsModalOpened, toggleErrorsModal] = useModalToggle();
   const [updateOrderErrors, setUpdateOrderErrors] = useState();
+  const [hiddenFields, setHiddenFields] = useState({});
+  const { isLoading: isOrderTemplateLoading, orderTemplate } = useOrderTemplate(order?.template);
+
   const orderErrorModalShow = useCallback((errors) => {
     toggleErrorsModal();
     setUpdateOrderErrors(errors);
@@ -103,7 +129,7 @@ const PO = ({
           const errorKey = isGeneralError ? 'orderNotLoaded' : 'conversionError';
 
           sendCallout({
-            message: <SafeHTMLMessage id={`ui-orders.errors.${errorKey}`} />,
+            message: <FormattedMessage id={`ui-orders.errors.${errorKey}`} />,
             type: 'error',
           });
 
@@ -124,7 +150,7 @@ const PO = ({
       })
         .catch(() => {
           sendCallout({
-            message: <SafeHTMLMessage id="ui-orders.errors.orderLinesNotLoaded" />,
+            message: <FormattedMessage id="ui-orders.errors.orderLinesNotLoaded" />,
             type: 'error',
           });
 
@@ -134,7 +160,7 @@ const PO = ({
     ])
       .then(([orderResp, orderInvoicesResp, compositePoLines, orderListResp]) => {
         setOrder({
-          ...orderListResp[0],
+          ...(orderListResp[0] || {}),
           compositePoLines,
           ...orderResp,
         });
@@ -155,6 +181,10 @@ const PO = ({
     [match.params.id],
   );
 
+  useEffect(() => {
+    setHiddenFields(orderTemplate.hiddenFields);
+  }, [orderTemplate]);
+
   const [isCloneConfirmation, toggleCloneConfirmation] = useModalToggle();
   const [isTagsPaneOpened, toggleTagsPane] = useModalToggle();
   const [isLinesLimitExceededModalOpened, toggleLinesLimitExceededModal] = useModalToggle();
@@ -163,6 +193,9 @@ const PO = ({
   const [isOpenOrderModalOpened, toggleOpenOrderModal] = useModalToggle();
   const [isUnopenOrderModalOpened, toggleUnopenOrderModal] = useModalToggle();
   const [isDeletePiecesOpened, toggleDeletePieces] = useModalToggle();
+  const [isPrintModalOpened, togglePrintModal] = useModalToggle();
+  const [isDifferentAccountModalOpened, toggleDifferentAccountModal] = useModalToggle();
+  const [accountNumbers, setAccountNumbers] = useState([]);
   const reasonsForClosure = get(resources, 'closingReasons.records');
   const orderNumber = get(order, 'poNumber', '');
   const poLines = order?.compositePoLines;
@@ -170,6 +203,15 @@ const PO = ({
   const workflowStatus = get(order, 'workflowStatus');
   const isAbleToAddLines = workflowStatus === WORKFLOW_STATUS.pending;
   const tags = get(order, 'tags.tagList', []);
+  const accordionStatusRef = useRef();
+
+  const isReceiptRequired = !(poLines?.every(({ receiptStatus }) => (
+    receiptStatus === RECEIPT_STATUS.receiptNotRequired
+  )));
+  const hasRemovablePieces = isReceiptRequired && poLines?.some(({ cost, checkinItems }) => (
+    !checkinItems
+    && (cost?.quantityPhysical || 0 + cost?.quantityElectronic || 0) > 0
+  ));
 
   const lastMenu = (
     <PaneMenu>
@@ -187,7 +229,7 @@ const PO = ({
       cloneOrder(order, mutator.orderDetails, mutator.generatedOrderNumber, poLines)
         .then(newOrder => {
           sendCallout({
-            message: <SafeHTMLMessage id="ui-orders.order.clone.success" />,
+            message: <FormattedMessage id="ui-orders.order.clone.success" />,
             type: 'success',
           });
           history.push({
@@ -222,7 +264,7 @@ const PO = ({
       mutator.orderDetails.DELETE(order, { silent: true })
         .then(() => {
           sendCallout({
-            message: <SafeHTMLMessage id="ui-orders.order.delete.success" values={{ orderNumber }} />,
+            message: <FormattedMessage id="ui-orders.order.delete.success" values={{ orderNumber }} />,
             type: 'success',
           });
           refreshList();
@@ -233,7 +275,7 @@ const PO = ({
         })
         .catch(() => {
           sendCallout({
-            message: <SafeHTMLMessage id="ui-orders.errors.orderWasNotDeleted" />,
+            message: <FormattedMessage id="ui-orders.errors.orderWasNotDeleted" />,
             type: 'error',
           });
           setIsLoading();
@@ -258,7 +300,7 @@ const PO = ({
       updateOrderResource(order, mutator.orderDetails, closeOrderProps)
         .then(
           () => {
-            sendCallout({ message: <SafeHTMLMessage id="ui-orders.closeOrder.success" /> });
+            sendCallout({ message: <FormattedMessage id="ui-orders.closeOrder.success" /> });
             refreshList();
 
             return fetchOrder();
@@ -280,7 +322,7 @@ const PO = ({
         .then(
           () => {
             sendCallout({
-              message: <SafeHTMLMessage id="ui-orders.order.approved.success" values={{ orderNumber }} />,
+              message: <FormattedMessage id="ui-orders.order.approved.success" values={{ orderNumber }} />,
             });
             refreshList();
 
@@ -303,12 +345,22 @@ const PO = ({
       };
 
       if (isOpenOrderModalOpened) toggleOpenOrderModal();
+
+      const exportAccountNumbers = getExportAccountNumbers(order.compositePoLines);
+
+      if (!order.manualPo && exportAccountNumbers.length > 1) {
+        setAccountNumbers(exportAccountNumbers);
+
+        return toggleDifferentAccountModal();
+      }
+
       setIsLoading(true);
-      updateOrderResource(order, mutator.orderDetails, openOrderProps)
+
+      return updateOrderResource(order, mutator.orderDetails, openOrderProps)
         .then(
           () => {
             sendCallout({
-              message: <SafeHTMLMessage id="ui-orders.order.open.success" values={{ orderNumber: order?.poNumber }} />,
+              message: <FormattedMessage id="ui-orders.order.open.success" values={{ orderNumber: order?.poNumber }} />,
               type: 'success',
             });
             refreshList();
@@ -325,6 +377,8 @@ const PO = ({
       isOpenOrderModalOpened,
       toggleOpenOrderModal,
       order,
+      accountNumbers,
+      toggleDifferentAccountModal,
       sendCallout,
       refreshList,
       fetchOrder,
@@ -344,7 +398,7 @@ const PO = ({
         .then(
           () => {
             sendCallout({
-              message: <SafeHTMLMessage id="ui-orders.order.reopen.success" values={{ orderNumber }} />,
+              message: <FormattedMessage id="ui-orders.order.reopen.success" values={{ orderNumber }} />,
               type: 'success',
             });
             refreshList();
@@ -373,7 +427,7 @@ const PO = ({
         .then(
           () => {
             sendCallout({
-              message: <SafeHTMLMessage id="ui-orders.order.unopen.success" values={{ orderNumber }} />,
+              message: <FormattedMessage id="ui-orders.order.unopen.success" values={{ orderNumber }} />,
               type: 'success',
             });
             refreshList();
@@ -449,6 +503,8 @@ const PO = ({
     [location.search, match.params.id, history],
   );
 
+  const { visibleColumns, toggleColumn } = useColumnManager('line-listing-column-manager', LINE_LISTING_COLUMN_MAPPING);
+
   const onAddPOLine = useCallback(
     () => {
       const linesLimit = Number(get(resources, ['linesLimit', 'records', '0', 'value'], LINES_LIMIT_DEFAULT));
@@ -465,23 +521,42 @@ const PO = ({
     [resources, match.params.id, history, location.search, poLinesCount, toggleLinesLimitExceededModal],
   );
 
+  const lineListingActionMenu = useMemo(() => (
+    <Dropdown
+      data-testid="line-listing-action-dropdown"
+      label={<FormattedMessage id="stripes-components.paneMenuActionsToggleLabel" />}
+      buttonProps={{ buttonStyle: 'primary' }}
+    >
+      <DropdownMenu>
+        <IfPermission perm="orders.po-lines.item.post">
+          <Button
+            data-test-add-line-button
+            data-testid="add-line-button"
+            buttonStyle="dropdownItem"
+            disabled={!isAbleToAddLines}
+            onClick={onAddPOLine}
+          >
+            <Icon size="small" icon="plus-sign">
+              <FormattedMessage id="ui-orders.button.addLine" />
+            </Icon>
+          </Button>
+        </IfPermission>
+        <ColumnManagerMenu
+          prefix="line-listing"
+          columnMapping={LINE_LISTING_COLUMN_MAPPING}
+          visibleColumns={visibleColumns}
+          toggleColumn={toggleColumn}
+          excludeColumns={['arrow']}
+        />
+      </DropdownMenu>
+    </Dropdown>
+  ), [isAbleToAddLines, onAddPOLine, toggleColumn, visibleColumns]);
+
   const updateOrderCB = useCallback(async (orderWithTags) => {
     await mutator.orderDetails.PUT(orderWithTags);
     await fetchOrder();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchOrder]);
-
-  const addPOLineButton = (
-    <IfPermission perm="orders.po-lines.item.post">
-      <Button
-        data-test-add-line-button
-        disabled={!isAbleToAddLines}
-        onClick={onAddPOLine}
-      >
-        <FormattedMessage id="ui-orders.button.addLine" />
-      </Button>
-    </IfPermission>
-  );
 
   const updateEncumbrances = useCallback(
     () => {
@@ -489,7 +564,7 @@ const PO = ({
       mutator.updateEncumbrances.POST({})
         .then(
           () => {
-            sendCallout({ message: <SafeHTMLMessage id="ui-orders.order.updateEncumbrances.success" /> });
+            sendCallout({ message: <FormattedMessage id="ui-orders.order.updateEncumbrances.success" /> });
 
             return fetchOrder();
           },
@@ -503,9 +578,72 @@ const PO = ({
     [fetchOrder, handleErrorResponse, orderErrorModalShow, sendCallout],
   );
 
-  if (isLoading || order?.id !== match.params.id) {
+  const { restrictions, isLoading: isRestrictionsLoading } = useAcqRestrictions(
+    order?.id, order?.acqUnitIds,
+  );
+
+  const toggleForceVisibility = () => {
+    setHiddenFields(prevHiddenFields => (
+      prevHiddenFields
+        ? undefined
+        : (orderTemplate?.hiddenFields || {})
+    ));
+  };
+
+  const shortcuts = [
+    {
+      name: 'new',
+      handler: handleKeyCommand(() => {
+        if (stripes.hasPerm('ui-orders.order.create')) {
+          history.push('/orders/create');
+        }
+      }),
+    },
+    {
+      name: 'edit',
+      handler: handleKeyCommand(() => {
+        if (
+          stripes.hasPerm('ui-orders.order.edit') &&
+          !isRestrictionsLoading &&
+          !restrictions.protectUpdate
+        ) onEdit();
+      }),
+    },
+    {
+      name: 'duplicateRecord',
+      handler: handleKeyCommand(() => {
+        if (stripes.hasPerm('ui-orders.order.create')) {
+          toggleCloneConfirmation();
+        }
+      }),
+    },
+    {
+      name: 'expandAllSections',
+      handler: (e) => expandAllSections(e, accordionStatusRef),
+    },
+    {
+      name: 'collapseAllSections',
+      handler: (e) => collapseAllSections(e, accordionStatusRef),
+    },
+    {
+      name: 'addPOL',
+      shortcut: 'alt+a',
+      handler: handleKeyCommand(() => {
+        if (stripes.hasPerm('orders.po-lines.item.post') && isAbleToAddLines) {
+          onAddPOLine();
+        }
+      }),
+    },
+  ];
+
+  if (isLoading || order?.id !== match.params.id || isOrderTemplateLoading) {
     return (
-      <LoadingPane dismissible defaultWidth="fill" onClose={gotToOrdersList} />
+      <LoadingPane
+        id="order-details"
+        dismissible
+        defaultWidth="fill"
+        onClose={gotToOrdersList}
+      />
     );
   }
 
@@ -515,145 +653,183 @@ const PO = ({
   const approvalsSetting = get(resources, 'approvalsSetting.records', {});
 
   const POPane = (
-    <Pane
-      actionMenu={getPOActionMenu({
-        approvalsSetting,
-        clickApprove: approveOrder,
-        clickClone: toggleCloneConfirmation,
-        clickClose: toggleCloseOrderModal,
-        clickDelete: toggleDeleteOrderConfirm,
-        clickEdit: onEdit,
-        clickOpen: toggleOpenOrderModal,
-        clickReceive: goToReceiving,
-        clickReopen: reopenOrder,
-        clickUnopen: toggleUnopenOrderModal,
-        clickUpdateEncumbrances: updateEncumbrances,
-        order,
-      })}
-      data-test-order-details
-      defaultWidth="fill"
-      paneTitle={<FormattedMessage id="ui-orders.order.paneTitle.details" values={{ orderNumber }} />}
-      lastMenu={lastMenu}
-      dismissible
-      onClose={gotToOrdersList}
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
     >
-      <AccordionStatus>
-        <Row end="xs">
-          {isCloseOrderModalOpened && (
-            <CloseOrderModal
-              cancel={toggleCloseOrderModal}
-              closeOrder={closeOrder}
-              closingReasons={reasonsForClosure}
-              orderNumber={orderNumber}
-            />
-          )}
-          {isOpenOrderModalOpened && (
-            <OpenOrderConfirmationModal
-              orderNumber={orderNumber}
-              submit={openOrder}
-              cancel={toggleOpenOrderModal}
-            />
-          )}
+      <Pane
+        id="order-details"
+        actionMenu={getPOActionMenu({
+          approvalsSetting,
+          clickApprove: approveOrder,
+          clickClone: toggleCloneConfirmation,
+          clickClose: toggleCloseOrderModal,
+          clickDelete: toggleDeleteOrderConfirm,
+          clickEdit: onEdit,
+          clickOpen: toggleOpenOrderModal,
+          clickReceive: goToReceiving,
+          clickReopen: reopenOrder,
+          clickUnopen: toggleUnopenOrderModal,
+          clickUpdateEncumbrances: updateEncumbrances,
+          handlePrint: togglePrintModal,
+          isRestrictionsLoading,
+          order,
+          restrictions,
+          toggleForceVisibility,
+          hiddenFields,
+          orderTemplate,
+        })}
+        data-test-order-details
+        defaultWidth="fill"
+        paneTitle={<FormattedMessage id="ui-orders.order.paneTitle.details" values={{ orderNumber }} />}
+        lastMenu={lastMenu}
+        dismissible
+        onClose={gotToOrdersList}
+      >
+        <AccordionStatus ref={accordionStatusRef}>
+          <Row
+            end="xs"
+            bottom="xs"
+          >
+            <Col xs={10}>
+              {isPrintModalOpened && <Loading size="large" />}
 
-          <ExpandAllButton />
-        </Row>
-        <AccordionSet>
-          <Accordion
-            id="purchaseOrder"
-            label={<FormattedMessage id="ui-orders.paneBlock.purchaseOrder" />}
-          >
-            <PODetailsView
-              addresses={addresses}
-              order={order}
-            />
-          </Accordion>
-          {isOngoing(orderType) && (
+              {isCloseOrderModalOpened && (
+                <CloseOrderModal
+                  cancel={toggleCloseOrderModal}
+                  closeOrder={closeOrder}
+                  closingReasons={reasonsForClosure}
+                  orderNumber={orderNumber}
+                />
+              )}
+
+              {isOpenOrderModalOpened && (
+                <OpenOrderConfirmationModal
+                  orderNumber={orderNumber}
+                  submit={openOrder}
+                  cancel={toggleOpenOrderModal}
+                />
+              )}
+            </Col>
+
+            <Col xs={2}>
+              <ExpandAllButton />
+            </Col>
+          </Row>
+          <AccordionSet>
             <Accordion
-              id="ongoing"
-              label={<FormattedMessage id="ui-orders.paneBlock.ongoingInfo" />}
+              id="purchaseOrder"
+              label={<FormattedMessage id="ui-orders.paneBlock.purchaseOrder" />}
             >
-              <OngoingOrderInfoView order={order} />
+              <PODetailsView
+                addresses={addresses}
+                order={order}
+                hiddenFields={hiddenFields}
+              />
             </Accordion>
-          )}
-          <Accordion
-            id="POSummary"
-            label={<FormattedMessage id="ui-orders.paneBlock.POSummary" />}
-          >
-            <SummaryView
-              order={order}
+            {isOngoing(orderType) && (
+              <Accordion
+                id="ongoing"
+                label={<FormattedMessage id="ui-orders.paneBlock.ongoingInfo" />}
+              >
+                <OngoingOrderInfoView
+                  order={order}
+                  hiddenFields={hiddenFields}
+                />
+              </Accordion>
+            )}
+            <Accordion
+              id="POSummary"
+              label={<FormattedMessage id="ui-orders.paneBlock.POSummary" />}
+            >
+              <SummaryView
+                order={order}
+                hiddenFields={hiddenFields}
+              />
+            </Accordion>
+            <Accordion
+              displayWhenOpen={lineListingActionMenu}
+              id="POListing"
+              label={<FormattedMessage id="ui-orders.paneBlock.POLines" />}
+            >
+              <LineListing
+                baseUrl={match.url}
+                funds={funds}
+                poLines={poLines}
+                visibleColumns={visibleColumns}
+              />
+            </Accordion>
+            <POInvoicesContainer
+              label={<FormattedMessage id="ui-orders.paneBlock.relatedInvoices" />}
+              orderInvoicesIds={orderInvoicesIds}
             />
-          </Accordion>
-          <Accordion
-            displayWhenOpen={addPOLineButton}
-            id="POListing"
-            label={<FormattedMessage id="ui-orders.paneBlock.POLines" />}
-          >
-            <LineListing
-              baseUrl={match.url}
-              funds={funds}
-              poLines={poLines}
-            />
-          </Accordion>
-          <POInvoicesContainer
-            label={<FormattedMessage id="ui-orders.paneBlock.relatedInvoices" />}
-            orderInvoicesIds={orderInvoicesIds}
+          </AccordionSet>
+        </AccordionStatus>
+        {isLinesLimitExceededModalOpened && (
+          <LinesLimit
+            cancel={toggleLinesLimitExceededModal}
+            createOrder={createNewOrder}
           />
-        </AccordionSet>
-      </AccordionStatus>
-      {isLinesLimitExceededModalOpened && (
-        <LinesLimit
-          cancel={toggleLinesLimitExceededModal}
-          createOrder={createNewOrder}
-        />
-      )}
-      {isErrorsModalOpened && (
-        <UpdateOrderErrorModal
-          orderNumber={orderNumber}
-          errors={updateOrderErrors}
-          cancel={orderErrorModalClose}
-        />
-      )}
-      {showConfirmDelete && (
-        <ConfirmationModal
-          id="delete-order-confirmation"
-          confirmLabel={<FormattedMessage id="ui-orders.order.delete.confirmLabel" />}
-          heading={<FormattedMessage id="ui-orders.order.delete.heading" values={{ orderNumber }} />}
-          message={<FormattedMessage id="ui-orders.order.delete.message" />}
-          onCancel={toggleDeleteOrderConfirm}
-          onConfirm={deletePO}
-          open
-        />
-      )}
-      {isCloneConfirmation && (
-        <ConfirmationModal
-          id="order-clone-confirmation"
-          confirmLabel={<FormattedMessage id="ui-orders.order.clone.confirmLabel" />}
-          heading={<FormattedMessage id="ui-orders.order.clone.heading" />}
-          message={<FormattedMessage id="ui-orders.order.clone.message" />}
-          onCancel={toggleCloneConfirmation}
-          onConfirm={onCloneOrder}
-          open
-        />
-      )}
-      {isUnopenOrderModalOpened && (
-        <ConfirmationModal
-          id="order-unopen-confirmation"
-          confirmLabel={<FormattedMessage id="ui-orders.unopenOrderModal.confirmLabel" />}
-          heading={<FormattedMessage id="ui-orders.unopenOrderModal.title" values={{ orderNumber }} />}
-          message={<FormattedMessage id="ui-orders.unopenOrderModal.message" />}
-          onCancel={toggleUnopenOrderModal}
-          onConfirm={unopenOrder}
-          open
-        />
-      )}
-      {isDeletePiecesOpened && (
-        <ModalDeletePieces
-          onCancel={toggleDeletePieces}
-          onSubmit={openOrder}
-          poLines={poLines}
-        />
-      )}
-    </Pane>
+        )}
+        {isErrorsModalOpened && (
+          <UpdateOrderErrorModal
+            orderNumber={orderNumber}
+            errors={updateOrderErrors}
+            cancel={orderErrorModalClose}
+          />
+        )}
+        {showConfirmDelete && (
+          <ConfirmationModal
+            id="delete-order-confirmation"
+            confirmLabel={<FormattedMessage id="ui-orders.order.delete.confirmLabel" />}
+            heading={<FormattedMessage id="ui-orders.order.delete.heading" values={{ orderNumber }} />}
+            message={<FormattedMessage id="ui-orders.order.delete.message" />}
+            onCancel={toggleDeleteOrderConfirm}
+            onConfirm={deletePO}
+            open
+          />
+        )}
+        {isCloneConfirmation && (
+          <ConfirmationModal
+            id="order-clone-confirmation"
+            confirmLabel={<FormattedMessage id="ui-orders.order.clone.confirmLabel" />}
+            heading={<FormattedMessage id="ui-orders.order.clone.heading" />}
+            message={<FormattedMessage id="ui-orders.order.clone.message" />}
+            onCancel={toggleCloneConfirmation}
+            onConfirm={onCloneOrder}
+            open
+          />
+        )}
+        {isUnopenOrderModalOpened && (
+          <ConfirmationModal
+            id="order-unopen-confirmation"
+            confirmLabel={<FormattedMessage id="ui-orders.unopenOrderModal.confirmLabel" />}
+            heading={<FormattedMessage id="ui-orders.unopenOrderModal.title" values={{ orderNumber }} />}
+            message={<FormattedMessage id={`ui-orders.unopenOrderModal.message.${hasRemovablePieces ? 'withPieces' : 'withoutPieces'}`} />}
+            onCancel={toggleUnopenOrderModal}
+            onConfirm={unopenOrder}
+            open
+          />
+        )}
+        {isDeletePiecesOpened && (
+          <ModalDeletePieces
+            onCancel={toggleDeletePieces}
+            onSubmit={openOrder}
+            poLines={poLines}
+          />
+        )}
+        {isDifferentAccountModalOpened && (
+          <ErrorModal
+            id="order-open-different-account"
+            label={<FormattedMessage id="ui-orders.differentAccounts.title" />}
+            content={<FormattedMessage id="ui-orders.differentAccounts.message" values={{ accountNumber: accountNumbers.length }} />}
+            onClose={toggleDifferentAccountModal}
+            open
+          />
+        )}
+      </Pane>
+    </HasCommand>
   );
 
   return (
@@ -664,6 +840,13 @@ const PO = ({
           putMutator={updateOrderCB}
           recordObj={order}
           onClose={toggleTagsPane}
+        />
+      )}
+
+      {isPrintModalOpened && (
+        <PrintOrder
+          onCancel={togglePrintModal}
+          order={order}
         />
       )}
     </>
@@ -708,6 +891,7 @@ PO.propTypes = {
   mutator: PropTypes.object.isRequired,
   resources: PropTypes.object.isRequired,
   refreshList: PropTypes.func.isRequired,
+  stripes: PropTypes.object.isRequired,
 };
 
 export default stripesConnect(PO);

@@ -2,6 +2,147 @@
 
 ## (IN PROGRESS)
 
+* Update agreement hyperlink on POL. Refs UIOR-796.
+* Disable/enable instance matching for FOLIO tenant. Refs UIOR-763.
+* Settings (Orders) | Apply baseline keyboard shortcuts. Refs UIOR-803.
+* Remove pieces column from "Related invoice" accordion.Refs UIOR-817.
+* Filter and identify POL by Acq unit. Refs UIOR-477.
+* Add constraint for POL: physical POL should contain only Physical element and electronic only E-resource. Refs UIOR-825.
+* Add "Package titles" accordion to package POL view. Refs UIOR-831.
+* Allow user to add Package titles from POL view. Refs UIOR-832.
+* Allow user to select instance for Title AND edit title from POL view. Refs UIOR-833.
+* Display invoice line amount and comment on POL in related invoice table. Refs UIOR-851.
+* Intercept user with confirmation when user unopens Order. Refs UIOR-808.
+* Allow user to indicate in order template that specific fields should be hidden on order form. Refs UIOR-848.
+* Order template is not saved without receiving workflow. Refs UIOR-862.
+* Hide all fields in PO or POL that are set to hide in order template. Refs UIOR-850.
+* Create area Settings->Orders->Acquisition methods. Refs UIOR-846.
+* Allow user to show all hidden fields from PO or POL. Refs UIOR-849.
+* Select Acquisition method from controlled vocabulary list. Refs UIOR-852.
+* Rename collection field name for Acquisition method. Refs UIOR-872.
+* Move "show all hidden fields" for PO or POL to Actions menu. Refs UIOR-871.
+* Do not show ongoing order accordion for One-time orders. Refs UIOR-869.
+* Allow user to show all hidden fields from PO or POL view. Refs UIOR-855.
+* When Order template includes hidden fields they are also hidden from the view pane. Refs UIOR-856.
+* Order - Allow user to choose what columns display for Order lines. Refs UIOR-878.
+* Add estimated price to POL grid view on order record. Refs UIOR-868.
+* Check for potential duplicate order lines. Refs UIOR-864.
+* Add a return to Orders default search to app context menu dropdown. Refs UIOR-880.
+* Add two additional "Resource identifier" types to the product id type selection for POL. Refs UIOR-843.
+* Permission name discrepancies between `displayName` in `package.json` and translated values in `en_US.json`. Refs UIOR-734.
+* Allow user to set Acq method EDIFACT export triggers for POL. Refs UIOR-371.
+* Translations for orders lines filter by export date. Refs UIOR-883.
+* Do not export order lines where Manual is true for the PO. Refs UIOR-890.
+* Disable Check for potential duplicate order lines in Settings. Refs UIOR-888.
+* Apply changes in Orders App from Plugin Find POL. Refs UIOR-900.
+* Update unopened order "Delete piece" warning message. Refs UIOR-905.
+* Validate All POLs on order that is set to export via EDIFACT have same account number. Refs UIOR-903.
+* Adding tenant's timezone in UI. Refs UIOR-910.
+* Settings > Orders > change focus. Refs UIOR-897.
+* Only printing part of the primary address for orders. Refs UIOR-909.
+
+## [3.0.3](https://github.com/folio-org/ui-orders/tree/v3.0.3) (2021-12-08)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v3.0.2...v3.0.3)
+
+* POL Title selection overwriting Order template location. Refs UIOR-863.
+* Order template not populating Holdings correctly.Refs UIOR-854.
+
+## [3.0.2](https://github.com/folio-org/ui-orders/tree/v3.0.2) (2021-11-05)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v3.0.1...v3.0.2)
+
+* Update manually add pieces for receiving field. Refs UIOR-836.
+* Product ID search returning random results. Refs UIOR-830.
+* Update "Unopen order" confirmation modal message when pieces are deleted. Refs UIOR-827.
+
+## [3.0.1](https://github.com/folio-org/ui-orders/tree/v3.0.1) (2021-11-02)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v3.0.0...v3.0.1)
+
+* Pieces are not displayed in POL Related invoices table. Refs UIOR-815.
+* User can't edit opened POL when last piece is removed. Refs UIOR-824.
+* Use a compatible version of `ui-plugin-find-po-line`. Refs UIOR-818.
+* Permission - "Order: Create order lines" missing instance plugin perms. Refs UIOR-819.
+
+## [3.0.0](https://github.com/folio-org/ui-orders/tree/v3.0.0) (2021-10-08)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v2.4.2...v3.0.0)
+
+* Sorting of data in the "Title or package name" column is not performed in the POL list in the "Orders" app. Refs UIOR-742.
+* Add a setting for Save and Add next PO line. Refs UIOR-694.
+* Checking and unchecking isPackage can hide invalid data that prevents saving POL. Refs UIOR-737.
+* Allow user to select holding rather than location at point of order. Refs UIOR-724.
+* Restrict editing order location and quantity on POL. Refs UIOR-726.
+* Allow user to sort "Related invoices" table by Invoice date. Refs UIOR-752.
+* Support erm 5.0 interface in orders. Refs UIOR-765.
+* Add vendor invoice number to 'Related invoices' section of PO/POL. Refs UIOR-771.
+* Use mod-orders for piece queries. Refs UIOR-774.
+* Fiscal year rollover amount not shown on POL after rollover. Refs UIOR-768.
+* Lookup Package POL not considered an edit on edit form. Refs UIOR-779.
+* HoldingsID not handled properly when duplicating order. Refs UIOR-770.
+* UI tests replacement with RTL/Jest. Refs FAT-36.
+* Display "Date Ordered" field on the PO details view pane. Refs UIOR-776.
+* Searching by product ID in Orders app returning inconsistent results. Refs UIOR-772.
+* Add translations for permission names. Refs UIOR-551.
+* increment stripes to v7. Refs UIOR-769.
+* `useLineHoldings` hook usage from stripes-acq-components. Refs UIOR-795.
+* Order Tab - Implement MCL Next/Previous pagination. Refs UIOR-782.
+* Location (holding) field adjustments for None or Instance Create inventory setting. Refs UIOR-781.
+* Order lines Tab - Implement MCL Next/Previous pagination. Refs UIOR-783.
+* "New" button active for user without permission to edit reason for closure in settings. Refs UIOR-797.
+* Do not take user to Orders tab after edit of POL in POL tab. Refs UIOR-799.
+* Filter label contains extra 's'. Refs UIOR-802.
+* Settings (Order templates) | Apply baseline keyboard shortcuts. Refs UIOR-801.
+* Create keyboard shortcut for "Add POL" action. Refs UIOR-812.
+* Order lines tab - Resume Scroll position after edit. Refs UIOR-786.
+* Order tab - Resume Scroll position after edit. Refs UIOR-785.
+* Error message when trying to view order templates with order format set to "electronic" or "p/e mix" in POL details. Refs UIOR-758.
+
+## [2.4.2](https://github.com/folio-org/ui-orders/tree/v2.4.2) (2021-09-08)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v2.4.1...v2.4.2)
+
+* global CSS styles force landscape printing in other modules. Refs UIOR-775.
+
+## [2.4.1](https://github.com/folio-org/ui-orders/tree/v2.4.1) (2021-07-28)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v2.4.0...v2.4.1)
+
+* Prefix, suffix as well as PO and POL tags missing from export. Refs UIOR-755.
+* Publication date not populated when using 'Title look up'. Refs UIOR-751.
+
+## [2.4.0](https://github.com/folio-org/ui-orders/tree/v2.4.0) (2021-06-18)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v2.3.1...v2.4.0)
+
+* Filter order lines by Expense class. Refs UIOR-678.
+* Resizable Panes - Persistence. Refs UIOR-683.
+* Apply Results list column chooser. Refs UIOR-691.
+* Filter order by subscription = yes/no. Refs UIOR-710.
+* Add linked instances accordion to the POL. Refs UIOR-689.
+* Populate linked instances accordion with instance details. Refs UIOR-690.
+* Keep Title visible on POL when scrolling down the page. Refs UIOR-661.
+* Apply baseline keyboard shortcuts. Refs UIOR-677.
+* Update Print order from HTML template. Refs UIOR-721.
+* Possible to save POL with no location even when location is required. Refs UIOR-720.
+* Implement Keyboard shortcuts modal. Refs UIOR-729.
+* Multiple PO lines created when 'Save & Open' used on POL with fund distribution and no budget. Refs UIOR-723.
+* Order export to CSV does not perform when attempting export of 50+ records. Refs UIOR-739.
+* Update "Renewal Review period" filter label to match PO field label. Refs UIOR-715.
+* Update filter label to match PO field label. Refs UIOR-714.
+* Support new error codes of Order validation on UI. Refs UIOR-711.
+* Compile Translation Files into AST Format. Refs UIOR-697.
+* orders - Acquisition units no longer restrict edit create or delete actions from action menu. Refs UIOR-686.
+* Print order from HTML template. Refs UIOR-674.
+* Add Print action and icon to order actions menu. Refs UIOR-672.
+
+## [2.3.1](https://github.com/folio-org/ui-orders/tree/v2.3.1) (2021-04-16)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v2.3.0...v2.3.1)
+
+* Add Ongoing to the POL filters. Refs UIOR-688.
+* Material type E and P Filters not working in POL search. Refs UIOR-679.
+* With perm Orders: View order lines can not see order lines. Refs UIOR-699.
+* Duplicate PO is created as "Approved". Refs UIOR-698.
+* With perm "Orders: Create orders" user can NOT create orders. Refs UIOR-700.
+* POL: Adjust the UI for account number to also display the account name. Refs UIOR-706.
+
+## [2.3.0](https://github.com/folio-org/ui-orders/tree/v2.3.0) (2021-03-18)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v2.2.6...v2.3.0)
+
 * Vendor ref number search is not working in the POL. Refs UIOR-668.
 * Update labels for inventory interactions. Refs UIOR-665.
 * Use "Total expended" and "Total encumbered" from composite order. Refs UIOR-658.
