@@ -695,7 +695,7 @@
     "button.printLine": "打印订单行",
     "buttons.line.submit": "提交",
     "unopenOrderModal.message.withoutPieces": "确定要取消打开订单吗？",
-    "unopenOrderModal.message.withPieces": "本订单行有相关接收中记录。任何未收到的件都将被删除，与这些件相关的任何“订购中”单件记录也将从典藏中删除。确定要取消打开订单吗？",
+    "unopenOrderModal.message.withPieces": "本订单至少有一个带有接收工作流程为“已同步订单和接收数量”的订单行。具有相关接收记录的此类订单行将删除任何未收货件，并且与这些件相关的任何“订购中”单件记录也将从典藏中删除。与那些没有其他相关单件的单件链接的馆藏也将从典藏中删除。确定要取消打开订单吗？",
     "duplicateLines.confirmation.heading": "保存订单行",
     "duplicateLines.confirmation.message": "这似乎是重复的订单行",
     "duplicateLines.confirmation.title": "可能的重复订单行",
@@ -732,6 +732,6 @@
     "title.actions.save.error.genericError": "尚未为采购订单行{poLineNumber}添加标题{title}",
     "title.actions.save.error.titleExist": "采购订单行{poLineNumber}的标题{title} {poLineNumber}已存在",
     "permission.order.showHidden": "订单：显示所有隐藏字段",
-    "differentAccounts.title": "Different account numbers",
-    "differentAccounts.message": "This order includes <b>{accountNumber}</b> unique account numbers for export. You can not open an order with more than one POL set to export if the POLs have different account numbers. Please edit the account number information of these POLs or move POLs with different account numbers to different orders before opening."
+    "differentAccounts.title": "不同的帐号",
+    "differentAccounts.message": "此订单包括<b> {accountNumber} </b>个用于导出的唯一帐号。如果订单行具有不同的帐号，则不能打开具有多个订单行集的订单以导出。打开前请编辑这些订单行的账号信息或将不同账号的订单行移到不同的订单中。"
 }
