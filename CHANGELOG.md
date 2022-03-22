@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [3.1.1](https://github.com/folio-org/ui-orders/tree/v3.1.1) (2022-03-22)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v3.1.0...v3.1.1)
+
 * Orders csv export has errors in the location column when orders are linked to holdings. Refs UIOR-921.
 * exportCsv is deprecated in stripes-utils. Refs UIOR-922.
 
