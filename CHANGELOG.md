@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [3.1.3](https://github.com/folio-org/ui-orders/tree/v3.1.3) (2022-06-02)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v3.1.2...v3.1.3)
+
 * Backport recent zh_TW translations. Refs UIOR-982.
 
 ## [3.1.2](https://github.com/folio-org/ui-orders/tree/v3.1.2) (2022-03-25)
