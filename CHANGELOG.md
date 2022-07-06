@@ -2,6 +2,11 @@
 
 ## (IN PROGRESS)
 
+## [3.1.4](https://github.com/folio-org/ui-orders/tree/v3.1.4) (2022-07-06)
+[Full Changelog](https://github.com/folio-org/ui-orders/compare/v3.1.3...v3.1.4)
+
+* Error handling improvement. Refs UIOR-994.
+
 ## [3.1.3](https://github.com/folio-org/ui-orders/tree/v3.1.3) (2022-06-02)
 [Full Changelog](https://github.com/folio-org/ui-orders/compare/v3.1.2...v3.1.3)
 
