@@ -104,7 +104,7 @@ class POForm extends Component {
 
   validateNumber = (poNumber, formValues) => {
     const { form } = this.props;
-    const isDirty = form.getFieldState('poNumber').dirty;
+    const isDirty = form.getFieldState('poNumber')?.dirty;
 
     return poNumber && isDirty
       ? this.callAPI('poNumber', formValues)
